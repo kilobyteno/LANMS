@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4684d78e33148eaa3da5f791338e8439",
+    "content-hash": "90f52faaa67fbf7a1b0273cbb66891bd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -995,27 +995,23 @@
         },
         {
             "name": "inertiajs/inertia-laravel",
-            "version": "v0.4.0",
+            "version": "v0.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inertiajs/inertia-laravel.git",
-                "reference": "097fe5b3be73ab8edea1a5216a696f627c1f6b03"
+                "reference": "726b1e0d4fc399089dd29820a78e40d1c9aad2eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inertiajs/inertia-laravel/zipball/097fe5b3be73ab8edea1a5216a696f627c1f6b03",
-                "reference": "097fe5b3be73ab8edea1a5216a696f627c1f6b03",
+                "url": "https://api.github.com/repos/inertiajs/inertia-laravel/zipball/726b1e0d4fc399089dd29820a78e40d1c9aad2eb",
+                "reference": "726b1e0d4fc399089dd29820a78e40d1c9aad2eb",
                 "shasum": ""
             },
             "require": {
-                "ext-json": "*",
-                "laravel/framework": "^5.4|^6.0|^7.0|^8.0",
-                "php": "^7.2|^8.0"
+                "laravel/framework": "^5.4|^6.0|^7.0|^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^8.0|^9.0",
-                "roave/security-advisories": "dev-master"
+                "orchestra/testbench": "~3.0"
             },
             "type": "library",
             "extra": {
@@ -1051,7 +1047,7 @@
             ],
             "support": {
                 "issues": "https://github.com/inertiajs/inertia-laravel/issues",
-                "source": "https://github.com/inertiajs/inertia-laravel/tree/v0.4.0"
+                "source": "https://github.com/inertiajs/inertia-laravel/tree/v0.3.6"
             },
             "funding": [
                 {
@@ -1059,7 +1055,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-02T19:35:26+00:00"
+            "time": "2021-01-08T13:16:40+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -6050,6 +6046,62 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "laravel/breeze",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "36f678dc65bdb09b5dbbb46051ab07d1a6f19962"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/36f678dc65bdb09b5dbbb46051ab07d1a6f19962",
+                "reference": "36f678dc65bdb09b5dbbb46051ab07d1a6f19962",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Breeze\\BreezeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+            "keywords": [
+                "auth",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/breeze/issues",
+                "source": "https://github.com/laravel/breeze"
+            },
+            "time": "2021-03-23T17:01:27+00:00"
+        },
+        {
             "name": "laravel/sail",
             "version": "v1.4.9",
             "source": {
@@ -6238,6 +6290,70 @@
                 }
             ],
             "time": "2020-11-13T09:40:50+00:00"
+        },
+        {
+            "name": "nascent-africa/jetstrap",
+            "version": "v2.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nascent-africa/jetstrap.git",
+                "reference": "62cb12d4f69c03f4d20f4241431b6ce872d75990"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nascent-africa/jetstrap/zipball/62cb12d4f69c03f4d20f4241431b6ce872d75990",
+                "reference": "62cb12d4f69c03f4d20f4241431b6ce872d75990",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0",
+                "inertiajs/inertia-laravel": "^0.3",
+                "laravel/breeze": "^1.1",
+                "laravel/jetstream": "^2.2",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NascentAfrica\\Jetstrap\\JetstrapServiceProvider"
+                    ],
+                    "aliases": {
+                        "Jetstrap": "NascentAfrica\\Jetstrap\\JetstrapFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NascentAfrica\\Jetstrap\\": "src/Jetstrap/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anitche Chisom",
+                    "email": "anitchec.dev@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel 8 package to easily switch TailwindCSS resources generated by Laravel Jetstream to Bootstrap 4 or 5.",
+            "keywords": [
+                "bootstrap",
+                "jetstream",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/nascent-africa/jetstrap/issues",
+                "source": "https://github.com/nascent-africa/jetstrap"
+            },
+            "time": "2021-03-16T15:40:14+00:00"
         },
         {
             "name": "nunomaduro/collision",
