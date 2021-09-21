@@ -6,6 +6,7 @@ This is my personal preference when starting a new Laravel web application. This
 Composer:
 - [laravel/jetstream](https://github.com/laravel/jetstream)
 - [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
+- [spatie/laravel-honeypot](https://github.com/spatie/laravel-honeypot)
 
 NPM:
 - [tailwindcss-debug-screens](https://github.com/jorenvanhee/tailwindcss-debug-screens)
