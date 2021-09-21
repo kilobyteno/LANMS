@@ -7,6 +7,7 @@ Composer:
 - [laravel/jetstream](https://github.com/laravel/jetstream)
 - [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 - [spatie/laravel-honeypot](https://github.com/spatie/laravel-honeypot)
+- [spatie/laravel-cookie-consent](https://github.com/spatie/laravel-cookie-consent)
 
 NPM:
 - [tailwindcss-debug-screens](https://github.com/jorenvanhee/tailwindcss-debug-screens)
