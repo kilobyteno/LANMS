@@ -9,6 +9,7 @@ Composer:
 - [spatie/laravel-honeypot](https://github.com/spatie/laravel-honeypot)
 - [spatie/laravel-cookie-consent](https://github.com/spatie/laravel-cookie-consent)
 - [wulfheart/pretty_routes](https://github.com/wulfheart/pretty_routes)
+- [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) _(dev)_
 
 NPM:
 - [tailwindcss-debug-screens](https://github.com/jorenvanhee/tailwindcss-debug-screens)
