@@ -8,7 +8,7 @@ Composer:
 - [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 - [spatie/laravel-honeypot](https://github.com/spatie/laravel-honeypot)
 - [spatie/laravel-cookie-consent](https://github.com/spatie/laravel-cookie-consent)
-- [wulfheart/pretty_routes](https://github.com/wulfheart/pretty_routes)
+- [wulfheart/pretty-routes](https://github.com/Wulfheart/pretty-routes)
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) _(dev)_
 
 NPM:
