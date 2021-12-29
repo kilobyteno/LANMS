@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cf381a90de5432607c56b1037cb4fdf",
+    "content-hash": "53a3318e5888ee7d50c5213922551d3d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4366,27 +4366,28 @@
         },
         {
             "name": "spatie/laravel-cookie-consent",
-            "version": "2.12.13",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-cookie-consent.git",
-                "reference": "8e93b9efee3a68960e5c832f937170c2fc0b2f37"
+                "reference": "a6fa575663879b7d86ad365ca03c53a87c8fcb44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-cookie-consent/zipball/8e93b9efee3a68960e5c832f937170c2fc0b2f37",
-                "reference": "8e93b9efee3a68960e5c832f937170c2fc0b2f37",
+                "url": "https://api.github.com/repos/spatie/laravel-cookie-consent/zipball/a6fa575663879b7d86ad365ca03c53a87c8fcb44",
+                "reference": "a6fa575663879b7d86ad365ca03c53a87c8fcb44",
                 "shasum": ""
             },
             "require": {
-                "illuminate/cookie": "^6.0|^7.0|^8.0",
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "illuminate/view": "^6.0|^7.0|^8.0",
-                "php": "^7.3|^8.0"
+                "illuminate/cookie": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "illuminate/view": "^7.0|^8.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.6"
             },
             "require-dev": {
                 "fakerphp/faker": "~1.9",
-                "orchestra/testbench": "^4.0|^5.0|^6.0"
+                "orchestra/testbench": "^5.0|^6.0"
             },
             "type": "library",
             "extra": {
@@ -4430,8 +4431,7 @@
                 "spatie"
             ],
             "support": {
-                "issues": "https://github.com/spatie/laravel-cookie-consent/issues",
-                "source": "https://github.com/spatie/laravel-cookie-consent/tree/2.12.13"
+                "source": "https://github.com/spatie/laravel-cookie-consent/tree/3.1.2"
             },
             "funding": [
                 {
@@ -4439,7 +4439,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-26T08:04:10+00:00"
+            "time": "2021-08-19T23:44:04+00:00"
         },
         {
             "name": "spatie/laravel-honeypot",
@@ -10371,7 +10371,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
