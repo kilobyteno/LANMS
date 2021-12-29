@@ -17,9 +17,6 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="{{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
-
-        @include('cookie-consent::index')
-        
         <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>

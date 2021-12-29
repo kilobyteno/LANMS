@@ -20,8 +20,6 @@
     </head>
     <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
 
-        @include('cookie-consent::index')
-
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
