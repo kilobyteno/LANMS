@@ -3,11 +3,11 @@
         <img class="-mt-1" src="{{ asset('/img/cookie.svg') }}" alt="cookie"/>
     </div>
     <span class="block w-full mb-3 leading-normal text-gray-800 text-md">
-        {!! trans('cookieConsent::texts.message') !!}
+        {!! trans('cookie-consent::texts.message') !!}
     </span>
     <div class="flex items-center justify-between">
         <button type="button" class="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-green-600 rounded-lg shadow-md js-cookie-consent-agree hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
-            {{ trans('cookieConsent::texts.agree') }}
+            {{ trans('cookie-consent::texts.agree') }}
         </button>
     </div>
 </div>
