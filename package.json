@@ -10,8 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@inertiajs/inertia": "^0.8.2",
-        "@inertiajs/inertia-vue3": "^0.3.5",
+        "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/progress": "^0.2.4",
         "@tailwindcss/forms": "^0.2.1",
         "@tailwindcss/typography": "^0.4.0",
@@ -30,10 +29,10 @@
         "sass": "^1.32.8",
         "sass-loader": "^10.1.1",
         "tailwindcss": "^2.0.1",
-        "vue": "^3.0.5",
-        "vue-loader": "^16.1.2"
+        "vue": "2.6.14",
+        "vue-loader": "^15.9.8"
     },
     "dependencies": {
-        "vue-tailwind": "^2.1.6"
+        "vue-tailwind": "^2.5.0"
     }
 }
