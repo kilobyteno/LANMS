@@ -1,11 +1,20 @@
 {
-    "name": "laravel/laravel",
+    "name": "infihex/lanms",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "description": "LAN-party Managment System",
+    "keywords": [
+        "php",
+        "website",
+        "laravel",
+        "lanparty",
+        "management-system",
+        "lan-party",
+        "tailwindcss",
+        "alpinejs"
+    ],
+    "license": "gpl-3.0-only",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
