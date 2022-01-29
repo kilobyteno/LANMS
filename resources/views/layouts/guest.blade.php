@@ -15,7 +15,9 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+        @production
+            <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+        @endproduction
     </head>
     <body class="{{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
         <div class="font-sans antialiased text-gray-900">
