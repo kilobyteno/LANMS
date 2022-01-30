@@ -19,7 +19,7 @@
             <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
         @endproduction
     </head>
-    <body class="{{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
+    <body class="{{ config('app.debug') ? 'debug-screens' : '' }}">
         <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
