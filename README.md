@@ -1,7 +1,7 @@
 
 ## About
 
-This is my personal preference when starting a new Laravel web application. This will minimize my time to get a project up and running. Some config changes has been made from the default installation for one or more of the packages below. This skeleton includes these packages:
+This is our preference when starting a new Laravel web application. This will minimize my time to get a project up and running. Some config changes has been made from the default installation for one or more of the packages below. This skeleton includes these packages:
 
 Composer:
 - [laravel/jetstream](https://github.com/laravel/jetstream)
