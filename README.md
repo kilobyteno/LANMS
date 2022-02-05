@@ -14,6 +14,7 @@ Composer:
 NPM:
 - [prettier](https://github.com/prettier/prettier)
 - [prettier/plugin-php](https://github.com/prettier/plugin-php)
+- [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 - [tailwindcss-debug-screens](https://github.com/jorenvanhee/tailwindcss-debug-screens)
 
 
