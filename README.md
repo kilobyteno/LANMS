@@ -12,6 +12,8 @@ Composer:
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) _(dev)_
 
 NPM:
+- [prettier](https://github.com/prettier/prettier)
+- [prettier/plugin-php](https://github.com/prettier/plugin-php)
 - [tailwindcss-debug-screens](https://github.com/jorenvanhee/tailwindcss-debug-screens)
 
 
