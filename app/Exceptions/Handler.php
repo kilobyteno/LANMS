@@ -22,9 +22,9 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
-        "current_password",
-        "password",
-        "password_confirmation",
+        'current_password',
+        'password',
+        'password_confirmation',
     ];
 
     /**
@@ -35,8 +35,8 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            if ($this->shouldReport($e) && app()->bound("sentry")) {
-                app("sentry")->captureException($e);
+            if ($this->shouldReport($e) && app()->bound('sentry')) {
+                app('sentry')->captureException($e);
             }
         });
     }
