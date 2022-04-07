@@ -1,23 +1,23 @@
 <?php
 
-use Laravel\Fortify\Features;
 use Illuminate\Support\Facades\Route;
-use Spatie\Honeypot\ProtectAgainstSpam;
-use Laravel\Fortify\Http\Controllers\PasswordController;
+use Laravel\Fortify\Features;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use Laravel\Fortify\Http\Controllers\ConfirmablePasswordController;
+use Laravel\Fortify\Http\Controllers\ConfirmedPasswordStatusController;
+use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
+use Laravel\Fortify\Http\Controllers\EmailVerificationPromptController;
 use Laravel\Fortify\Http\Controllers\NewPasswordController;
-use Laravel\Fortify\Http\Controllers\VerifyEmailController;
-use Laravel\Fortify\Http\Controllers\RecoveryCodeController;
-use Laravel\Fortify\Http\Controllers\RegisteredUserController;
-use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
+use Laravel\Fortify\Http\Controllers\PasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 use Laravel\Fortify\Http\Controllers\ProfileInformationController;
-use Laravel\Fortify\Http\Controllers\ConfirmablePasswordController;
-use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
-use Laravel\Fortify\Http\Controllers\ConfirmedPasswordStatusController;
-use Laravel\Fortify\Http\Controllers\EmailVerificationPromptController;
-use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
-use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
+use Laravel\Fortify\Http\Controllers\RecoveryCodeController;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
+use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
+use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
+use Laravel\Fortify\Http\Controllers\VerifyEmailController;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
     $enableViews = config('fortify.views', true);
@@ -25,7 +25,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     // Authentication...
     if ($enableViews) {
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-            ->middleware(['guest:' . config('fortify.guard')])
+            ->middleware(['guest:'.config('fortify.guard')])
             ->name('login');
     }
 
@@ -33,7 +33,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     $twoFactorLimiter = config('fortify.limiters.two-factor');
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware(
-        array_filter(['guest:' . config('fortify.guard'), $limiter ? 'throttle:' . $limiter : null])
+        array_filter(['guest:'.config('fortify.guard'), $limiter ? 'throttle:'.$limiter : null])
     );
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
@@ -42,20 +42,20 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     if (Features::enabled(Features::resetPasswords())) {
         if ($enableViews) {
             Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->middleware(['guest:' . config('fortify.guard')])
+                ->middleware(['guest:'.config('fortify.guard')])
                 ->name('password.request');
 
             Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->middleware(['guest:' . config('fortify.guard')])
+                ->middleware(['guest:'.config('fortify.guard')])
                 ->name('password.reset');
         }
 
         Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-            ->middleware(['guest:' . config('fortify.guard')])
+            ->middleware(['guest:'.config('fortify.guard')])
             ->name('password.email');
 
         Route::post('/reset-password', [NewPasswordController::class, 'store'])
-            ->middleware(['guest:' . config('fortify.guard')])
+            ->middleware(['guest:'.config('fortify.guard')])
             ->name('password.update');
     }
 
@@ -63,12 +63,12 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     if (Features::enabled(Features::registration())) {
         if ($enableViews) {
             Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware(['guest:' . config('fortify.guard'), ProtectAgainstSpam::class])
+                ->middleware(['guest:'.config('fortify.guard'), ProtectAgainstSpam::class])
                 ->name('register');
         }
 
         Route::post('/register', [RegisteredUserController::class, 'store'])->middleware([
-            'guest:' . config('fortify.guard'),
+            'guest:'.config('fortify.guard'),
             ProtectAgainstSpam::class,
         ]);
     }
@@ -121,14 +121,14 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     if (Features::enabled(Features::twoFactorAuthentication())) {
         if ($enableViews) {
             Route::get('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'create'])
-                ->middleware(['guest:' . config('fortify.guard')])
+                ->middleware(['guest:'.config('fortify.guard')])
                 ->name('two-factor.login');
         }
 
         Route::post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])->middleware(
             array_filter([
-                'guest:' . config('fortify.guard'),
-                $twoFactorLimiter ? 'throttle:' . $twoFactorLimiter : null,
+                'guest:'.config('fortify.guard'),
+                $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null,
             ])
         );
 
