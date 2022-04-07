@@ -18,6 +18,8 @@
         "sentry/sentry-laravel": "^2.11",
         "spatie/laravel-honeypot": "^4.2",
         "spatie/laravel-permission": "^5.5",
+        "symfony/http-client": "^6.0",
+        "symfony/postmark-mailer": "^6.0",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
