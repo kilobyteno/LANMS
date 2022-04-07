@@ -13,6 +13,7 @@ Composer:
 - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper) _(dev)_
 - [laravel-lang/lang](https://github.com/laravel-lang/lang) _(dev)_
 - [laravel-lang/publisher](https://github.com/laravel-lang/publisher) _(dev)_
+- [pestphp/pest](https://github.com/pestphp/pest) _(dev)_
 
 NPM:
 - [prettier](https://github.com/prettier/prettier)
