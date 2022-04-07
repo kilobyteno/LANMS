@@ -11,6 +11,7 @@
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
+        "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "laravel/framework": "^9.7",
         "laravel/jetstream": "^2.7",
         "laravel/sanctum": "^2.15",
