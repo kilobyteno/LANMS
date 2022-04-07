@@ -15,8 +15,8 @@ class PasswordConfirmationTest extends TestCase
     {
         $user = Features::hasTeamFeatures()
             ? User::factory()
-            ->withPersonalTeam()
-            ->create()
+                ->withPersonalTeam()
+                ->create()
             : User::factory()->create();
 
         $response = $this->actingAs($user)->get('/user/confirm-password');
