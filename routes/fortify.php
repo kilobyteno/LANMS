@@ -19,7 +19,7 @@ use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
 use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
-Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+Route::middleware(config('fortify.middleware', ['web']))->group(function () {
     $enableViews = config('fortify.views', true);
 
     // Authentication...
