@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b5ec5a3ad6b33285dc7d58c2ff6c486",
+    "content-hash": "5cddcf717ca3a91b3418257b63c5a61e",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -67,6 +67,69 @@
                 "source": "https://github.com/akaunting/laravel-language/tree/1.0.20"
             },
             "time": "2022-02-15T06:21:49+00:00"
+        },
+        {
+            "name": "anlutro/l4-settings",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anlutro/laravel-settings.git",
+                "reference": "679bba82ff93a4de4e63d3305ee5454eb8590ccc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anlutro/laravel-settings/zipball/679bba82ff93a4de4e63d3305ee5454eb8590ccc",
+                "reference": "679bba82ff93a4de4e63d3305ee5454eb8590ccc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "^4.2|^5|^6|^7|^8|^9",
+                "illuminate/support": "^4.2|^5|^6|^7|^8|^9"
+            },
+            "require-dev": {
+                "laravel/framework": ">=5.7",
+                "mockery/mockery": "^1.2",
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "illuminate/database": "Save settings to a database table.",
+                "illuminate/filesystem": "Save settings to a JSON file."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Setting": "anlutro\\LaravelSettings\\Facade"
+                    },
+                    "providers": [
+                        "anlutro\\LaravelSettings\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "anlutro\\LaravelSettings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Lutro",
+                    "email": "anlutro@gmail.com"
+                }
+            ],
+            "description": "Persistent settings in Laravel.",
+            "support": {
+                "issues": "https://github.com/anlutro/laravel-settings/issues",
+                "source": "https://github.com/anlutro/laravel-settings/tree/v1.1.1"
+            },
+            "time": "2022-02-11T13:01:17+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",

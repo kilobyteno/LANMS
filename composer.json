@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
+        "anlutro/l4-settings": "^1.1",
         "guzzlehttp/guzzle": "^7.2",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "laravel/framework": "^9.7",
