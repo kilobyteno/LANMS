@@ -27,4 +27,4 @@ return new class extends Migration
     {
         Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
     }
-}
+};
