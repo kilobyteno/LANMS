@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -23,5 +24,8 @@
         <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
+
+        @livewireScripts
+        @livewire('livewire-ui-modal')
     </body>
 </html>
