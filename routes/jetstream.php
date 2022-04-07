@@ -10,20 +10,15 @@ use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
 use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
 use Laravel\Jetstream\Jetstream;
 
-Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
+Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
         Route::get('/terms', [TermsOfServiceController::class, 'show'])->name('terms.show');
         Route::get('/privacy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
     }
 
-    $authMiddleware = config('jetstream.guard')
-            ? 'auth:'.config('jetstream.guard')
-            : 'auth';
-
-    Route::group(['middleware' => [$authMiddleware, 'verified']], function () {
+    Route::middleware('auth', 'verified')->group(function () {
         // User & Profile...
-        Route::get('/user/profile', [UserProfileController::class, 'show'])
-                    ->name('profile.show');
+        Route::get('/user/profile', [UserProfileController::class, 'show'])->name('profile.show');
 
         // API...
         if (Jetstream::hasApiFeatures()) {
@@ -37,8 +32,8 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
             Route::put('/current-team', [CurrentTeamController::class, 'update'])->name('current-team.update');
 
             Route::get('/team-invitations/{invitation}', [TeamInvitationController::class, 'accept'])
-                        ->middleware(['signed'])
-                        ->name('team-invitations.accept');
+                ->middleware(['signed'])
+                ->name('team-invitations.accept');
         }
     });
 });

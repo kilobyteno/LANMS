@@ -13,7 +13,7 @@
             <!-- Token Name -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="name" value="{{ __('Token Name') }}" />
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="createApiTokenForm.name" autofocus />
+                <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="createApiTokenForm.name" autofocus />
                 <x-jet-input-error for="name" class="mt-2" />
             </div>
 
@@ -22,7 +22,7 @@
                 <div class="col-span-6">
                     <x-jet-label for="permissions" value="{{ __('Permissions') }}" />
 
-                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2">
                         @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                             <label class="flex items-center">
                                 <x-jet-checkbox wire:model.defer="createApiTokenForm.permissions" :value="$permission"/>
@@ -76,12 +76,12 @@
                                     @endif
 
                                     @if (Laravel\Jetstream\Jetstream::hasPermissions())
-                                        <button class="cursor-pointer ml-6 text-sm text-gray-400 underline" wire:click="manageApiTokenPermissions({{ $token->id }})">
+                                        <button class="ml-6 text-sm text-gray-400 underline cursor-pointer" wire:click="manageApiTokenPermissions({{ $token->id }})">
                                             {{ __('Permissions') }}
                                         </button>
                                     @endif
 
-                                    <button class="cursor-pointer ml-6 text-sm text-red-500" wire:click="confirmApiTokenDeletion({{ $token->id }})">
+                                    <button class="ml-6 text-sm text-red-500 cursor-pointer" wire:click="confirmApiTokenDeletion({{ $token->id }})">
                                         {{ __('Delete') }}
                                     </button>
                                 </div>
@@ -105,7 +105,7 @@
             </div>
 
             <x-jet-input x-ref="plaintextToken" type="text" readonly :value="$plainTextToken"
-                class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500 w-full"
+                class="w-full px-4 py-2 mt-4 font-mono text-sm text-gray-500 bg-gray-100 rounded"
                 autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 @showing-token-modal.window="setTimeout(() => $refs.plaintextToken.select(), 250)"
             />
@@ -125,7 +125,7 @@
         </x-slot>
 
         <x-slot name="content">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                     <label class="flex items-center">
                         <x-jet-checkbox wire:model.defer="updateApiTokenForm.permissions" :value="$permission"/>
@@ -140,7 +140,7 @@
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 
-            <x-jet-button class="ml-3" wire:click="updateApiToken" wire:loading.attr="disabled">
+            <x-jet-button class="ml-2" wire:click="updateApiToken" wire:loading.attr="disabled">
                 {{ __('Save') }}
             </x-jet-button>
         </x-slot>
@@ -160,8 +160,7 @@
             <x-jet-secondary-button wire:click="$toggle('confirmingApiTokenDeletion')" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-3" wire:click="deleteApiToken" wire:loading.attr="disabled">
+            <x-jet-danger-button class="ml-2" wire:click="deleteApiToken" wire:loading.attr="disabled">
                 {{ __('Delete') }}
             </x-jet-danger-button>
         </x-slot>

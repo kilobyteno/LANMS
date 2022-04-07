@@ -3,8 +3,7 @@
 use Laravel\Jetstream\Features;
 
 return [
-
-    /*
+        /*
     |--------------------------------------------------------------------------
     | Jetstream Stack
     |--------------------------------------------------------------------------
@@ -15,9 +14,9 @@ return [
     |
     */
 
-    'stack' => 'livewire',
+        'stack' => 'livewire',
 
-    /*
+        /*
      |--------------------------------------------------------------------------
      | Jetstream Route Middleware
      |--------------------------------------------------------------------------
@@ -28,9 +27,9 @@ return [
      |
      */
 
-    'middleware' => ['web'],
+        'middleware' => ['web'],
 
-    /*
+        /*
     |--------------------------------------------------------------------------
     | Features
     |--------------------------------------------------------------------------
@@ -41,15 +40,15 @@ return [
     |
     */
 
-    'features' => [
-        // Features::termsAndPrivacyPolicy(),
-        // Features::profilePhotos(),
-        // Features::api(),
-        // Features::teams(['invitations' => true]),
-        Features::accountDeletion(),
-    ],
+        'features' => [
+                Features::termsAndPrivacyPolicy(),
+                Features::profilePhotos(),
+                // Features::api(),
+                // Features::teams(['invitations' => true]),
+                Features::accountDeletion(),
+        ],
 
-    /*
+        /*
     |--------------------------------------------------------------------------
     | Profile Photo Disk
     |--------------------------------------------------------------------------
@@ -60,6 +59,5 @@ return [
     |
     */
 
-    'profile_photo_disk' => 'public',
-
+        'profile_photo_disk' => 'public',
 ];

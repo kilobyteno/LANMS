@@ -20,15 +20,6 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
 
     /**
-     * The controller namespace for the application.
-     *
-     * When present, controller route declarations will automatically be prefixed with this namespace.
-     *
-     * @var string|null
-     */
-    // protected $namespace = 'App\\Http\\Controllers';
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
@@ -40,19 +31,13 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
-                ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
+            Route::middleware('web')->group(base_path('routes/web.php'));
 
-            Route::namespace($this->namespace)
-                ->group(base_path('routes/jetstream.php'));
+            Route::namespace($this->namespace)->group(base_path('routes/jetstream.php'));
 
-            Route::namespace($this->namespace)
-                ->group(base_path('routes/fortify.php'));
-            
+            Route::namespace($this->namespace)->group(base_path('routes/fortify.php'));
         });
     }
 
@@ -64,7 +49,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
     }
 }
