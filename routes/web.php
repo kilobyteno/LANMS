@@ -22,3 +22,9 @@ Route::middleware(['auth:sanctum', 'verified'])
         return view('dashboard');
     })
     ->name('dashboard');
+
+Route::group(['middleware' => 'language'], function () {
+
+    // Add your routes here
+
+});
