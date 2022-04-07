@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-white">
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-black dark:text-white">
                 App version: {{ setting('APP_VERSION') ?? 'N/A' }}
             </div>
         </div>
