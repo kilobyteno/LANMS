@@ -11,6 +11,8 @@ Composer:
 - [sentry/laravel-sentry](https://github.com/getsentry/sentry-laravel)
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) _(dev)_
 - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper) _(dev)_
+- [laravel-lang/lang](https://github.com/laravel-lang/lang) _(dev)_
+- [laravel-lang/publisher](https://github.com/laravel-lang/publisher) _(dev)_
 
 NPM:
 - [prettier](https://github.com/prettier/prettier)
