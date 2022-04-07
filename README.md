@@ -10,6 +10,7 @@ Composer:
 - [wulfheart/pretty-routes](https://github.com/Wulfheart/pretty-routes)
 - [sentry/laravel-sentry](https://github.com/getsentry/sentry-laravel)
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) _(dev)_
+- [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper) _(dev)_
 
 NPM:
 - [prettier](https://github.com/prettier/prettier)
