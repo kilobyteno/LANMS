@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.7",
         "laravel/jetstream": "^2.7",
@@ -17,9 +17,7 @@
         "livewire/livewire": "^2.5",
         "sentry/sentry-laravel": "^2.11",
         "spatie/laravel-honeypot": "^4.2",
-        "spatie/laravel-permission": "^5.5",
-        "wulfheart/pretty_routes": "^0.3.0",
-        "league/flysystem-aws-s3-v3": "^3.0"
+        "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
