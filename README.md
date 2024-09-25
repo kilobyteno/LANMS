@@ -3,7 +3,7 @@
 <p align="center">
     <a href="https://github.com/kilobyteno/LANMS"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/kilobyteno/lanms"></a>
     <a href="https://github.com/kilobyteno/LANMS"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/kilobyteno/lanms"></a>
-    <a href="https://libraries.io/github/kilobyteno/LANMS"><img src="https://img.shields.io/librariesio/github/kilobyteno/lanms" alt="Dependecies"></a>
+    <a href="https://libraries.io/github/kilobyteno/LANMS"><img src="https://img.shields.io/librariesio/github/kilobyteno/LANMS" alt="Dependencies"></a>
     <a href="https://libraries.io/github/kilobyteno/LANMS"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/kilobyteno/lanms"></a>
     <a href="https://github.com/kilobyteno/LANMS"><img src="https://img.shields.io/github/license/kilobyteno/lanms" alt="License"></a>
 </p>
