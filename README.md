@@ -9,21 +9,21 @@
 </p>
 
 ## What is LANMS?
-LAN-party Management System in the cloud. Available in the future, but soon. [Tweet at us to show your interest in this project!](https://twitter.com/kilobyteno)
+LAN-party Management System (LANMS) is a web-based application that you can self-host or use our cloud-based solution to manage your LAN-party events. It is designed to help you manage your LAN-party events, including tournaments, games, tickets, guests, and participants.
 
 ## History
 
-I, [Daniel](https://github.com/DanielRTRD), built a similar LANMS private project like this one which started back in 2014/2015. And now I want to create another one that is open-source and available for everyone out there.
+I, [Daniel](https://github.com/dsbilling), built a similar LANMS private project like this one which started back in 2014. And now I want to create another one that is open-source and available for everyone out there.
 
 ## Contribution
 
-Thank you for considering contributing to LANMS! You can read the contribution guide [here](CONTRIBUTING.md).
+Thank you for considering contributing! You can read the contribution guide [here](.github/CONTRIBUTING.md).
 
 ## Code of Conduct
 
-In order to ensure that the LANMS community is welcoming to all, please review and abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
+In order to ensure that the community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 
 ## License
 
-LANMS is open-sourced software licensed under the [GPL-3.0](LICENSE.md).
+See the [LICENSE](LICENSE) file for details.
