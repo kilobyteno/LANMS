@@ -11,6 +11,11 @@
 ### What is LANMS?
 LAN-party Management System (LANMS) is a web-based application that you can self-host or use our cloud-based solution to manage your LAN-party events. It is designed to help you manage your LAN-party events, including tournaments, games, tickets, guests, and participants.
 
+## Current Project Status
+LANMS is currently in development and is **not ready for production use**. We are working hard to get it ready for the first public release.
+
+We started the development of the new LANMS 3.0 in February 2023 originally, but other priorities and issues out of our control occurred so we picked it back up in February 2024. But now, as of 25th of September 2024, we are restarting the development from scratch to make it more user-friendly, scalable, flexible and open-source.
+
 ## History
 
 I, [dsbilling](https://dsbilling.no), have built LANMS since 2014 when a friend and then coworker needed a system to control his LAN-party. It was initially started by [chilloman](https://github.com/chilloman) but a month into the development I joined. Since then, I have been developing and maintaining LANMS as a closed-source project.
