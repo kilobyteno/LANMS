@@ -13,7 +13,13 @@ LAN-party Management System (LANMS) is a web-based application that you can self
 
 ## History
 
-I, [Daniel](https://github.com/dsbilling), built a similar LANMS private project like this one which started back in 2014. And now I want to create another one that is open-source and available for everyone out there.
+I, [dsbilling](https://dsbilling.no), have built LANMS since 2014 when a friend and then coworker needed a system to control his LAN-party. It was initially started by [chilloman](https://github.com/chilloman) but a month into the development I joined. Since then, I have been developing and maintaining LANMS as a closed-source project.
+
+In September 2024, I decided to make [LANMS 2.0](https://github.com/kilobyteno/lanms-legacy) (now known as LANMS Legacy) open-source and available to the public after having it on the back burner since 2020 (COVID-19). I have decided not to maintain [LANMS Legacy](https://github.com/kilobyteno/lanms-legacy) and instead focus on the new version of LANMS 3.0 (this repo).
+
+_"Where is LANMS 1.0?"_ you might ask. LANMS 1.0 was the first version of the system which was heavily hardcoded for the first LAN-party event, because of this it will stay as closed-source until further notice. The first commit for LANMS 1.0 was 2nd of November 2014. LANMS 2.0 was a complete rewrite of LANMS 1.0 to make it more flexible and scalable, the first commit was 27th of February 2015, right after the first event.
+
+ So now back to the present, LANMS 3.0 is the new version of LANMS, which is a complete rewrite of LANMS 2.0. It is built with modern technologies and is designed to be more flexible, scalable, and user-friendly.
 
 ## Contribution
 
