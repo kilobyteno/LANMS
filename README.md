@@ -8,7 +8,7 @@
     <a href="https://github.com/kilobyteno/LANMS"><img src="https://img.shields.io/github/license/kilobyteno/LANMS" alt="License"></a>
 </p>
 
-## What is LANMS?
+### What is LANMS?
 LAN-party Management System (LANMS) is a web-based application that you can self-host or use our cloud-based solution to manage your LAN-party events. It is designed to help you manage your LAN-party events, including tournaments, games, tickets, guests, and participants.
 
 ## History
