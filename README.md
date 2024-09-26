@@ -34,6 +34,10 @@ Thank you for considering contributing! You can read the contribution guide [her
 
 In order to ensure that the community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
+## Security Policy
+
+See the [SECURITY.md](.github/SECURITY.md) file for details.
+
 
 ## License
 
