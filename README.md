@@ -16,6 +16,10 @@ LANMS is currently in development and is **not ready for production use**. We ar
 
 We started the development of the new LANMS 3.0 in February 2023 originally, but other priorities and issues out of our control occurred so we picked it back up in February 2024. But now, as of 25th of September 2024, we are restarting the development from scratch to make it more user-friendly, scalable, flexible and open-source.
 
+## Contribution
+
+Thank you for considering contributing! You can read the contribution guide [here](.github/CONTRIBUTING.md).
+
 ## History
 
 I, [dsbilling](https://dsbilling.no), have built LANMS since 2014 when a friend and then coworker needed a system to control his LAN-party. It was initially started by [chilloman](https://github.com/chilloman) but a month into the development I joined. Since then, I have been developing and maintaining LANMS as a closed-source project.
@@ -26,19 +30,4 @@ _"Where is LANMS 1.0?"_ you might ask. LANMS 1.0 was the first version of the sy
 
  So now back to the present, LANMS 3.0 is the new version of LANMS, which is a complete rewrite of LANMS 2.0. It is built with modern technologies and is designed to be more flexible, scalable, and user-friendly.
 
-## Contribution
 
-Thank you for considering contributing! You can read the contribution guide [here](.github/CONTRIBUTING.md).
-
-## Code of Conduct
-
-In order to ensure that the community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
-
-## Security Policy
-
-See the [SECURITY.md](.github/SECURITY.md) file for details.
-
-
-## License
-
-See the [LICENSE](LICENSE) file for details.
