@@ -30,4 +30,12 @@ _"Where is LANMS 1.0?"_ you might ask. LANMS 1.0 was the first version of the sy
 
  So now back to the present, LANMS 3.0 is the new version of LANMS, which is a complete rewrite of LANMS 2.0. It is built with modern technologies and is designed to be more flexible, scalable, and user-friendly.
 
+## Star History
 
+<a href="https://star-history.com/#kilobyteno/lanms&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=kilobyteno/lanms&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=kilobyteno/lanms&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=kilobyteno/lanms&type=Date" />
+ </picture>
+</a>
