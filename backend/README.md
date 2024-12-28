@@ -54,3 +54,7 @@ To seed the database by updating or creating entries, run the following command:
 ```bash
 python seed.py --table all --auto
 ```
+
+## Deployment
+
+The backend is deployed to the staging environment automatically when a commit is pushed to the `develop` branch, please create a pull request from the your branch to the `develop` branch and once that is merged, the backend will be deployed to the staging environment.
