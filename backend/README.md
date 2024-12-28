@@ -1,4 +1,4 @@
-# lanms-core
+# LANMS - Backend
 
 Core microservice for the LAN Management System (SaaS) cloud platform.
 
