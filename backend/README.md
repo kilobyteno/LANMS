@@ -1,6 +1,6 @@
 # LANMS - Backend
 
-The backend for LANMS. For the frontend, see [frontend readme](/frontend/README.md).
+The backend for LANMS. For the frontend, see [frontend readme](/frontend/README.md) or the [root readme](/README.md).
 
 ## Development
 
