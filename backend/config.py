@@ -113,7 +113,7 @@ class Config:
 
     # API Docs
     API_DOCS_TITLE: str = f'{MICRO_SERVICE_NAME_FOR_HUMANS} API'
-    API_DOCS_VERSION: str = '3.0'
+    API_DOCS_VERSION: str = '3.0.0-alpha.1'
     API_DOCS_DESCRIPTION: str = f'Endpoints for the {MICRO_SERVICE_NAME_FOR_HUMANS}'
     API_DOCS_OPENAPI_URL: Optional[str] = None if MICRO_SERVICE_IN_PRODUCTION else '/openapi.json'
     API_DOCS_URL: str = '/docs'
