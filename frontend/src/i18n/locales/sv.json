@@ -1,0 +1,333 @@
+{
+    "nav": {
+        "user": {
+            "change_password": "Ändra lösenord",
+            "logout": "Logga ut",
+            "attendee_panel": "Gå till deltagarepanel"
+        },
+        "sidebar": {
+            "general": "Generellt",
+            "dashboard": "Dashboard",
+            "system": "System"
+        }
+    },
+    "common": {
+        "loading": "Laddar...",
+        "view": "Vis",
+        "edit": "Redigera",
+        "delete": "Radera",
+        "back": "Tillbaka",
+        "deleting": "Radering...",
+        "cancel": "Avbryt",
+        "saving": "Sparar...",
+        "save": "Spara"
+    },
+    "event_switcher": {
+        "no_events": "Inga evenemang funna",
+        "select_event": "Välj ett evenemang",
+        "title": "Byt evenemang",
+        "create": "Skapa evenemang"
+    },
+    "attendee": {
+        "nav": {
+            "events": "Evenemang"
+        },
+        "events": {
+            "interested": "Interessert",
+            "maybe": "Kanskje",
+            "not_interested": "Ikke interessert",
+            "set_interest": "Sett interesse",
+            "not_found": "Arrangement ikke funnet",
+            "people_interested": "Personer interessert",
+            "details": "Detaljer",
+            "max_participants": "Maks deltakere",
+            "contact_info": "Kontaktinformasjon",
+            "view_on_map": "Vis på kart",
+            "title": "Arrangementer",
+            "view_details": "Vis detaljer"
+        }
+    },
+    "language": {
+        "switch": "Växla språk"
+    },
+    "changelog": {
+        "title": "Ändringslogg",
+        "description": "Detta är hämtat från GitHub releases och är inte översatt."
+    },
+    "theme": {
+        "switch": "Växla tema",
+        "light": "Ljust tema",
+        "dark": "Mörkt tema",
+        "system": "Systemstandard"
+    },
+    "organisation_switcher": {
+        "no_organisations": "Inga organisationer funna",
+        "select_organisation": "Välj en organisation",
+        "title": "Byt organisation",
+        "create": "Skapa organisation"
+    },
+    "version": {
+        "newAvailable": "En ny version är tillgänglig"
+    },
+    "user": {
+        "change_password": {
+            "form": {
+                "error": {
+                    "new_passwords_dont_match": "De nya lösenorden matchar inte",
+                    "failed_to_change_password": "Det gick inte att ändra lösenord. Försök igen."
+                },
+                "current_password": {
+                    "label": "Nuvarande lösenord",
+                    "placeholder": "Ange ditt nuvarande lösenord"
+                },
+                "new_password": {
+                    "label": "Nytt lösenord",
+                    "placeholder": "Ange ditt nya lösenord"
+                },
+                "confirm_new_password": {
+                    "label": "Bekräfta nytt lösenord",
+                    "placeholder": "Bekräfta ditt nya lösenord"
+                },
+                "changing_password": "Ändrar lösenord...",
+                "change_password": "Ändra lösenord"
+            },
+            "title": "Ändra lösenord",
+            "description": "Uppdatera lösenordet för ditt konto"
+        }
+    },
+    "auth": {
+        "forgot_password": {
+            "form": {
+                "error": {
+                    "failed": "Kunde inte skicka inställningarna för glömt lösenord. Försök igen."
+                },
+                "success": "Inställningarna för glömt lösenord har skickats till din e-post",
+                "email": {
+                    "label": "E-post",
+                    "placeholder": "Skriv in din e-postadress"
+                },
+                "submit": "Skicka inställningarna för glömt lösenord"
+            },
+            "title": "Glömt lösenord",
+            "description": "Skriv in din e-postadress och vi skickar instruktioner för att återställa ditt lösenord"
+        },
+        "reset_password": {
+            "form": {
+                "error": {
+                    "invalid_reset_token": "Ugyldig eller utlöpt tillbakestillingsnökkel. Vennligst be om en ny tilbakestillingsnökkel.",
+                    "passwords_dont_match": "De nya lösenordenerna matchar inte. Försök igen.",
+                    "failed": "Kunde inte återställa lösenord. Försök igen."
+                },
+                "password": {
+                    "label": "Nytt lösenord",
+                    "placeholder": "Skriv in ditt nya lösenord"
+                },
+                "password_confirmation": {
+                    "label": "Bekräfta nytt lösenord",
+                    "placeholder": "Bekräfta ditt nya lösenord"
+                },
+                "submit": "Återställ lösenord"
+            },
+            "title": "Återställ lösenord",
+            "description": "Skriv in och bekräfta ditt nya lösenord"
+        }
+    },
+    "login": {
+        "title": "Logga in",
+        "subtitle": "Välkommen tillbaka",
+        "forgotPassword": "Glömt lösenord?",
+        "submit": "Logga in",
+        "noAccount": "Har du inget konto?",
+        "signUp": "Registrera dig"
+    },
+    "global": {
+        "form": {
+            "email": {
+                "label": "E-post",
+                "placeholder": "Ange din e-postadress"
+            },
+            "password": {
+                "label": "Lösenord"
+            }
+        }
+    },
+    "register": {
+        "title": "Registrera dig",
+        "subtitle": "Skapa ett nytt konto",
+        "submit": "Registrera",
+        "haveAccount": "Har du redan ett konto?",
+        "signIn": "Logga in"
+    },
+    "signup": {
+        "details": {
+            "title": "Registreringsdetaljer",
+            "description": "Fyll i informationen nedan för att skapa ditt konto",
+            "name": "Namn",
+            "password": "Lösenord",
+            "confirmPassword": "Bekräfta lösenord",
+            "phone": "Telefonnummer",
+            "phonePlaceholder": "Ange telefonnummer",
+            "submit": "Registrera dig"
+        }
+    },
+    "otp": {
+        "title": "Bekräfta identitet",
+        "description": "Vi har skickat en engångskod till din e-post",
+        "form": {
+            "label": "Engångskod"
+        },
+        "submit": "Bekräfta",
+        "noCode": "Fick du ingen kod?",
+        "resend": "Skicka igen",
+        "backToLogin": "Tillbaka till inloggning"
+    },
+    "error": {
+        "404": {
+            "title": "Sidan hittades inte",
+            "description": "Sidan du letar efter finns inte",
+            "backHome": "Tillbaka till startsidan"
+        }
+    },
+    "landing": {
+        "title": "Välkommen till vår plattform",
+        "description": "Hantera evenemang enkelt och effektivt",
+        "organiser_dashboard": "Organiser Dashboard",
+        "attendee_dashboard": "Attendee Dashboard",
+        "signup": "Sign up",
+        "login": "Log in"
+    },
+    "dashboard": {
+        "no_organisations": {
+            "title": "Inga organisationer",
+            "description": "Du har inte skapat eller blivit inbjuden till några organisationer än",
+            "create": "Skapa organisation"
+        }
+    },
+    "event": {
+        "not_found": "Evenemang hittades inte",
+        "delete": {
+            "title": "Slett evenemang",
+            "description": "Radering av ett evenemang kommer att ta bort alla associerade data och kan inte ångras.",
+            "warning_title": "Permanenta radering av evenemang",
+            "warning_description": "Om du fortsätter, kommer alla associerade data att raderas permanent och kan inte ångras. Evenemanget kommer att tas bort från alla deltagares kalendrar och evenemangssidan kommer att vara otillgänglig.",
+            "confirm_title": "Är du säker?",
+            "confirm_description": "Detta kommer att radera evenemanget permanent och alla associerade data.",
+            "confirm_submit": "Slett evenemang"
+        },
+        "form": {
+            "title": {
+                "label": "Evenemangets titel",
+                "placeholder": "Ange evenemangets titel"
+            },
+            "description": {
+                "label": "Beskrivning",
+                "placeholder": "Ange evenemangets beskrivning"
+            },
+            "start_at": {
+                "label": "Start datum & tid"
+            },
+            "end_at": {
+                "label": "Slut datum & tid"
+            },
+            "max_participants": {
+                "label": "Maximalt antal deltagare",
+                "placeholder": "Ange maximalt antal deltagare"
+            },
+            "website": {
+                "label": "Webbplats",
+                "placeholder": "Ange webbplatsadress"
+            },
+            "contact_email": {
+                "label": "Kontakt e-post",
+                "placeholder": "Ange kontakt e-postadress"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "maps_url": {
+                "label": "Karta URL",
+                "placeholder": "Ange Google Maps URL"
+            },
+            "address": {
+                "street": {
+                    "label": "Gatuadress",
+                    "placeholder": "Ange gatuadress"
+                },
+                "city": {
+                    "label": "Stad",
+                    "placeholder": "Ange stad"
+                },
+                "postal_code": {
+                    "label": "Postnummer",
+                    "placeholder": "Ange postnummer"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Ange land"
+                }
+            },
+            "phone_code": {
+                "label": "Landskod"
+            }
+        }
+    },
+    "organisation": {
+        "not_found": "Organisation hittades inte",
+        "delete": {
+            "title": "Slett organisation",
+            "description": "Sleting en organisation vil fjerne alle assosierte data og ikke kan angres.",
+            "warning_title": "Permanente sletting av organisation",
+            "warning": "Om du fortsätter, kommer alla associerade data att raderas permanent och kan inte ångras. Organisationen kommer att tas bort från alla deltagares kalendrar och organisationens sida kommer att vara otillgänglig.",
+            "confirm_title": "Är du säker?",
+            "confirm_description": "Dette handlingen vil fjerne organisationen permanent og alle assosierte data.",
+            "confirm_submit": "Slett organisation"
+        },
+        "form": {
+            "name": {
+                "label": "Organisationsnamn",
+                "placeholder": "Ange organisationsnamn"
+            },
+            "description": {
+                "label": "Beskrivning",
+                "placeholder": "Beskriv din organisation"
+            },
+            "website": {
+                "label": "Webbplats",
+                "placeholder": "Ange webbplatsadress"
+            },
+            "email": {
+                "label": "E-post",
+                "placeholder": "Ange e-postadress"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "address": {
+                "street": {
+                    "label": "Gatuadress",
+                    "placeholder": "Ange gatuadress"
+                },
+                "unit": {
+                    "label": "Lägenhet/enhet",
+                    "placeholder": "Ange lägenhet/enhet"
+                },
+                "city": {
+                    "label": "Stad",
+                    "placeholder": "Ange stad"
+                },
+                "state": {
+                    "label": "Län",
+                    "placeholder": "Ange län"
+                },
+                "postal_code": {
+                    "label": "Postnummer",
+                    "placeholder": "Ange postnummer"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Ange land"
+                }
+            }
+        }
+    }
+}

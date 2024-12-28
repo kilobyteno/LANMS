@@ -15,6 +15,8 @@ LAN-party Management System (LANMS) is a web-based application that you can self
 ## Current Project Status
 LANMS is currently in development and is **not ready for production use**. We are working hard to get it ready for the first public release.
 
+**Check out the [release page](https://github.com/kilobyteno/LANMS/releases) for more information or join our [Discord](https://kilobyte.no/discord) to stay updated!**
+
 We started the development of the new LANMS 3.0 in February 2023 originally, but other priorities and issues out of our control occurred so we picked it back up in February 2024. But now, as of 25th of September 2024, we are restarting the development from scratch to make it more user-friendly, scalable, flexible and open-source.
 
 ## Contribution

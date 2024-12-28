@@ -1,0 +1,333 @@
+{
+    "nav": {
+        "user": {
+            "change_password": "Change Password",
+            "logout": "Logout",
+            "attendee_panel": "Go to Attendee Panel"
+        },
+        "sidebar": {
+            "general": "General",
+            "dashboard": "Dashboard",
+            "system": "System"
+        }
+    },
+    "common": {
+        "loading": "Loading...",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "back": "Back",
+        "deleting": "Deleting...",
+        "cancel": "Cancel",
+        "saving": "Saving...",
+        "save": "Save"
+    },
+    "event_switcher": {
+        "no_events": "No events found",
+        "select_event": "Select an event",
+        "title": "Switch events",
+        "create": "Create a new event"
+    },
+    "attendee": {
+        "nav": {
+            "events": "Events"
+        },
+        "events": {
+            "interested": "Interested",
+            "maybe": "Maybe",
+            "not_interested": "Not Interested",
+            "set_interest": "Set Interest",
+            "not_found": "Event not found",
+            "people_interested": "People Interested",
+            "details": "Details",
+            "max_participants": "Max Participants",
+            "contact_info": "Contact Info",
+            "view_on_map": "View on Map",
+            "title": "Events",
+            "view_details": "View Details"
+        }
+    },
+    "language": {
+        "switch": "Switch language"
+    },
+    "changelog": {
+        "title": "Changelog",
+        "description": "This is fetched from GitHub releases and is not translated."
+    },
+    "theme": {
+        "switch": "Switch theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
+    "organisation_switcher": {
+        "no_organisations": "No organisations",
+        "select_organisation": "Select an organisation",
+        "title": "Switch organisations",
+        "create": "Create a new organisation"
+    },
+    "version": {
+        "newAvailable": "A new version is available"
+    },
+    "user": {
+        "change_password": {
+            "form": {
+                "error": {
+                    "new_passwords_dont_match": "New passwords do not match",
+                    "failed_to_change_password": "Failed to change password. Please try again."
+                },
+                "current_password": {
+                    "label": "Current Password",
+                    "placeholder": "Enter your current password"
+                },
+                "new_password": {
+                    "label": "New Password",
+                    "placeholder": "Enter your new password"
+                },
+                "confirm_new_password": {
+                    "label": "Confirm New Password",
+                    "placeholder": "Confirm your new password"
+                },
+                "changing_password": "Changing password...",
+                "change_password": "Change Password"
+            },
+            "title": "Change Password",
+            "description": "Update your account password"
+        }
+    },
+    "auth": {
+        "forgot_password": {
+            "form": {
+                "error": {
+                    "failed": "Failed to send password reset email. Please try again."
+                },
+                "success": "Password reset instructions have been sent to your email",
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Enter your email address"
+                },
+                "submit": "Send Reset Instructions"
+            },
+            "title": "Forgot Password",
+            "description": "Enter your email address and we'll send you instructions to reset your password"
+        },
+        "reset_password": {
+            "form": {
+                "error": {
+                    "invalid_reset_token": "Invalid or expired reset token. Please request a new password reset.",
+                    "passwords_dont_match": "The passwords do not match. Please try again.",
+                    "failed": "Failed to reset password. Please try again."
+                },
+                "password": {
+                    "label": "New Password",
+                    "placeholder": "Enter your new password"
+                },
+                "password_confirmation": {
+                    "label": "Confirm Password",
+                    "placeholder": "Confirm your new password"
+                },
+                "submit": "Reset Password"
+            },
+            "title": "Reset Password",
+            "description": "Please enter and confirm your new password"
+        }
+    },
+    "login": {
+        "title": "Welcome back",
+        "subtitle": "Sign in to your account",
+        "forgotPassword": "Forgot password?",
+        "submit": "Sign in",
+        "noAccount": "Don't have an account?",
+        "signUp": "Sign up"
+    },
+    "global": {
+        "form": {
+            "email": {
+                "label": "Email",
+                "placeholder": "Enter your email"
+            },
+            "password": {
+                "label": "Password"
+            }
+        }
+    },
+    "register": {
+        "title": "Create an Account",
+        "subtitle": "Get started with your free account",
+        "submit": "Sign up",
+        "haveAccount": "Already have an account?",
+        "signIn": "Sign in"
+    },
+    "signup": {
+        "details": {
+            "title": "Registration Details",
+            "description": "Fill out the information below to create your account",
+            "name": "Name",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "phone": "Phone Number",
+            "phonePlaceholder": "Enter your phone number",
+            "submit": "Sign Up"
+        }
+    },
+    "otp": {
+        "title": "Enter Verification Code",
+        "description": "We've sent a verification code to your email",
+        "form": {
+            "label": "Verification Code"
+        },
+        "submit": "Verify",
+        "noCode": "Didn't receive a code?",
+        "resend": "Resend code",
+        "backToLogin": "Back to login"
+    },
+    "error": {
+        "404": {
+            "title": "Page Not Found",
+            "description": "The page you're looking for doesn't exist",
+            "backHome": "Back to Home"
+        }
+    },
+    "landing": {
+        "title": "Welcome",
+        "description": "The platform for managing your events",
+        "organiser_dashboard": "Organiser Dashboard",
+        "attendee_dashboard": "Attendee Dashboard",
+        "signup": "Sign up",
+        "login": "Login"
+    },
+    "dashboard": {
+        "no_organisations": {
+            "title": "No organisations",
+            "description": "You haven't created or been invited to any organisations yet",
+            "create": "Create organisation"
+        }
+    },
+    "event": {
+        "not_found": "Event not found",
+        "delete": {
+            "title": "Delete Event",
+            "description": "Deleting an event will remove all associated data and cannot be undone.",
+            "warning_title": "Permanently Delete Event",
+            "warning_description": "If you proceed, all associated data will be permanently deleted and cannot be recovered. The event will be removed from all attendees' calendars and the event page will be inaccessible.",
+            "confirm_title": "Are you sure?",
+            "confirm_description": "This action cannot be undone! Final confirmation is required to proceed.",
+            "confirm_submit": "Delete Event"
+        },
+        "form": {
+            "title": {
+                "label": "Event Title",
+                "placeholder": "Enter event title"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Enter event description"
+            },
+            "start_at": {
+                "label": "Start Date & Time"
+            },
+            "end_at": {
+                "label": "End Date & Time"
+            },
+            "max_participants": {
+                "label": "Maximum Participants",
+                "placeholder": "Enter maximum number of participants"
+            },
+            "website": {
+                "label": "Website",
+                "placeholder": "Enter event website URL"
+            },
+            "contact_email": {
+                "label": "Contact Email",
+                "placeholder": "Enter contact email address"
+            },
+            "phone": {
+                "label": "Phone Number"
+            },
+            "maps_url": {
+                "label": "Maps URL",
+                "placeholder": "Enter Google Maps URL"
+            },
+            "address": {
+                "street": {
+                    "label": "Street Address",
+                    "placeholder": "Enter street address"
+                },
+                "city": {
+                    "label": "City",
+                    "placeholder": "Enter city"
+                },
+                "postal_code": {
+                    "label": "Postal Code",
+                    "placeholder": "Enter postal code"
+                },
+                "country": {
+                    "label": "Country",
+                    "placeholder": "Enter country"
+                }
+            },
+            "phone_code": {
+                "label": "Country Code"
+            }
+        }
+    },
+    "organisation": {
+        "not_found": "Organisation not found",
+        "delete": {
+            "title": "Delete Organisation",
+            "description": "Deleting an organisation will remove all associated data and cannot be undone.",
+            "warning_title": "Permanently Delete Organisation",
+            "warning": "This action cannot be undone. All data associated with this organisation will be permanently deleted.",
+            "confirm_title": "Are you sure?",
+            "confirm_description": "Are you sure you want to delete? This action cannot be undone!",
+            "confirm_submit": "Delete Organisation"
+        },
+        "form": {
+            "name": {
+                "label": "Organisation Name",
+                "placeholder": "Enter organisation name"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Describe your organisation"
+            },
+            "website": {
+                "label": "Website",
+                "placeholder": "Enter website URL"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Enter email address"
+            },
+            "phone": {
+                "label": "Phone"
+            },
+            "address": {
+                "street": {
+                    "label": "Street Address",
+                    "placeholder": "Enter street address"
+                },
+                "unit": {
+                    "label": "Apartment/Unit",
+                    "placeholder": "Enter apartment/unit"
+                },
+                "city": {
+                    "label": "City",
+                    "placeholder": "Enter city"
+                },
+                "state": {
+                    "label": "State/Province",
+                    "placeholder": "Enter state/province"
+                },
+                "postal_code": {
+                    "label": "Postal Code",
+                    "placeholder": "Enter postal code"
+                },
+                "country": {
+                    "label": "Country",
+                    "placeholder": "Enter country"
+                }
+            }
+        }
+    }
+}

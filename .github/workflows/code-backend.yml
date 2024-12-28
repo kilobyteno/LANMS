@@ -1,0 +1,56 @@
+name: "Code - Backend"
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+    paths:
+      - 'backend/**'
+
+jobs:
+  validation:
+    name: "Validation"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    strategy:
+      matrix:
+        python-version: [ "3.11" ]
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ inputs.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip' # caching pip dependencies
+      - name: Install All Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+      - name: Run Ruff
+        run: ruff check --output-format=github
+      - name: Run Migrations
+        run: |
+          eval $(grep -m 4 'export' README.md | tail -n 4)
+          export ENV=test
+          export SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@localhost:5432/postgres
+          alembic upgrade head
+      - name: Check for vulnerabilities
+        uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          inputs: backend/requirements.txt backend/requirements-dev.txt

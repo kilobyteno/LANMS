@@ -1,0 +1,28 @@
+name: "Staging - Backend"
+
+on:
+    push:
+        branches:
+            - develop
+        paths:
+            - 'backend/**'
+
+jobs:
+    deploy-backend:
+        name: "Deploy Backend"
+        runs-on: ubuntu-latest
+        steps:
+            -   name: "Send webhook to Coolify"
+                run: |
+                    curl --request GET '${{ secrets.COOLIFY_BACKEND_STAGING_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+
+            -   name: "Send webhook to Discord"
+                uses: sarisia/actions-status-discord@v1
+                if: always()
+                with:
+                    webhook: ${{ secrets.DISCORD_STAGING_WEBHOOK_URL }}
+                    nocontext: true
+                    username: "kilobyte-bot"
+                    avatar_url: "https://avatars.githubusercontent.com/u/98578253?s=200&v=4"
+                    title: "Backend Deployment to Staging"
+                    description: "Backend code has been pushed to the `develop` branch, triggering a new build for deployment to the staging environment."
