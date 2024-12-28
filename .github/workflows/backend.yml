@@ -51,6 +51,6 @@ jobs:
           export SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@localhost:5432/postgres
           alembic upgrade head
       - name: Check for vulnerabilities
-        uses: pypa/gh-action-pip-audit@v1.0.8
+        uses: pypa/gh-action-pip-audit@v1.1.0
         with:
           inputs: backend/requirements.txt backend/requirements-dev.txt
