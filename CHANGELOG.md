@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.1 - 2024-12-28
+
+### New features
+
+#### Frontend Updates
+
+- **UI Enhancements**:
+  - Added a complete UI for the frontend.
+  - Enabled switching between organizations and their associated events.
+  - Implemented localization with support for:
+    - English
+    - Norwegian
+    - Swedish
+    
+  - Added a theme selector with options for:
+    - Dark Mode
+    - Light Mode
+    - System Default
+    
+  - Introduced a changelog page that fetches release updates directly from GitHub.
+  
+
+#### Backened Updates
+
+##### Organizations Management
+
+- Added functionality for managing organizations:
+  - Create new organizations.
+  - Update organization details.
+  - Delete organizations.
+  
+
+##### Events Management
+
+- Added event management capabilities:
+  - Create new events.
+  - Update event details.
+  - Delete events.
+  - View events as attendees.
+  
+
+##### Event Interest
+
+- Added the ability to manage interest in events:
+  - Create event interest.
+  - Update event interest.
+  
+
+##### User Authentication
+
+- Enhanced user authentication features:
+  - User registration (sign up).
+  - Change password functionality.
+  - Password reset and forgot password support.
+  - Login and logout capabilities.
+  
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.0...3.0.0-alpha.1
 
 ## LANMS 3.0.0-alpha.0 - A New Beginning - 2024-09-26
 
