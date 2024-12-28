@@ -1,6 +1,6 @@
 # LANMS - Backend
 
-Core microservice for the LAN Management System (SaaS) cloud platform.
+The backend for LANMS. For the frontend, see [frontend readme](/frontend/README.md).
 
 ## Development
 
