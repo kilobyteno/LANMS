@@ -12,7 +12,7 @@ jobs:
     deploy-backend:
         name: "Deploy Backend"
         runs-on: ubuntu-latest
-        if: contains(github.event.head_commit.modified, 'backend/')
+        if: contains(github.event.commits[*].modified[*], 'backend/') || contains(github.event.commits[*].added[*], 'backend/') || contains(github.event.commits[*].removed[*], 'backend/')
         steps:
             -   name: "Send webhook to Coolify"
                 run: |
@@ -32,7 +32,7 @@ jobs:
     deploy-frontend:
         name: "Deploy Frontend"
         runs-on: ubuntu-latest
-        if: contains(github.event.head_commit.modified, 'frontend/')
+        if: contains(github.event.commits[*].modified[*], 'frontend/') || contains(github.event.commits[*].added[*], 'frontend/') || contains(github.event.commits[*].removed[*], 'frontend/')
         steps:
             -   name: "Send webhook to Coolify"
                 run: |
