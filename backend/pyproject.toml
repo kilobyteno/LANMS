@@ -1,0 +1,67 @@
+[tool.ruff]
+line-length = 160
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "alembic",
+]
+
+[tool.ruff.lint]
+select = [
+    "RUF", # ruff
+    "E", "W", # pycodestyle
+    "F", # Pyflakes
+    "UP", # pyupgrade
+    "B", # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I", # isort
+    "T", # flake8-print
+    "TD", # flake8-todos
+    "LOG", # flake8-logging
+    "N", # pep8-naming
+    "D", # pydocstyle
+    "RET", # flake8-return
+    "TYP", # flake8-type-checking
+    "PL", # pylint
+]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D104", # Missing docstring in public package
+    "D415", # First line should end with a period
+    "D203", # 1 blank line required before class docstring
+    "D212", # Multi-line docstring summary should start at the first line
+    "D400", # First line should end with a period
+    "TD003", # Missing issue link on the line following
+    "B008", # Do not perform function calls in argument defaults
+]
+
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true

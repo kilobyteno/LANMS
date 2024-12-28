@@ -1,0 +1,333 @@
+{
+    "nav": {
+        "user": {
+            "change_password": "Endre passord",
+            "logout": "Logg ut",
+            "attendee_panel": "Gå til deltakerpanel"
+        },
+        "sidebar": {
+            "general": "Generelt",
+            "dashboard": "Dashboard",
+            "system": "System"
+        }
+    },
+    "common": {
+        "loading": "Laster...",
+        "view": "Vis",
+        "edit": "Rediger",
+        "delete": "Slett",
+        "back": "Tilbake",
+        "deleting": "Sletter...",
+        "cancel": "Avbryt",
+        "saving": "Lagrer...",
+        "save": "Lagre"
+    },
+    "event_switcher": {
+        "no_events": "Ingen arrangementer funnet",
+        "select_event": "Velg et arrangement",
+        "title": "Bytt arrangement",
+        "create": "Opprett arrangement"
+    },
+    "attendee": {
+        "nav": {
+            "events": "Arrangementer"
+        },
+        "events": {
+            "interested": "Interessert",
+            "maybe": "Kanskje",
+            "not_interested": "Ikke interessert",
+            "set_interest": "Sett interesse",
+            "not_found": "Arrangement ikke funnet",
+            "people_interested": "Personer interessert",
+            "details": "Detaljer",
+            "max_participants": "Maks deltakere",
+            "contact_info": "Kontaktinformasjon",
+            "view_on_map": "Vis på kart",
+            "title": "Arrangementer",
+            "view_details": "Vis detaljer"
+        }
+    },
+    "language": {
+        "switch": "Bytt språk"
+    },
+    "changelog": {
+        "title": "Endringslogg",
+        "description": "Dette er hentet fra GitHub releases og er ikke oversatt."
+    },
+    "theme": {
+        "switch": "Bytt tema",
+        "light": "Lyst tema",
+        "dark": "Mørkt tema",
+        "system": "Systemstandard"
+    },
+    "organisation_switcher": {
+        "no_organisations": "Ingen organisasjoner funnet",
+        "select_organisation": "Velg en organisasjon",
+        "title": "Bytt organisasjon",
+        "create": "Opprett organisasjon"
+    },
+    "version": {
+        "newAvailable": "En ny versjon er tilgjengelig"
+    },
+    "user": {
+        "change_password": {
+            "form": {
+                "error": {
+                    "new_passwords_dont_match": "De nye passordene er ikke like",
+                    "failed_to_change_password": "Kunne ikke endre passord. Vennligst prøv igjen."
+                },
+                "current_password": {
+                    "label": "Nåværende passord",
+                    "placeholder": "Skriv inn ditt nåværende passord"
+                },
+                "new_password": {
+                    "label": "Nytt passord",
+                    "placeholder": "Skriv inn ditt nye passord"
+                },
+                "confirm_new_password": {
+                    "label": "Bekreft nytt passord",
+                    "placeholder": "Bekreft ditt nye passord"
+                },
+                "changing_password": "Endrer passord...",
+                "change_password": "Endre passord"
+            },
+            "title": "Endre passord",
+            "description": "Oppdater passordet for kontoen din"
+        }
+    },
+    "auth": {
+        "forgot_password": {
+            "form": {
+                "error": {
+                    "failed": "Kunne ikke sende innstillingene for glemt passord. Vennligst prøv igjen."
+                },
+                "success": "Instillingene for glemt passord har blitt sendt til din e-post",
+                "email": {
+                    "label": "E-post",
+                    "placeholder": "Skriv inn e-postadressen din"
+                },
+                "submit": "Send innstillingene for glemt passord"
+            },
+            "title": "Glemt passord",
+            "description": "Skriv inn e-postadressen din og vi sender deg instruksjoner for å tilbakestille passordet ditt"
+        },
+        "reset_password": {
+            "form": {
+                "error": {
+                    "invalid_reset_token": "Ugyldig eller utløpt tilbakestillingsnøkkel. Vennligst be om en ny tilbakestillingsnøkkel.",
+                    "passwords_dont_match": "De nye passordene er ikke like. Vennligst prøv igjen.",
+                    "failed": "Kunne ikke tilbakestille passord. Vennligst prøv igjen."
+                },
+                "password": {
+                    "label": "Nytt passord",
+                    "placeholder": "Skriv inn ditt nye passord"
+                },
+                "password_confirmation": {
+                    "label": "Bekreft nytt passord",
+                    "placeholder": "Bekreft ditt nye passord"
+                },
+                "submit": "Tilbakestill passord"
+            },
+            "title": "Tilbakestill passord",
+            "description": "Skriv inn og bekreft ditt nye passord"
+        }
+    },
+    "login": {
+        "title": "Logg inn",
+        "subtitle": "Velkommen tilbake",
+        "forgotPassword": "Glemt passord?",
+        "submit": "Logg inn",
+        "noAccount": "Har du ikke en konto?",
+        "signUp": "Registrer deg"
+    },
+    "global": {
+        "form": {
+            "email": {
+                "label": "E-post",
+                "placeholder": "Skriv inn e-postadressen din"
+            },
+            "password": {
+                "label": "Passord"
+            }
+        }
+    },
+    "register": {
+        "title": "Registrer deg",
+        "subtitle": "Opprett en ny konto",
+        "submit": "Registrer",
+        "haveAccount": "Har du allerede en konto?",
+        "signIn": "Logg inn"
+    },
+    "signup": {
+        "details": {
+            "title": "Registreringsdetaljer",
+            "description": "Fyll ut informasjonen nedenfor for å opprette kontoen din",
+            "name": "Navn",
+            "password": "Passord",
+            "confirmPassword": "Bekreft passord",
+            "phone": "Telefonnummer",
+            "phonePlaceholder": "Skriv inn telefonnummer",
+            "submit": "Registrer deg"
+        }
+    },
+    "otp": {
+        "title": "Bekreft identitet",
+        "description": "Vi har sendt en engangskode til din e-post",
+        "form": {
+            "label": "Engangskode"
+        },
+        "submit": "Bekreft",
+        "noCode": "Mottok du ingen kode?",
+        "resend": "Send på nytt",
+        "backToLogin": "Tilbake til innlogging"
+    },
+    "error": {
+        "404": {
+            "title": "Side ikke funnet",
+            "description": "Siden du leter etter finnes ikke",
+            "backHome": "Tilbake til forsiden"
+        }
+    },
+    "landing": {
+        "title": "Velkommen til vår plattform",
+        "description": "Administrer arrangementer enkelt og effektivt",
+        "organiser_dashboard": "Organiser Dashboard",
+        "attendee_dashboard": "Attendee Dashboard",
+        "signup": "Sign up",
+        "login": "Login"
+    },
+    "dashboard": {
+        "no_organisations": {
+            "title": "Ingen organisasjoner",
+            "description": "Du har ikke opprettet eller blitt invitert til noen organisasjoner ennå",
+            "create": "Opprett organisasjon"
+        }
+    },
+    "event": {
+        "not_found": "Arrangement ikke funnet",
+        "delete": {
+            "title": "Slett arrangement",
+            "description": "Deleting an event will remove all associated data and cannot be undone.",
+            "warning_title": "Permanently Delete Event",
+            "warning_description": "If you proceed, all associated data will be permanently deleted and cannot be recovered. The event will be removed from all attendees' calendars and the event page will be inaccessible.",
+            "confirm_title": "Are you sure?",
+            "confirm_description": "This action will permanently delete the event and all associated data. Are you sure you want to proceed?",
+            "confirm_submit": "Slett arrangement"
+        },
+        "form": {
+            "title": {
+                "label": "Arrangementstittel",
+                "placeholder": "Skriv inn arrangementstittel"
+            },
+            "description": {
+                "label": "Beskrivelse",
+                "placeholder": "Skriv inn arrangementsbeskrivelse"
+            },
+            "start_at": {
+                "label": "Start dato og tid"
+            },
+            "end_at": {
+                "label": "Slutt dato og tid"
+            },
+            "max_participants": {
+                "label": "Maksimalt antall deltakere",
+                "placeholder": "Skriv inn maksimalt antall deltakere"
+            },
+            "website": {
+                "label": "Nettside",
+                "placeholder": "Skriv inn nettadresse"
+            },
+            "contact_email": {
+                "label": "Kontakt e-post",
+                "placeholder": "Skriv inn kontakt e-postadresse"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "maps_url": {
+                "label": "Kart URL",
+                "placeholder": "Skriv inn Google Maps URL"
+            },
+            "address": {
+                "street": {
+                    "label": "Gateadresse",
+                    "placeholder": "Skriv inn gateadresse"
+                },
+                "city": {
+                    "label": "By",
+                    "placeholder": "Skriv inn by"
+                },
+                "postal_code": {
+                    "label": "Postnummer",
+                    "placeholder": "Skriv inn postnummer"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Skriv inn land"
+                }
+            },
+            "phone_code": {
+                "label": "Landskode"
+            }
+        }
+    },
+    "organisation": {
+        "not_found": "Organisasjon ikke funnet",
+        "delete": {
+            "title": "Slett organisasjon",
+            "description": "Sleting en organisasjon vil fjerne alle assosierte data og ikke kan angres.",
+            "warning_title": "Permanente sletting av organisasjon",
+            "warning": "Om du fortsetter, vil alle assosierte data fjernes permanent og ikke kan gjenopprettes. Organisasjonen vil bli fjernet fra alle deltakeres kalendere og organisasjonssiden vil være utilgjengelig.",
+            "confirm_title": "Er du sikker?",
+            "confirm_description": "Dette handlingen vil fjerne organisasjonen permanent og alle assosierte data.",
+            "confirm_submit": "Slett organisasjon"
+        },
+        "form": {
+            "name": {
+                "label": "Organisasjonsnavn",
+                "placeholder": "Skriv inn organisasjonsnavn"
+            },
+            "description": {
+                "label": "Beskrivelse",
+                "placeholder": "Beskriv din organisasjon"
+            },
+            "website": {
+                "label": "Nettside",
+                "placeholder": "Skriv inn nettadresse"
+            },
+            "email": {
+                "label": "E-post",
+                "placeholder": "Skriv inn e-postadresse"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "address": {
+                "street": {
+                    "label": "Gateadresse",
+                    "placeholder": "Skriv inn gateadresse"
+                },
+                "unit": {
+                    "label": "Leilighet/enhet",
+                    "placeholder": "Skriv inn leilighet/enhet"
+                },
+                "city": {
+                    "label": "By",
+                    "placeholder": "Skriv inn by"
+                },
+                "state": {
+                    "label": "Fylke",
+                    "placeholder": "Skriv inn fylke"
+                },
+                "postal_code": {
+                    "label": "Postnummer",
+                    "placeholder": "Skriv inn postnummer"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Skriv inn land"
+                }
+            }
+        }
+    }
+}
