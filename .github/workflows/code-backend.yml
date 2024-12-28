@@ -1,4 +1,4 @@
-name: "LANMS - Backend"
+name: "Code - Backend"
 
 on:
   pull_request:
