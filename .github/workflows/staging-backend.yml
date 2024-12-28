@@ -1,4 +1,4 @@
-name: "Staging"
+name: "Staging - Backend"
 
 on:
     push:
