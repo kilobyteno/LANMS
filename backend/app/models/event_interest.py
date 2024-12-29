@@ -1,7 +1,9 @@
 from sqlalchemy import UUID, Column, ForeignKey, Integer
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import declarative_base, relationship
 
 from app.models.base import BaseModel
+
+Base = declarative_base()
 
 
 class EventInterest(BaseModel):
