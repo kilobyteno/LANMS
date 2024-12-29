@@ -17,5 +17,5 @@ router.include_router(auth_endpoints.router, tags=['auth'], prefix='/auth')
 router.include_router(user_endpoints.router, tags=['user'], prefix='/user')
 router.include_router(organisations_endpoints.router, tags=['organisations'], prefix='/organisations')
 router.include_router(events_endpoints.router, tags=['events'], prefix='/events')
-router.include_router(event_interests_endpoints.router, tags=['event interests'], prefix='/event-interests')
+router.include_router(event_interests_endpoints.router, tags=['event interests'])
 router.include_router(system_endpoints.router, tags=['system'], prefix='/system')  # Should be last
