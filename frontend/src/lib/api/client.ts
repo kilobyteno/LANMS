@@ -140,7 +140,7 @@ apiClient.interceptors.response.use(
         }
 
         // Show error toast for all other errors
-        if (error.response?.status !== 401) {
+        if (error.response?.status !== 401 && error.response?.status !== 404) {
             toast({
                 title: "Error",
                 description: getErrorMessage(error),
