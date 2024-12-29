@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - BUILD_ENV=${BUILD_ENV:-production}
+    ports:
+      - "${FRONTEND_PORT:-8080}:8080"
+    environment:
+      - VITE_ENV=${VITE_ENV:-production}
+      - VITE_CORE_API_URL=${VITE_CORE_API_URL:-http://backend:8000/v3}
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    environment:
+      - DB_HOST=${DB_HOST:-db}
+      - DB_USERNAME=${DB_USERNAME:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_DIALECT=${DB_DIALECT:-postgresql}
+      - DB_NAME=${DB_NAME:-postgres}
+      - ENV=${ENV:-production}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-network
+      - db-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/v3/system/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_USER=${DB_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${DB_NAME:-postgres}
+      - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD:-trust}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app-network:
+    driver: bridge
+  db-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
