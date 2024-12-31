@@ -32,7 +32,7 @@ services:
     environment:
       - DB_HOST=${DB_HOST:-db}
       - DB_USERNAME=${DB_USERNAME:-postgres}
-      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD}
       - DB_PORT=${DB_PORT:-5432}
       - DB_DIALECT=${DB_DIALECT:-postgresql}
       - DB_NAME=${DB_NAME:-postgres}
@@ -58,7 +58,7 @@ services:
       - "${DB_PORT:-5432}:5432"
     environment:
       - POSTGRES_USER=${DB_USERNAME:-postgres}
-      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME:-postgres}
       - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD:-trust}
     volumes:
