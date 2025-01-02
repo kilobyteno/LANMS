@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.2 - 2025-01-02
+
+### Changed
+
+- **Release Workflow Revamped**:
+  - Trigger for the release procedure updated from `released` to `published`.
+  - Source data reference branch changed from `main` to `develop`.
+  
+- **API Endpoints Enhanced**:
+  - Event interest endpoint routes updated from `/{event_id}` to `/events/{event_id}/interests` for improved clarity and coherence.
+  
+- **Frontend API Calls Altered**:
+  - Updated paths in `event-interest.ts` to align with the new endpoint structure.
+  
+- **Frontend Imports Reordered and Formatted**:
+  - Removed unnecessary import statements from `nav-user.tsx`.
+  - Styled `changelog.tsx` file for consistency.
+  
+- **Code Readability Enhanced**:
+  - Minor adjustments to indentation and line formatting across the codebase.
+  
+
+### Added
+
+- **New User Interest Feature**:
+  - Introduced `event_interests` table to capture user preferences related to events.
+  - Ensured foreign key constraints are upheld.
+  
+- **Healthchecks Implemented**:
+  - Added healthchecks to Docker Compose files for frontend and backend services.
+  
+- **Docker Solutions for PostgreSQL**:
+  - Created Docker and Docker Compose files for PostgreSQL with optimized configurations.
+  
+
+### Fixed
+
+- **Improved Import Arrangement**:
+  - Re-associated import commands in `__init__.py` to include the new `event_interest` model.
+  
+
+### Removed
+
+- **Housecleaning of Unused Files**:
+  - Deleted unused files `status.ts` and `Profile.tsx`.
+  
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.1...3.0.0-alpha.2
+
 ## 3.0.0-alpha.1 - 2024-12-28
 
 ### New features
@@ -10,18 +59,23 @@ All notable changes to this project will be documented in this file.
 
 - **UI Enhancements**:
   - Added a complete UI for the frontend.
+    
   - Enabled switching between organizations and their associated events.
+    
   - Implemented localization with support for:
+    
     - English
     - Norwegian
     - Swedish
     
   - Added a theme selector with options for:
+    
     - Dark Mode
     - Light Mode
     - System Default
     
   - Introduced a changelog page that fetches release updates directly from GitHub.
+    
   
 
 #### Backened Updates
