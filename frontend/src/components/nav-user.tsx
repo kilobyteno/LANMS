@@ -20,7 +20,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import {CaretUpDown, Password, SignOut, UserSwitch} from "@phosphor-icons/react";
+import {CaretUpDown, SignOut, UserSwitch} from "@phosphor-icons/react";
 import {useAuth} from "@/context/AuthContext";
 import {useTranslation} from "react-i18next";
 import {RouteConfig} from "@/routes/route-config";
