@@ -21,9 +21,9 @@ export type EI4Output = ApiResponse<EventInterest>;
 export type EI5Output = ApiResponse<EventInterestCount>;
 
 export const eventInterestApi = {
-    create: (event_id: string, data: EventInterest) => apiClient.post<EI1Output>(`/event-interests/${event_id}`, data),
-    get: (event_id: string) => apiClient.get<EI2Output>(`/event-interests/${event_id}`),
-    update: (event_id: string, data: EventInterest) => apiClient.put<EI3Output>(`/event-interests/${event_id}`, data),
-    getMe: (event_id: string) => apiClient.get<EI4Output>(`/event-interests/${event_id}/me`),
-    getCount: (event_id: string) => apiClient.get<EI5Output>(`/event-interests/${event_id}/count`),
+    create: (event_id: string, data: EventInterest) => apiClient.post<EI1Output>(`/events/${event_id}/interests`, data),
+    get: (event_id: string) => apiClient.get<EI2Output>(`/events/${event_id}/interests`),
+    update: (event_id: string, data: EventInterest) => apiClient.put<EI3Output>(`/events/${event_id}/interests`, data),
+    getMe: (event_id: string) => apiClient.get<EI4Output>(`/events/${event_id}/interests/me`),
+    getCount: (event_id: string) => apiClient.get<EI5Output>(`/events/${event_id}/interests/count`),
 };
