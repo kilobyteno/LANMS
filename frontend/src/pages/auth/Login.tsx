@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { authApi } from '@/lib/api/auth.ts';
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { AuthCardLayout } from "@/components/auth/auth-card-layout";
 import { CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { setTokens } from '@/lib/api/client.ts';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
