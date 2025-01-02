@@ -10,11 +10,11 @@ export const PublicOnlyRoute = ({
   children,
   redirectTo = '/'
 }: PublicOnlyRouteProps) => {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const location = useLocation();
 
   // Show nothing while checking auth state
-  if (isLoading) {
+  if (loading) {
     return null;
   }
 
