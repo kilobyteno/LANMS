@@ -4,6 +4,9 @@ on:
     release:
         types: [ published ]
 
+env:
+    TARGET_BRANCH: develop
+
 jobs:
     update-changelog:
         runs-on: ubuntu-latest
@@ -11,20 +14,51 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v4
                 with:
-                    ref: develop
+                    ref: ${{ env.TARGET_BRANCH }}
 
-            -   name: Update Changelog
+            -   name: Update version in package.json
+                run: |
+                    npm version ${{ github.event.release.tag_name }}
+
+            -   name: Commit updated package.json
+                uses: stefanzweifel/git-auto-commit-action@v5
+                with:
+                    branch: ${{ env.TARGET_BRANCH }}
+                    commit_message: Update version in package.json
+                    file_pattern: package.json
+
+            -   name: Update version in backend/config.py
+                run: |
+                    sed -i "s/API_DOCS_VERSION = '.*'/API_DOCS_VERSION = '${{ github.event.release.tag_name }}'/g" backend/config.py
+
+            -   name: Commit updated backend/config.py
+                uses: stefanzweifel/git-auto-commit-action@v5
+                with:
+                    branch: ${{ env.TARGET_BRANCH }}
+                    commit_message: Update version in backend/config.py
+                    file_pattern: backend/config.py
+
+            -   name: Update changelog
                 uses: stefanzweifel/changelog-updater-action@v1
                 with:
                     latest-version: ${{ github.event.release.name }}
                     release-notes: ${{ github.event.release.body }}
 
-            -   name: Commit updated CHANGELOG
+            -   name: Commit updated changelog
                 uses: stefanzweifel/git-auto-commit-action@v5
                 with:
-                    branch: main
-                    commit_message: Update CHANGELOG
+                    branch: ${{ env.TARGET_BRANCH }}
+                    commit_message: Update changelog
                     file_pattern: CHANGELOG.md
+            
+            -   name: Move tag to current commit
+                run: |
+                    git tag -f ${{ github.event.release.tag_name }}
+
+            -   name: Push changes
+                run: |
+                    git push origin ${{ env.TARGET_BRANCH }}
+                    git push origin ${{ github.event.release.tag_name }}
 
             -   name: "Send webhook to Discord"
                 uses: sarisia/actions-status-discord@v1
