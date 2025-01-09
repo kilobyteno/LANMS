@@ -22,23 +22,11 @@ jobs:
                     npm version ${{ github.event.release.tag_name }}
                     cd ..
 
-            -   name: Commit updated package.json
-                uses: stefanzweifel/git-auto-commit-action@v5
-                with:
-                    branch: ${{ env.TARGET_BRANCH }}
-                    commit_message: Update version in package.json
-                    file_pattern: package.json
-
             -   name: Update version in backend/config.py
                 run: |
-                    sed -i "s/API_DOCS_VERSION = '.*'/API_DOCS_VERSION = '${{ github.event.release.tag_name }}'/g" backend/config.py
-
-            -   name: Commit updated backend/config.py
-                uses: stefanzweifel/git-auto-commit-action@v5
-                with:
-                    branch: ${{ env.TARGET_BRANCH }}
-                    commit_message: Update version in backend/config.py
-                    file_pattern: backend/config.py
+                    cd backend
+                    sed -i "s/API_DOCS_VERSION = '.*'/API_DOCS_VERSION = '${{ github.event.release.tag_name }}'/g" config.py
+                    cd ..
 
             -   name: Update changelog
                 uses: stefanzweifel/changelog-updater-action@v1
@@ -50,17 +38,10 @@ jobs:
                 uses: stefanzweifel/git-auto-commit-action@v5
                 with:
                     branch: ${{ env.TARGET_BRANCH }}
-                    commit_message: Update changelog
-                    file_pattern: CHANGELOG.md
-            
-            -   name: Move tag to current commit
-                run: |
-                    git tag -f ${{ github.event.release.tag_name }}
-
-            -   name: Push changes
-                run: |
-                    git push origin ${{ env.TARGET_BRANCH }}
-                    git push origin ${{ github.event.release.tag_name }}
+                    commit_message: Release version ${{ github.event.release.tag_name }}
+                    file_pattern: 'CHANGELOG.md, frontend/package.json, backend/config.py'
+                    tagging_message: ${{ github.event.release.tag_name }}
+                    push_options: '--force'
 
             -   name: "Send webhook to Discord"
                 uses: sarisia/actions-status-discord@v1
