@@ -2,38 +2,76 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.3 - 2025-01-09
+
+### Changed
+
+- **Enhanced GitHub Action Workflow**:
+  - Updated to use a new environment variable for more flexible management.
+  - Now handles updates to critical files (`package.json`, `backend/config.py`) that track software versioning.
+  - Improved automation ensures effective tracking and management of software changes.
+  
+- **Frontend Markdown Component Styling**:
+  - Slight adjustments to the `ReactMarkdown` component for a more refined display experience.
+  
+- **Styling Adjustments to the Changelog Page**:
+  - Increased the size of the main title (`CardTitle` component) to improve readability and visual appeal.
+  
+
+### Added
+
+- **Utility Function Simplification**:
+  - Consolidated date-utilities into `frontend/src/lib/utils.ts` for better organization and maintainability.
+  
+
+### Removed
+
+- **Redundant Files**:
+  - Deleted the redundant file `frontend/src/lib/date.ts` to eliminate duplications in the codebase.
+  
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.2...3.0.0-alpha.3
+
 ## 3.0.0-alpha.2 - 2025-01-02
 
 ### Changed
 
 - **Release Workflow Revamped**:
+  
   - Trigger for the release procedure updated from `released` to `published`.
   - Source data reference branch changed from `main` to `develop`.
   
 - **API Endpoints Enhanced**:
+  
   - Event interest endpoint routes updated from `/{event_id}` to `/events/{event_id}/interests` for improved clarity and coherence.
   
 - **Frontend API Calls Altered**:
+  
   - Updated paths in `event-interest.ts` to align with the new endpoint structure.
   
 - **Frontend Imports Reordered and Formatted**:
+  
   - Removed unnecessary import statements from `nav-user.tsx`.
   - Styled `changelog.tsx` file for consistency.
   
 - **Code Readability Enhanced**:
+  
   - Minor adjustments to indentation and line formatting across the codebase.
   
 
 ### Added
 
 - **New User Interest Feature**:
+  
   - Introduced `event_interests` table to capture user preferences related to events.
   - Ensured foreign key constraints are upheld.
   
 - **Healthchecks Implemented**:
+  
   - Added healthchecks to Docker Compose files for frontend and backend services.
   
 - **Docker Solutions for PostgreSQL**:
+  
   - Created Docker and Docker Compose files for PostgreSQL with optimized configurations.
   
 
