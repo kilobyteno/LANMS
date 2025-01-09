@@ -60,7 +60,7 @@ export default function ChangelogPage() {
                         <Card key={release.id}>
                             <CardHeader>
                                 <div className="flex items-center justify-between">
-                                    <CardTitle className="text-xl">
+                                    <CardTitle className="text-2xl">
                                         {release.name || release.tag_name}
                                     </CardTitle>
                                     <div className="flex items-center gap-3">
