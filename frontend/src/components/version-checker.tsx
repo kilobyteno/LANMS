@@ -87,14 +87,31 @@ export function VersionChecker() {
         <>
             <a href='https://lanms.net' target='_blank' rel='noopener noreferrer' className='text-xs text-muted-foreground hover:text-primary dark:text-muted-foreground dark:hover:text-primary cursor-pointer'>LANMS {CURRENT_VERSION}</a>
             {hasUpdate && (
-                <Badge variant="update" className='flex items-center mt-1'>
+                <Badge variant="update" className='flex items-center justify-center my-2'>
                     <a
                         href={`https://github.com/${GITHUB_REPO}/releases/latest`}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="relative flex items-center justify-center w-full"
+                        onMouseEnter={(e) => {
+                            const target = e.currentTarget;
+                            target.querySelector('.version-default')?.classList.add('opacity-0');
+                            target.querySelector('.version-hover')?.classList.remove('opacity-0');
+                        }}
+                        onMouseLeave={(e) => {
+                            const target = e.currentTarget;
+                            target.querySelector('.version-default')?.classList.remove('opacity-0');
+                            target.querySelector('.version-hover')?.classList.add('opacity-0');
+                        }}
                     >
-                        <ShootingStar className="size-4 inline-block mr-1" weight="fill" />
-                        {t('common.update_available')}
+                        <div className="version-default flex items-center justify-center transition-opacity duration-200">
+                            <ShootingStar className="size-4 mr-1" weight="fill" />
+                            <span>{t('common.update_available')}</span>
+                        </div>
+                        <div className="version-hover absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200">
+                            <ShootingStar className="size-4 mr-1" weight="fill" />
+                            <span>{latestVersion}</span>
+                        </div>
                     </a>
                 </Badge>
             )}
