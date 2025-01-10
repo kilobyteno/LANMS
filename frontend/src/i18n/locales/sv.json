@@ -16,10 +16,11 @@
         "view": "Vis",
         "edit": "Redigera",
         "delete": "Radera",
+        "update_available": "Ny versjon tilgjengelig",
         "back": "Tillbaka",
+        "view_on_github": "Vis på GitHub",
         "deleting": "Radering...",
         "cancel": "Avbryt",
-        "view_on_github": "Vis på GitHub",
         "saving": "Sparar...",
         "save": "Spara"
     },
@@ -66,9 +67,6 @@
         "select_organisation": "Välj en organisation",
         "title": "Byt organisation",
         "create": "Skapa organisation"
-    },
-    "version": {
-        "newAvailable": "En ny version är tillgänglig"
     },
     "user": {
         "change_password": {

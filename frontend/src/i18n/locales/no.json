@@ -16,10 +16,11 @@
         "view": "Vis",
         "edit": "Rediger",
         "delete": "Slett",
+        "update_available": "Ny versjon tilgjengelig",
         "back": "Tilbake",
+        "view_on_github": "Vis på GitHub",
         "deleting": "Sletter...",
         "cancel": "Avbryt",
-        "view_on_github": "Vis på GitHub",
         "saving": "Lagrer...",
         "save": "Lagre"
     },
@@ -66,9 +67,6 @@
         "select_organisation": "Velg en organisasjon",
         "title": "Bytt organisasjon",
         "create": "Opprett organisasjon"
-    },
-    "version": {
-        "newAvailable": "En ny versjon er tilgjengelig"
     },
     "user": {
         "change_password": {
