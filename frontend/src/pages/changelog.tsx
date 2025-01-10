@@ -61,7 +61,7 @@ export default function ChangelogPage() {
                             <CardHeader>
                                 <div className="flex items-center justify-between">
                                     <CardTitle className="text-2xl">
-                                        {release.name || release.tag_name}
+                                        {release.name || release.tag_name} {release.prerelease && <Badge variant="prerelease" className="ml-1">Pre-release</Badge>}
                                     </CardTitle>
                                     <div className="flex items-center gap-3">
                                         <Badge variant="secondary">
@@ -73,14 +73,14 @@ export default function ChangelogPage() {
                                             rel="noopener noreferrer"
                                             className="text-sm text-muted-foreground hover:text-primary"
                                         >
-                                            View on GitHub
+                                            {t('common.view_on_github')}
                                             <ArrowSquareOut className="size-4 ml-1 inline-block"/>
                                         </a>
                                     </div>
                                 </div>
                             </CardHeader>
                             <CardContent>
-                                <ScrollArea className="h-[400px]">
+                                <ScrollArea className="max-h-[400px] overflow-y-auto">
                                     <Markdown content={release.body}/>
                                 </ScrollArea>
                             </CardContent>
