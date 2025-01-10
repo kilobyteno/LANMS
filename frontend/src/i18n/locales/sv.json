@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "Generellt",
             "dashboard": "Dashboard",
+            "news": "Nyheter",
+            "articles": "Artikler",
             "system": "System"
         }
     },
@@ -17,11 +19,14 @@
         "edit": "Redigera",
         "delete": "Radera",
         "back": "Tillbaka",
-        "deleting": "Radering...",
-        "cancel": "Avbryt",
         "view_on_github": "Vis på GitHub",
         "saving": "Sparar...",
-        "save": "Spara"
+        "save": "Spara",
+        "create": "Skapa",
+        "actions": "Handlingar",
+        "not_published": "Ikke publisert",
+        "cancel": "Avbryt",
+        "deleting": "Radering..."
     },
     "event_switcher": {
         "no_events": "Inga evenemang funna",
@@ -44,6 +49,8 @@
             "max_participants": "Maks deltakere",
             "contact_info": "Kontaktinformasjon",
             "view_on_map": "Vis på kart",
+            "articles": "Artikler",
+            "no_articles": "Inga artikler",
             "title": "Arrangementer",
             "view_details": "Vis detaljer"
         }
@@ -196,6 +203,31 @@
         "attendee_dashboard": "Attendee Dashboard",
         "signup": "Sign up",
         "login": "Log in"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Titel",
+                "placeholder": "Skriv in titel"
+            },
+            "content": {
+                "label": "Innehåll",
+                "placeholder": "Skriv in innehåll"
+            }
+        },
+        "delete": {
+            "title": "Radera artikel",
+            "description": "Är du säker på att du vill radera denna artikel?"
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Artikler",
+            "table": {
+                "title": "Titel",
+                "published_at": "Publisert"
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {

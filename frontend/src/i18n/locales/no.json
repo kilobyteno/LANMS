@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "Generelt",
             "dashboard": "Dashboard",
+            "news": "Nyheter",
+            "articles": "Artikler",
             "system": "System"
         }
     },
@@ -17,11 +19,14 @@
         "edit": "Rediger",
         "delete": "Slett",
         "back": "Tilbake",
-        "deleting": "Sletter...",
-        "cancel": "Avbryt",
         "view_on_github": "Vis på GitHub",
         "saving": "Lagrer...",
-        "save": "Lagre"
+        "save": "Lagre",
+        "create": "Opprett",
+        "actions": "Handlinger",
+        "not_published": "Ikke publisert",
+        "cancel": "Avbryt",
+        "deleting": "Sletter..."
     },
     "event_switcher": {
         "no_events": "Ingen arrangementer funnet",
@@ -44,6 +49,8 @@
             "max_participants": "Maks deltakere",
             "contact_info": "Kontaktinformasjon",
             "view_on_map": "Vis på kart",
+            "articles": "Artikler",
+            "no_articles": "Ingen artikler",
             "title": "Arrangementer",
             "view_details": "Vis detaljer"
         }
@@ -196,6 +203,31 @@
         "attendee_dashboard": "Attendee Dashboard",
         "signup": "Sign up",
         "login": "Login"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Tittel",
+                "placeholder": "Skriv inn tittel"
+            },
+            "content": {
+                "label": "Innhold",
+                "placeholder": "Skriv inn innhold"
+            }
+        },
+        "delete": {
+            "title": "Slett artikkel",
+            "description": "Er du sikker på at du vil slette denne artikkelen?"
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Artikler",
+            "table": {
+                "title": "Tittel",
+                "published_at": "Publisert"
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {

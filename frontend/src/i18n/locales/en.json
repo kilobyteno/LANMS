@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "General",
             "dashboard": "Dashboard",
+            "news": "News",
+            "articles": "Articles",
             "system": "System"
         }
     },
@@ -17,11 +19,14 @@
         "edit": "Edit",
         "delete": "Delete",
         "back": "Back",
-        "deleting": "Deleting...",
-        "cancel": "Cancel",
         "view_on_github": "View on GitHub",
         "saving": "Saving...",
-        "save": "Save"
+        "save": "Save",
+        "create": "Create",
+        "actions": "Actions",
+        "not_published": "Not Published",
+        "cancel": "Cancel",
+        "deleting": "Deleting..."
     },
     "event_switcher": {
         "no_events": "No events found",
@@ -44,6 +49,8 @@
             "max_participants": "Max Participants",
             "contact_info": "Contact Info",
             "view_on_map": "View on Map",
+            "articles": "Articles",
+            "no_articles": "No articles",
             "title": "Events",
             "view_details": "View Details"
         }
@@ -196,6 +203,31 @@
         "attendee_dashboard": "Attendee Dashboard",
         "signup": "Sign up",
         "login": "Login"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Title",
+                "placeholder": "Enter article title"
+            },
+            "content": {
+                "label": "Content",
+                "placeholder": "Enter article content"
+            }
+        },
+        "delete": {
+            "title": "Delete Article",
+            "description": "Are you sure you want to delete this article?"
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Articles",
+            "table": {
+                "title": "Title",
+                "published_at": "Published At"
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {
