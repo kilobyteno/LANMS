@@ -14,6 +14,7 @@ const languages = [
     {code: "no", name: "Norsk"},
     {code: "sv", name: "Svenska"},
     {code: "da", name: "Dansk"},
+    {code: "de", name: "Deutsch"}
 ]
 
 export function NavLanguageSwitch() {
