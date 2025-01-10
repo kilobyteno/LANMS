@@ -11,6 +11,9 @@ interface GithubRelease {
     html_url: string;
 }
 
+const CACHE_KEY = 'version_check';
+const CACHE_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+
 export function VersionChecker() {
     const { t } = useTranslation();
     const [hasUpdate, setHasUpdate] = useState(false);
@@ -19,23 +22,64 @@ export function VersionChecker() {
     useEffect(() => {
         const checkVersion = async () => {
             try {
-                const response = await fetch(`${GITHUB_API_URL}/releases`);
+                // Check cache first
+                const cachedData = localStorage.getItem(CACHE_KEY);
+                if (cachedData) {
+                    const { timestamp, data } = JSON.parse(cachedData);
+                    if (Date.now() - timestamp < CACHE_DURATION) {
+                        setLatestVersion(data.version);
+                        setHasUpdate(compareVersions(data.version, CURRENT_VERSION) > 0);
+                        return;
+                    }
+                }
+
+                // Make API call with headers to avoid rate limiting
+                const response = await fetch(`${GITHUB_API_URL}/releases`, {
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'If-None-Match': localStorage.getItem('version_etag') || ''
+                    }
+                });
+
+                // Handle 304 Not Modified
+                if (response.status === 304) {
+                    return;
+                }
+
+                // Save ETag for future requests
+                const etag = response.headers.get('ETag');
+                if (etag) {
+                    localStorage.setItem('version_etag', etag);
+                }
+
                 const data: GithubRelease[] = await response.json();
                 if (data.length > 0) {
                     const latest = data[0].tag_name.replace('v', '');
                     setLatestVersion(latest);
-                    if (compareVersions(latest, CURRENT_VERSION) > 0) {
-                        setHasUpdate(true);
-                    }
+                    const needsUpdate = compareVersions(latest, CURRENT_VERSION) > 0;
+                    setHasUpdate(needsUpdate);
+
+                    // Cache the result
+                    localStorage.setItem(CACHE_KEY, JSON.stringify({
+                        timestamp: Date.now(),
+                        data: { version: latest }
+                    }));
                 }
             } catch (error) {
                 console.error('Failed to check version:', error);
+                // On error, use cached data if available
+                const cachedData = localStorage.getItem(CACHE_KEY);
+                if (cachedData) {
+                    const { data } = JSON.parse(cachedData);
+                    setLatestVersion(data.version);
+                    setHasUpdate(compareVersions(data.version, CURRENT_VERSION) > 0);
+                }
             }
         };
 
         checkVersion();
-        // Check every 24 hours
-        const interval = setInterval(checkVersion, 24 * 60 * 60 * 1000);
+        // Check every 12 hours
+        const interval = setInterval(checkVersion, CACHE_DURATION);
         return () => clearInterval(interval);
     }, [CURRENT_VERSION]);
 
@@ -56,4 +100,4 @@ export function VersionChecker() {
             )}
         </>
     );
-} 
+}
