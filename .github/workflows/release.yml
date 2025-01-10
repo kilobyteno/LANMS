@@ -44,7 +44,7 @@ jobs:
                 run: |
                     git config user.name "github-actions[bot]"
                     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                    git tag -fa ${{ github.event.release.tag_name }}
+                    git tag -fa ${{ github.event.release.tag_name }} -m "Release version ${{ github.event.release.tag_name }}"
                     git push --tags
 
             -   name: "Send webhook to Discord"
