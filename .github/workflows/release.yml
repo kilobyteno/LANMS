@@ -25,7 +25,7 @@ jobs:
             -   name: Update version in backend/config.py
                 run: |
                     cd backend
-                    sed -i "s/API_DOCS_VERSION = '.*'/API_DOCS_VERSION = '${{ github.event.release.tag_name }}'/g" config.py
+                    echo ${{ github.event.release.tag_name }} > .version
                     cd ..
 
             -   name: Update changelog
