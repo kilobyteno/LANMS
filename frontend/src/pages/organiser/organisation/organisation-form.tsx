@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useOrganisation } from '@/context/OrganisationContext';
 import { PhoneInput } from '@/components/ui/phone-input';
+import { FloppyDisk } from '@phosphor-icons/react';
 
 const FormSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -282,6 +283,7 @@ export function OrganisationForm() {
 
                 <div className="flex justify-end space-x-4">
                     <Button type="submit" disabled={isSaving}>
+                        <FloppyDisk className="size-4" weight="bold" /> 
                         {isSaving ? t('common.saving') : t('common.save')}
                     </Button>
                 </div>

@@ -35,10 +35,8 @@ export function ThemeProvider({
         const root = window.document.documentElement
         const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
 
-        // Remove existing theme classes
         root.classList.remove("light", "dark")
 
-        // Apply theme
         const applyTheme = (theme: Theme) => {
             if (theme === "system") {
                 const systemTheme = mediaQuery.matches ? "dark" : "light"
@@ -48,10 +46,8 @@ export function ThemeProvider({
             }
         }
 
-        // Initial theme application
         applyTheme(theme)
 
-        // Listen for system theme changes
         const handleChange = () => {
             if (theme === "system") {
                 applyTheme("system")
@@ -85,4 +81,4 @@ export const useTheme = () => {
     }
 
     return context
-}
+} 

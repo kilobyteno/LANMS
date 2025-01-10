@@ -114,6 +114,11 @@ class Config:
     # API Docs
     API_DOCS_TITLE: str = f'{MICRO_SERVICE_NAME_FOR_HUMANS} API'
     API_DOCS_VERSION: str = '3.0.0-alpha.1'
+    try:
+        with open('.version') as version_file:
+            API_DOCS_VERSION: str = version_file.read().strip()
+    except Exception as e:
+        logging.error(f'Error reading version file: {e}')
     API_DOCS_DESCRIPTION: str = f'Endpoints for the {MICRO_SERVICE_NAME_FOR_HUMANS}'
     API_DOCS_OPENAPI_URL: Optional[str] = None if MICRO_SERVICE_IN_PRODUCTION else '/openapi.json'
     API_DOCS_URL: str = '/docs'

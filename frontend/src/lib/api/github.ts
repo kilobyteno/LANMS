@@ -7,6 +7,7 @@ export interface GitHubRelease {
   published_at: string;
   body: string;
   html_url: string;
+  prerelease: boolean;
 }
 
 export const fetchGitHubReleases = async (): Promise<GitHubRelease[]> => {

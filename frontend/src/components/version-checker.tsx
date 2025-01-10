@@ -39,7 +39,7 @@ export function VersionChecker() {
 
     return (
         <>
-            <a href='https://lanms.net' target='_blank' rel='noopener noreferrer' className='text-xs text-gray-300 dark:text-gray-800 hover:text-muted-foreground dark:hover:text-secondary-foreground'>LANMS {CURRENT_VERSION}</a>
+            <a href='https://lanms.net' target='_blank' rel='noopener noreferrer' className='text-xs text-gray-300 dark:text-gray-500 hover:text-muted-foreground dark:hover:text-secondary-foreground'>LANMS {CURRENT_VERSION}</a>
             {hasUpdate && (
                 <Badge variant="outline">
                     <a
