@@ -2,19 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.5 - 2025-01-10
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.4...3.0.0-alpha.5
+
 ## 3.0.0-alpha.3 - 2025-01-09
 
 ### Changed
 
 - **Enhanced GitHub Action Workflow**:
+  
   - Updated to use a new environment variable for more flexible management.
   - Now handles updates to critical files (`package.json`, `backend/config.py`) that track software versioning.
   - Improved automation ensures effective tracking and management of software changes.
   
 - **Frontend Markdown Component Styling**:
+  
   - Slight adjustments to the `ReactMarkdown` component for a more refined display experience.
   
 - **Styling Adjustments to the Changelog Page**:
+  
   - Increased the size of the main title (`CardTitle` component) to improve readability and visual appeal.
   
 
