@@ -3,11 +3,11 @@ import {AuthProvider} from './context/AuthContext';
 import {OrganisationProvider} from './context/OrganisationContext';
 import {EventProvider} from './context/EventContext';
 import {router} from './routes';
-import {ThemeProvider} from "@/components/theme-provider.tsx";
+import {ThemeProvider} from "@/providers/theme-provider";
 
 function App() {
     return (
-        <ThemeProvider defaultTheme="light" storageKey="lanms-ui-theme">
+        <ThemeProvider>
             <AuthProvider>
                 <OrganisationProvider>
                     <EventProvider>

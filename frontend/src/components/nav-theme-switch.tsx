@@ -5,10 +5,10 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {useTheme} from "@/components/theme-provider"
 import {DesktopTower, Moon, Sun} from "@phosphor-icons/react";
 import {useTranslation} from "react-i18next";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip.tsx";
+import { useTheme } from "@/providers/theme-provider"
 
 export function NavThemeSwitch() {
     const {setTheme, theme} = useTheme()
