@@ -10,6 +10,7 @@ import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Calendar} from "@phosphor-icons/react";
 import { route, RouteConfig } from '@/routes/route-config';
+import { formatDate } from '@/lib/utils';
 
 export default function EventsPage() {
     const {t} = useTranslation();
@@ -53,7 +54,7 @@ export default function EventsPage() {
                                     <div className="space-y-2">
                                         <div className="flex items-center gap-2">
                                             <Calendar className="h-4 w-4"/>
-                                            <span>{new Date(event.start_at).toLocaleDateString()} &mdash; {new Date(event.end_at).toLocaleDateString()}</span>
+                                            <span>{formatDate(event.start_at)} &mdash; {formatDate(event.end_at)}</span>
                                         </div>
                                         <p className="text-sm text-muted-foreground">
                                             {event.description}
