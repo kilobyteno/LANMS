@@ -39,8 +39,11 @@ jobs:
                 with:
                     branch: ${{ env.TARGET_BRANCH }}
                     commit_message: Release version ${{ github.event.release.tag_name }}
-                    tagging_message: ${{ github.event.release.tag_name }}
-                    push_options: '--force'
+
+            -   name: Force move the tag to the current commit
+                run: |
+                    git tag -fa ${{ github.event.release.tag_name }}
+                    git push --tags
 
             -   name: "Send webhook to Discord"
                 uses: sarisia/actions-status-discord@v1
