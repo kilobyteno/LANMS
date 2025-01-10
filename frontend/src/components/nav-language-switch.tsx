@@ -39,6 +39,7 @@ export function NavLanguageSwitch() {
                     <DropdownMenuItem
                         key={lang.code}
                         onClick={() => i18n.changeLanguage(lang.code)}
+                        className={i18n.language === lang.code ? "bg-secondary text-secondary-foreground" : ""}
                     >
                         {lang.name}
                     </DropdownMenuItem>
