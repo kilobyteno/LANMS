@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
+
 ## 3.0.0-alpha.8 - 2025-01-10
 
 **Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.7...3.0.0-alpha.8
@@ -17,6 +18,10 @@ All notable changes to this project will be documented in this file.
 ## 3.0.0-alpha.5 - 2025-01-10
 
 **Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.4...3.0.0-alpha.5
+
+## 3.0.0-alpha.4 - 2025-01-10
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.3...3.0.0-alpha.4
 
 ## 3.0.0-alpha.3 - 2025-01-09
 
