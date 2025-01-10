@@ -39,7 +39,6 @@ jobs:
                 with:
                     branch: ${{ env.TARGET_BRANCH }}
                     commit_message: Release version ${{ github.event.release.tag_name }}
-                    file_pattern: 'CHANGELOG.md, frontend/package.json, backend/config.py'
                     tagging_message: ${{ github.event.release.tag_name }}
                     push_options: '--force'
 
