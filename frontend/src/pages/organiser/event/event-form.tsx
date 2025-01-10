@@ -16,6 +16,7 @@ import { eventsApi } from '@/lib/api/events';
 import { route } from '@/routes/route-config';
 import { RouteConfig } from '@/routes/route-config';
 import {parsePhoneNumber} from "react-phone-number-input";
+import { FloppyDisk } from '@phosphor-icons/react';
 
 const FormSchema = z.object({
     title: z.string().min(1, "Title is required"),
@@ -350,6 +351,7 @@ export function EventForm() {
 
                 <div className="flex justify-end space-x-4">
                     <Button type="submit" disabled={isSaving}>
+                        <FloppyDisk className="size-4" weight="bold" />
                         {isSaving ? t('common.saving') : t('common.save')}
                     </Button>
                 </div>
