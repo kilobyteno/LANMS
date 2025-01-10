@@ -12,7 +12,8 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/compon
 const languages = [
     {code: "en", name: "English"},
     {code: "no", name: "Norsk"},
-    {code: "sv", name: "Svenska"}
+    {code: "sv", name: "Svenska"},
+    {code: "da", name: "Dansk"},
 ]
 
 export function NavLanguageSwitch() {
