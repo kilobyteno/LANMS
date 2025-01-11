@@ -19,6 +19,11 @@ export const RouteConfig = {
             CREATE: '/organiser/events/create',
             EDIT: '/organiser/events/:id/edit',
             DELETE: '/organiser/events/:id/delete',
+            ARTICLES: {
+                LIST: '/organiser/events/:id/articles',
+                CREATE: '/organiser/events/:id/articles/create',
+                EDIT: '/organiser/events/:id/articles/:articleId/edit',
+            },
         },
         ORGANISATIONS: {
             CREATE: '/organiser/organisation/create',
@@ -36,6 +41,9 @@ export const RouteConfig = {
         EVENTS: {
             ROOT: '/attendee/events',
             DETAIL: '/attendee/events/:id',
+            ARTICLES: {
+                DETAIL: '/attendee/events/:id/articles/:articleId',
+            },
         },
         USER: {
             PASSWORD_CHANGE: '/attendee/user/password/change',

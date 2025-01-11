@@ -10,6 +10,7 @@ import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Calendar} from "@phosphor-icons/react";
 import { route, RouteConfig } from '@/routes/route-config';
+import { articlesApi } from '@/lib/api/event-articles';
 import { formatDate } from '@/lib/utils';
 
 export default function EventsPage() {
@@ -22,7 +23,19 @@ export default function EventsPage() {
         const fetchEvents = async () => {
             try {
                 const response = await eventsApi.list();
-                setEvents(response.data.data);
+                const eventsWithArticles = await Promise.all(
+                    response.data.data.map(async (event) => {
+                        if (event.id) {
+                            const articlesResponse = await articlesApi.list(event.id);
+                            return {
+                                ...event,
+                                articles: articlesResponse.data.data
+                            };
+                        }
+                        return event;
+                    })
+                );
+                setEvents(eventsWithArticles);
             } catch (error) {
                 console.error('Failed to fetch events:', error);
             } finally {
@@ -60,7 +73,7 @@ export default function EventsPage() {
                                             {event.description}
                                         </p>
                                         <Button asChild className="w-full">
-                                            <Link to={route(RouteConfig.ATTENDEE.EVENTS.DETAIL, {id: event.id})}>
+                                            <Link to={route(RouteConfig.ATTENDEE.EVENTS.DETAIL, {id: event.id ?? ''})}>
                                                 {t('attendee.events.view_details')}
                                             </Link>
                                         </Button>
