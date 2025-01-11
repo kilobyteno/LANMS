@@ -16,10 +16,11 @@
         "view": "View",
         "edit": "Edit",
         "delete": "Delete",
+        "update_available": "Update Available",
         "back": "Back",
+        "view_on_github": "View on GitHub",
         "deleting": "Deleting...",
         "cancel": "Cancel",
-        "view_on_github": "View on GitHub",
         "saving": "Saving...",
         "save": "Save"
     },
@@ -66,9 +67,6 @@
         "select_organisation": "Select an organisation",
         "title": "Switch organisations",
         "create": "Create a new organisation"
-    },
-    "version": {
-        "newAvailable": "A new version is available"
     },
     "user": {
         "change_password": {
