@@ -1,0 +1,329 @@
+{
+    "nav": {
+        "user": {
+            "change_password": "Passwort ändern",
+            "logout": "Abmelden",
+            "attendee_panel": "Zum Teilnehmerbereich"
+        },
+        "sidebar": {
+            "general": "Allgemein",
+            "dashboard": "Dashboard",
+            "system": "System"
+        }
+    },
+    "common": {
+        "loading": "Lädt...",
+        "view": "Ansehen",
+        "edit": "Bearbeiten", 
+        "delete": "Löschen",
+        "update_available": "Update verfügbar",
+        "back": "Zurück",
+        "view_on_github": "Auf GitHub ansehen",
+        "deleting": "Wird gelöscht...",
+        "cancel": "Abbrechen",
+        "saving": "Wird gespeichert...",
+        "save": "Speichern"
+    },
+    "event_switcher": {
+        "no_events": "Keine Veranstaltungen gefunden",
+        "select_event": "Veranstaltung auswählen",
+        "title": "Veranstaltung wechseln",
+        "create": "Neue Veranstaltung erstellen"
+    },
+    "attendee": {
+        "nav": {
+            "events": "Veranstaltungen"
+        },
+        "events": {
+            "interested": "Interessiert",
+            "maybe": "Vielleicht",
+            "not_interested": "Nicht interessiert",
+            "set_interest": "Interesse festlegen",
+            "not_found": "Veranstaltung nicht gefunden",
+            "people_interested": "Interessierte Personen",
+            "details": "Details",
+            "max_participants": "Maximale Teilnehmerzahl",
+            "contact_info": "Kontaktinformationen",
+            "view_on_map": "Auf Karte anzeigen",
+            "title": "Veranstaltungen",
+            "view_details": "Details anzeigen"
+        }
+    },
+    "language": {
+        "switch": "Sprache ändern"
+    },
+    "changelog": {
+        "title": "Änderungsprotokoll",
+        "description": "Dies wird von GitHub Releases abgerufen und ist nicht übersetzt."
+    },
+    "theme": {
+        "switch": "Design ändern",
+        "light": "Hell",
+        "dark": "Dunkel",
+        "system": "System"
+    },
+    "organisation_switcher": {
+        "no_organisations": "Keine Organisationen",
+        "select_organisation": "Organisation auswählen",
+        "title": "Organisation wechseln",
+        "create": "Neue Organisation erstellen"
+    },
+    "user": {
+        "change_password": {
+            "form": {
+                "error": {
+                    "new_passwords_dont_match": "Die neuen Passwörter stimmen nicht überein",
+                    "failed_to_change_password": "Passwort konnte nicht geändert werden"
+                },
+                "current_password": {
+                    "label": "Aktuelles Passwort",
+                    "placeholder": "Geben Sie Ihr aktuelles Passwort ein"
+                },
+                "new_password": {
+                    "label": "Neues Passwort",
+                    "placeholder": "Geben Sie Ihr neues Passwort ein"
+                },
+                "confirm_new_password": {
+                    "label": "Neues Passwort bestätigen",
+                    "placeholder": "Bestätigen Sie Ihr neues Passwort"
+                },
+                "changing_password": "Passwort wird geändert...",
+                "change_password": "Passwort ändern"
+            },
+            "title": "Passwort ändern",
+            "description": "Ändern Sie Ihr Passwort"
+        }
+    },
+    "auth": {
+        "forgot_password": {
+            "form": {
+                "error": {
+                    "failed": "Passwort zurücksetzen fehlgeschlagen"
+                },
+                "success": "E-Mail zum Zurücksetzen des Passworts wurde gesendet",
+                "email": {
+                    "label": "E-Mail",
+                    "placeholder": "Geben Sie Ihre E-Mail-Adresse ein"
+                },
+                "submit": "Passwort zurücksetzen"
+            },
+            "title": "Passwort vergessen",
+            "description": "Geben Sie Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen"
+        },
+        "reset_password": {
+            "form": {
+                "error": {
+                    "invalid_reset_token": "Ungültiger Reset-Token",
+                    "passwords_dont_match": "Passwörter stimmen nicht überein",
+                    "failed": "Passwort zurücksetzen fehlgeschlagen"
+                },
+                "password": {
+                    "label": "Neues Passwort",
+                    "placeholder": "Geben Sie Ihr neues Passwort ein"
+                },
+                "password_confirmation": {
+                    "label": "Passwort bestätigen",
+                    "placeholder": "Bestätigen Sie Ihr neues Passwort"
+                },
+                "submit": "Passwort zurücksetzen"
+            },
+            "title": "Passwort zurücksetzen",
+            "description": "Geben Sie Ihr neues Passwort ein"
+        }
+    },
+    "login": {
+        "title": "Anmelden",
+        "subtitle": "Melden Sie sich bei Ihrem Konto an",
+        "forgotPassword": "Passwort vergessen?",
+        "submit": "Anmelden",
+        "noAccount": "Noch kein Konto?",
+        "signUp": "Registrieren"
+    },
+    "global": {
+        "form": {
+            "email": {
+                "label": "E-Mail",
+                "placeholder": "Geben Sie Ihre E-Mail-Adresse ein"
+            },
+            "password": {
+                "label": "Passwort"
+            }
+        }
+    },
+    "register": {
+        "title": "Registrieren",
+        "subtitle": "Erstellen Sie ein neues Konto",
+        "submit": "Registrieren",
+        "haveAccount": "Bereits ein Konto?",
+        "signIn": "Anmelden"
+    },
+    "signup": {
+        "details": {
+            "title": "Registrierungsdetails",
+            "description": "Füllen Sie die folgenden Informationen aus, um Ihr Konto zu erstellen",
+            "name": "Name",
+            "password": "Passwort",
+            "confirmPassword": "Passwort bestätigen",
+            "phone": "Telefonnummer",
+            "phonePlaceholder": "Geben Sie Ihre Telefonnummer ein",
+            "submit": "Registrieren"
+        }
+    },
+    "otp": {
+        "title": "Code eingeben",
+        "description": "Wir haben einen Bestätigungscode an Ihre E-Mail gesendet",
+        "form": {
+            "label": "Bestätigungscode"
+        },
+        "submit": "Bestätigen",
+        "noCode": "Keinen Code erhalten?",
+        "resend": "Code erneut senden",
+        "backToLogin": "Zurück zur Anmeldung"
+    },
+    "error": {
+        "404": {
+            "title": "Seite nicht gefunden",
+            "description": "Die gesuchte Seite existiert nicht",
+            "backHome": "Zurück zur Startseite"
+        }
+    },
+    "landing": {
+        "title": "Willkommen",
+        "description": "Die Plattform zur Verwaltung Ihrer Veranstaltungen",
+        "organiser_dashboard": "Organisator Dashboard",
+        "attendee_dashboard": "Teilnehmer Dashboard",
+        "signup": "Registrieren",
+        "login": "Anmelden"
+    },
+    "dashboard": {
+        "no_organisations": {
+            "title": "Keine Organisationen",
+            "description": "Sie haben noch keine Organisationen erstellt oder wurden zu keiner eingeladen",
+            "create": "Organisation erstellen"
+        }
+    },
+    "event": {
+        "not_found": "Veranstaltung nicht gefunden",
+        "delete": {
+            "title": "Veranstaltung löschen",
+            "description": "Das Löschen einer Veranstaltung entfernt alle zugehörigen Daten und kann nicht rückgängig gemacht werden.",
+            "warning_title": "Veranstaltung endgültig löschen",
+            "warning_description": "Wenn Sie fortfahren, werden alle zugehörigen Daten endgültig gelöscht und können nicht wiederhergestellt werden. Die Veranstaltung wird aus allen Teilnehmerkalendern entfernt und die Veranstaltungsseite wird nicht mehr zugänglich sein.",
+            "confirm_title": "Sind Sie sicher?",
+            "confirm_description": "Diese Aktion kann nicht rückgängig gemacht werden! Eine letzte Bestätigung ist erforderlich.",
+            "confirm_submit": "Veranstaltung löschen"
+        },
+        "form": {
+            "title": {
+                "label": "Veranstaltungstitel",
+                "placeholder": "Geben Sie den Veranstaltungstitel ein"
+            },
+            "description": {
+                "label": "Beschreibung",
+                "placeholder": "Geben Sie die Veranstaltungsbeschreibung ein"
+            },
+            "start_at": {
+                "label": "Startdatum & Uhrzeit"
+            },
+            "end_at": {
+                "label": "Enddatum & Uhrzeit"
+            },
+            "max_participants": {
+                "label": "Maximale Teilnehmerzahl",
+                "placeholder": "Geben Sie die maximale Teilnehmerzahl ein"
+            },
+            "website": {
+                "label": "Webseite",
+                "placeholder": "Geben Sie die Webseiten-URL ein"
+            },
+            "contact_email": {
+                "label": "Kontakt-E-Mail",
+                "placeholder": "Geben Sie die Kontakt-E-Mail-Adresse ein"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "maps_url": {
+                "label": "Maps URL",
+                "placeholder": "Geben Sie die Google Maps URL ein"
+            },
+            "address": {
+                "street": {
+                    "label": "Straße",
+                    "placeholder": "Geben Sie die Straße ein"
+                },
+                "city": {
+                    "label": "Stadt",
+                    "placeholder": "Geben Sie die Stadt ein"
+                },
+                "postal_code": {
+                    "label": "Postleitzahl",
+                    "placeholder": "Geben Sie die Postleitzahl ein"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Geben Sie das Land ein"
+                }
+            }
+        }
+    },
+    "organisation": {
+        "not_found": "Organisation nicht gefunden",
+        "delete": {
+            "title": "Organisation löschen",
+            "description": "Das Löschen einer Organisation entfernt alle zugehörigen Daten und kann nicht rückgängig gemacht werden.",
+            "warning_title": "Organisation endgültig löschen",
+            "warning": "Diese Aktion kann nicht rückgängig gemacht werden",
+            "confirm_title": "Sind Sie sicher?",
+            "confirm_description": "Diese Aktion kann nicht rückgängig gemacht werden! Eine letzte Bestätigung ist erforderlich.",
+            "confirm_submit": "Organisation löschen"
+        },
+        "form": {
+            "name": {
+                "label": "Name",
+                "placeholder": "Geben Sie den Organisationsnamen ein"
+            },
+            "description": {
+                "label": "Beschreibung",
+                "placeholder": "Geben Sie die Organisationsbeschreibung ein"
+            },
+            "website": {
+                "label": "Webseite",
+                "placeholder": "Geben Sie die Webseiten-URL ein"
+            },
+            "email": {
+                "label": "E-Mail",
+                "placeholder": "Geben Sie die E-Mail-Adresse ein"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "address": {
+                "street": {
+                    "label": "Straße",
+                    "placeholder": "Geben Sie die Straße ein"
+                },
+                "unit": {
+                    "label": "Einheit",
+                    "placeholder": "Geben Sie die Einheit ein"
+                },
+                "city": {
+                    "label": "Stadt",
+                    "placeholder": "Geben Sie die Stadt ein"
+                },
+                "state": {
+                    "label": "Bundesland",
+                    "placeholder": "Geben Sie das Bundesland ein"
+                },
+                "postal_code": {
+                    "label": "Postleitzahl",
+                    "placeholder": "Geben Sie die Postleitzahl ein"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Geben Sie das Land ein"
+                }
+            }
+        }
+    }
+}
