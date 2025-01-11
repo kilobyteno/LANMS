@@ -18,6 +18,7 @@
         "view": "Vis",
         "edit": "Redigera",
         "delete": "Radera",
+        "update_available": "Ny version tillgänglig",
         "back": "Tillbaka",
         "view_on_github": "Vis på GitHub",
         "saving": "Sparar...",
@@ -73,9 +74,6 @@
         "select_organisation": "Välj en organisation",
         "title": "Byt organisation",
         "create": "Skapa organisation"
-    },
-    "version": {
-        "newAvailable": "En ny version är tillgänglig"
     },
     "user": {
         "change_password": {
@@ -214,10 +212,6 @@
                 "label": "Innehåll",
                 "placeholder": "Skriv in innehåll"
             }
-        },
-        "delete": {
-            "title": "Radera artikel",
-            "description": "Är du säker på att du vill radera denna artikel?"
         }
     },
     "organiser": {
@@ -226,6 +220,10 @@
             "table": {
                 "title": "Titel",
                 "published_at": "Publisert"
+            },
+            "delete": {
+                "title": "Slett artikel",
+                "description": "Radering av en artikel kommer att ta bort alla associerade data och kan inte ångras."
             }
         }
     },

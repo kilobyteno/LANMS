@@ -18,6 +18,7 @@
         "view": "Vis",
         "edit": "Rediger",
         "delete": "Slett",
+        "update_available": "Ny versjon tilgjengelig",
         "back": "Tilbake",
         "view_on_github": "Vis på GitHub",
         "saving": "Lagrer...",
@@ -73,9 +74,6 @@
         "select_organisation": "Velg en organisasjon",
         "title": "Bytt organisasjon",
         "create": "Opprett organisasjon"
-    },
-    "version": {
-        "newAvailable": "En ny versjon er tilgjengelig"
     },
     "user": {
         "change_password": {
@@ -214,10 +212,6 @@
                 "label": "Innhold",
                 "placeholder": "Skriv inn innhold"
             }
-        },
-        "delete": {
-            "title": "Slett artikkel",
-            "description": "Er du sikker på at du vil slette denne artikkelen?"
         }
     },
     "organiser": {
@@ -226,6 +220,10 @@
             "table": {
                 "title": "Tittel",
                 "published_at": "Publisert"
+            },
+            "delete": {
+                "title": "Slett artikkel",
+                "description": "Sletting av en artikkel vil fjerne alle assosierte data og ikke kan angres."
             }
         }
     },

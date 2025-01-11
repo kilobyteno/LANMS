@@ -18,6 +18,7 @@
         "view": "View",
         "edit": "Edit",
         "delete": "Delete",
+        "update_available": "Update available",
         "back": "Back",
         "view_on_github": "View on GitHub",
         "saving": "Saving...",
@@ -73,9 +74,6 @@
         "select_organisation": "Select an organisation",
         "title": "Switch organisations",
         "create": "Create a new organisation"
-    },
-    "version": {
-        "newAvailable": "A new version is available"
     },
     "user": {
         "change_password": {
@@ -214,10 +212,6 @@
                 "label": "Content",
                 "placeholder": "Enter article content"
             }
-        },
-        "delete": {
-            "title": "Delete Article",
-            "description": "Are you sure you want to delete this article?"
         }
     },
     "organiser": {
@@ -226,6 +220,10 @@
             "table": {
                 "title": "Title",
                 "published_at": "Published At"
+            },
+            "delete": {
+                "title": "organiser.articles.delete.title",
+                "description": "organiser.articles.delete.description"
             }
         }
     },
