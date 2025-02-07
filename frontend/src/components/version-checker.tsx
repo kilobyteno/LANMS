@@ -11,10 +11,14 @@ interface GithubRelease {
     html_url: string;
 }
 
+interface VersionCheckerProps {
+    showUpdateBadge?: boolean;
+}
+
 const CACHE_KEY = 'version_check';
 const CACHE_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
 
-export function VersionChecker() {
+export function VersionChecker({ showUpdateBadge = true }: VersionCheckerProps) {
     const { t } = useTranslation();
     const [hasUpdate, setHasUpdate] = useState(false);
     const [latestVersion, setLatestVersion] = useState<string | null>(null);
@@ -86,7 +90,7 @@ export function VersionChecker() {
     return (
         <>
             <a href='https://lanms.net' target='_blank' rel='noopener noreferrer' className='text-xs text-muted-foreground hover:text-primary dark:text-muted-foreground dark:hover:text-primary cursor-pointer'>LANMS {CURRENT_VERSION}</a>
-            {hasUpdate && (
+            {showUpdateBadge && hasUpdate && (
                 <Badge variant="update" className='flex items-center justify-center my-2'>
                     <a
                         href={`https://github.com/${GITHUB_REPO}/releases/latest`}
