@@ -278,7 +278,7 @@ export default function EventDetailPage() {
                                                 className="border rounded-lg p-4 hover:border-primary transition-colors"
                                             >
                                                 <h4 className="font-medium mb-2">{article.title}</h4>
-                                                <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+                                                <p className="text-sm text-muted-foreground mb-2 line-clamp-4">
                                                     {article.content}
                                                 </p>
                                                 <span className="text-sm text-primary">
