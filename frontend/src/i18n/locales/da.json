@@ -52,8 +52,12 @@
             "view_on_map": "Se på kort",
             "articles": "Artikler",
             "no_articles": "Ingen artikler",
+            "read_more": "Læs mere",
             "title": "Begivenheder",
             "view_details": "Se detaljer"
+        },
+        "articles": {
+            "not_found": "Artikel ikke fundet"
         }
     },
     "language": {
@@ -211,6 +215,9 @@
             "content": {
                 "label": "Indhold",
                 "placeholder": "Indtast indhold"
+            },
+            "published_at": {
+                "label": "Publiseret"
             }
         }
     },

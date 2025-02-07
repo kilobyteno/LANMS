@@ -52,8 +52,12 @@
             "view_on_map": "Vis på kart",
             "articles": "Artikler",
             "no_articles": "Ingen artikler",
+            "read_more": "Lese mer",
             "title": "Arrangementer",
             "view_details": "Vis detaljer"
+        },
+        "articles": {
+            "not_found": "Artikkel ikke funnet"
         }
     },
     "language": {
@@ -211,6 +215,9 @@
             "content": {
                 "label": "Innhold",
                 "placeholder": "Skriv inn innhold"
+            },
+            "published_at": {
+                "label": "Publisert"
             }
         }
     },

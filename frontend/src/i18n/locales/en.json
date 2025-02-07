@@ -52,8 +52,12 @@
             "view_on_map": "View on Map",
             "articles": "Articles",
             "no_articles": "No articles",
+            "read_more": "Read more",
             "title": "Events",
             "view_details": "View Details"
+        },
+        "articles": {
+            "not_found": "Article not found"
         }
     },
     "language": {
@@ -211,6 +215,9 @@
             "content": {
                 "label": "Content",
                 "placeholder": "Enter article content"
+            },
+            "published_at": {
+                "label": "Published At"
             }
         }
     },

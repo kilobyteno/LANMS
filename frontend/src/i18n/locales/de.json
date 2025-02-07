@@ -52,8 +52,12 @@
             "view_on_map": "Auf Karte anzeigen",
             "articles": "Artikler",
             "no_articles": "Keine Artikler",
+            "read_more": "Lese mehr",
             "title": "Veranstaltungen",
             "view_details": "Details anzeigen"
+        },
+        "articles": {
+            "not_found": "Artikel nicht gefunden"
         }
     },
     "language": {
@@ -211,6 +215,9 @@
             "content": {
                 "label": "Inhalt",
                 "placeholder": "Geben Sie den Artikelinhalt ein"
+            },
+            "published_at": {
+                "label": "Veröffentlicht"
             }
         }
     },
