@@ -19,6 +19,7 @@ import { FloppyDisk } from '@phosphor-icons/react';
 const FormSchema = z.object({
     title: z.string().min(1, "Title is required"),
     content: z.string().min(1, "Content is required"),
+    published_at: z.string().nullable(),
 });
 
 type FormData = z.infer<typeof FormSchema>;
@@ -37,6 +38,7 @@ export function ArticleForm() {
         defaultValues: {
             title: '',
             content: '',
+            published_at: null,
         },
     });
 
@@ -65,7 +67,7 @@ export function ArticleForm() {
         const articleData = {
             ...data,
             content: content,
-            published_at: new Date().toISOString(),
+            published_at: data.published_at || new Date().toISOString(),
             slug: slugify(data.title),
         };
 
@@ -137,6 +139,26 @@ export function ArticleForm() {
                         }}
                     />
 
+                    <FormField
+                        control={form.control}
+                        name="published_at"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    {t('article.form.published_at.label')}
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        type="datetime-local"
+                                        {...field}
+                                        value={field.value || ''}
+                                        onChange={(e) => field.onChange(e.target.value || null)}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                 </div>
 
                 <div className="flex justify-end space-x-4">
