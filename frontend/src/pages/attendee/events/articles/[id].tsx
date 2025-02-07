@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { articlesApi } from '@/lib/api/event-articles';
 import { useBreadcrumbs } from '@/hooks/use-breadcrumbs';
 import { formatDate } from "@/lib/utils";
+import ReactMarkdown from 'react-markdown';
 
 export default function ArticleDetailPage() {
     const { t } = useTranslation();
@@ -61,7 +62,7 @@ export default function ArticleDetailPage() {
                     </CardHeader>
                     <CardContent>
                         <div className="prose max-w-none dark:prose-invert">
-                            {article.content}
+                            <ReactMarkdown>{article.content}</ReactMarkdown>
                         </div>
                     </CardContent>
                 </Card>
