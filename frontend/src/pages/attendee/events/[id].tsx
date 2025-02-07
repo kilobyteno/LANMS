@@ -7,7 +7,7 @@ import { LoadingScreen } from '@/components/ui/loading-screen';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { eventsApi, type Event } from '@/lib/api/events';
 import { useBreadcrumbs } from '@/hooks/use-breadcrumbs';
-import { Calendar, Globe, EnvelopeSimple, Phone, MapPin, CaretDown } from "@phosphor-icons/react";
+import { Calendar, Globe, EnvelopeSimple, Phone, MapPin, CaretDown, Article } from "@phosphor-icons/react";
 import { eventInterestApi, type EventInterest, type EventInterestCount } from '@/lib/api/event-interest';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +16,9 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { articlesApi } from '@/lib/api/event-articles';
+import {formatDate} from "@/lib/utils.ts";
+import { Link } from 'react-router-dom';
 
 const INTEREST_STATUS = {
     NOT_INTERESTED: 0,
@@ -51,10 +54,14 @@ export default function EventDetailPage() {
 
     const fetchEvent = async () => {
         if (!id) return;
-        
+
         try {
             const response = await eventsApi.get(id);
-            setEvent(response.data.data);
+            const articlesResponse = await articlesApi.list(id);
+            setEvent({
+                ...response.data.data,
+                articles: articlesResponse.data.data
+            });
         } catch (error) {
             console.error('Failed to fetch event:', error);
         } finally {
@@ -64,18 +71,18 @@ export default function EventDetailPage() {
 
     const fetchInterest = async () => {
         if (!id) return;
-        
+
         try {
             const response = await eventInterestApi.getMe(id);
             setInterest(response.data.data);
         } catch (error) {
-            // Silently fail as user may not have expressed interest yet
+            console.error('Failed to fetch interest:', error);
         }
     };
 
     const fetchInterestCounts = async () => {
         if (!id) return;
-        
+
         try {
             const response = await eventInterestApi.getCount(id);
             setInterestCounts(response.data.data);
@@ -94,10 +101,10 @@ export default function EventDetailPage() {
         if (!id) return;
 
         try {
-            const response = !interest 
+            const response = !interest
                 ? await eventInterestApi.create(id, { status: newStatus })
                 : await eventInterestApi.update(id, { ...interest, status: newStatus });
-            
+
             setInterest(response.data.data);
             await fetchInterestCounts();
         } catch (error) {
@@ -119,10 +126,6 @@ export default function EventDetailPage() {
         );
     }
 
-    const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString();
-    };
-
     return (
         <>
             <Breadcrumb items={breadcrumbs} />
@@ -136,7 +139,7 @@ export default function EventDetailPage() {
                                 {interestCounts.interested} {t('attendee.events.people_interested')}
                             </span>
                         </div>
-                        
+
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="gap-2">
@@ -170,7 +173,7 @@ export default function EventDetailPage() {
                                         {formatDate(event.start_at)} &mdash; {formatDate(event.end_at)}
                                     </span>
                                 </div>
-                                
+
                                 {event.description && (
                                     <p className="text-muted-foreground">
                                         {event.description}
@@ -186,10 +189,10 @@ export default function EventDetailPage() {
                                 {event.website && (
                                     <div className="flex items-center gap-2">
                                         <Globe className="h-5 w-5" />
-                                        <a 
-                                            href={event.website} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
+                                        <a
+                                            href={event.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="text-primary hover:underline break-all"
                                         >
                                             {event.website}
@@ -207,8 +210,8 @@ export default function EventDetailPage() {
                                 {event.contact_email && (
                                     <div className="flex items-center gap-2">
                                         <EnvelopeSimple className="h-5 w-5" />
-                                        <a 
-                                            href={`mailto:${event.contact_email}`} 
+                                        <a
+                                            href={`mailto:${event.contact_email}`}
                                             className="text-primary hover:underline break-all"
                                         >
                                             {event.contact_email}
@@ -219,8 +222,8 @@ export default function EventDetailPage() {
                                 {event.contact_phone_number && (
                                     <div className="flex items-center gap-2">
                                         <Phone className="h-5 w-5" />
-                                        <a 
-                                            href={`tel:${event.contact_phone_code}${event.contact_phone_number}`} 
+                                        <a
+                                            href={`tel:${event.contact_phone_code}${event.contact_phone_number}`}
                                             className="text-primary hover:underline"
                                         >
                                             {event.contact_phone_code} {event.contact_phone_number}
@@ -250,6 +253,40 @@ export default function EventDetailPage() {
                                     >
                                         {t('attendee.events.view_on_map')}
                                     </a>
+                                )}
+                            </CardContent>
+                        </Card>
+
+                        <Card className="md:col-span-3">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2">
+                                    <Article className="h-5 w-5" />
+                                    {t('attendee.events.articles')}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                {event.articles && event.articles.length === 0 ? (
+                                    <p className="text-sm text-muted-foreground">
+                                        {t('attendee.events.no_articles')}
+                                    </p>
+                                ) : (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {event.articles?.map((article) => (
+                                            <Link 
+                                                key={article.id} 
+                                                to={`/attendee/events/${event.id}/articles/${article.id}`}
+                                                className="border rounded-lg p-4 hover:border-primary transition-colors"
+                                            >
+                                                <h4 className="font-medium mb-2">{article.title}</h4>
+                                                <p className="text-sm text-muted-foreground mb-2 line-clamp-4">
+                                                    {article.content}
+                                                </p>
+                                                <span className="text-sm text-primary">
+                                                    {t('attendee.events.read_more')}
+                                                </span>
+                                            </Link>
+                                        ))}
+                                    </div>
                                 )}
                             </CardContent>
                         </Card>

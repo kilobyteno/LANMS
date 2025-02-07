@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "Generellt",
             "dashboard": "Dashboard",
+            "news": "Nyheter",
+            "articles": "Artikler",
             "system": "System"
         }
     },
@@ -16,12 +18,16 @@
         "view": "Vis",
         "edit": "Redigera",
         "delete": "Radera",
+        "update_available": "Ny version tillgänglig",
         "back": "Tillbaka",
-        "deleting": "Radering...",
-        "cancel": "Avbryt",
         "view_on_github": "Vis på GitHub",
         "saving": "Sparar...",
-        "save": "Spara"
+        "save": "Spara",
+        "create": "Skapa",
+        "actions": "Handlingar",
+        "not_published": "Ikke publisert",
+        "cancel": "Avbryt",
+        "deleting": "Radering..."
     },
     "event_switcher": {
         "no_events": "Inga evenemang funna",
@@ -44,8 +50,14 @@
             "max_participants": "Maks deltakere",
             "contact_info": "Kontaktinformasjon",
             "view_on_map": "Vis på kart",
+            "articles": "Artikler",
+            "no_articles": "Inga artikler",
+            "read_more": "Les mer",
             "title": "Arrangementer",
             "view_details": "Vis detaljer"
+        },
+        "articles": {
+            "not_found": "Artikel ikke funnet"
         }
     },
     "language": {
@@ -66,9 +78,6 @@
         "select_organisation": "Välj en organisation",
         "title": "Byt organisation",
         "create": "Skapa organisation"
-    },
-    "version": {
-        "newAvailable": "En ny version är tillgänglig"
     },
     "user": {
         "change_password": {
@@ -196,6 +205,34 @@
         "attendee_dashboard": "Attendee Dashboard",
         "signup": "Sign up",
         "login": "Log in"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Titel",
+                "placeholder": "Skriv in titel"
+            },
+            "content": {
+                "label": "Innehåll",
+                "placeholder": "Skriv in innehåll"
+            },
+            "published_at": {
+                "label": "Publisert"
+            }
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Artikler",
+            "table": {
+                "title": "Titel",
+                "published_at": "Publisert"
+            },
+            "delete": {
+                "title": "Slett artikel",
+                "description": "Radering av en artikel kommer att ta bort alla associerade data och kan inte ångras."
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {

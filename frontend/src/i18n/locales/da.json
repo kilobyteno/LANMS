@@ -1,0 +1,368 @@
+{
+    "nav": {
+        "user": {
+            "change_password": "Skift adgangskode",
+            "logout": "Log ud",
+            "attendee_panel": "Gå til deltagerpanel"
+        },
+        "sidebar": {
+            "general": "Generelt",
+            "dashboard": "Dashboard",
+            "news": "Nyheder",
+            "articles": "Artikler",
+            "system": "System"
+        }
+    },
+    "common": {
+        "loading": "Indlæser...",
+        "view": "Vis",
+        "edit": "Rediger",
+        "delete": "Slet",
+        "update_available": "Opdatering tilgængelig",
+        "back": "Tilbage",
+        "view_on_github": "Se på GitHub",
+        "saving": "Gemmer...",
+        "save": "Gem",
+        "create": "Opret",
+        "actions": "Handlinger",
+        "not_published": "common.not_published",
+        "cancel": "Annuller",
+        "deleting": "Sletter..."
+    },
+    "event_switcher": {
+        "no_events": "Ingen begivenheder fundet",
+        "select_event": "Vælg en begivenhed",
+        "title": "Skift begivenhed",
+        "create": "Opret begivenhed"
+    },
+    "attendee": {
+        "nav": {
+            "events": "Begivenheder"
+        },
+        "events": {
+            "interested": "Interesseret",
+            "maybe": "Måske",
+            "not_interested": "Ikke interesseret",
+            "set_interest": "Angiv interesse",
+            "not_found": "Begivenhed ikke fundet",
+            "people_interested": "Personer interesseret",
+            "details": "Detaljer",
+            "max_participants": "Maks deltagere",
+            "contact_info": "Kontaktinformation",
+            "view_on_map": "Se på kort",
+            "articles": "Artikler",
+            "no_articles": "Ingen artikler",
+            "read_more": "Læs mere",
+            "title": "Begivenheder",
+            "view_details": "Se detaljer"
+        },
+        "articles": {
+            "not_found": "Artikel ikke fundet"
+        }
+    },
+    "language": {
+        "switch": "Skift sprog"
+    },
+    "changelog": {
+        "title": "Ændringslog",
+        "description": "Dette hentes fra GitHub releases og er ikke oversat."
+    },
+    "theme": {
+        "switch": "Skift tema",
+        "light": "Lyst tema",
+        "dark": "Mørkt tema",
+        "system": "Systemstandard"
+    },
+    "organisation_switcher": {
+        "no_organisations": "Ingen organisationer",
+        "select_organisation": "Vælg en organisation",
+        "title": "Skift organisation",
+        "create": "Opret organisation"
+    },
+    "user": {
+        "change_password": {
+            "form": {
+                "error": {
+                    "new_passwords_dont_match": "De nye adgangskoder matcher ikke",
+                    "failed_to_change_password": "Kunne ikke ændre adgangskode"
+                },
+                "current_password": {
+                    "label": "Nuværende adgangskode",
+                    "placeholder": "Indtast nuværende adgangskode"
+                },
+                "new_password": {
+                    "label": "Ny adgangskode",
+                    "placeholder": "Indtast ny adgangskode"
+                },
+                "confirm_new_password": {
+                    "label": "Bekræft ny adgangskode",
+                    "placeholder": "Indtast ny adgangskode igen"
+                },
+                "changing_password": "Ændrer adgangskode...",
+                "change_password": "Skift adgangskode"
+            },
+            "title": "Skift adgangskode",
+            "description": "Skift din adgangskode herunder"
+        }
+    },
+    "auth": {
+        "forgot_password": {
+            "form": {
+                "error": {
+                    "failed": "Kunne ikke nulstille adgangskode"
+                },
+                "success": "Nulstillingslink sendt til din email",
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Indtast din email"
+                },
+                "submit": "Nulstil adgangskode"
+            },
+            "title": "Glemt adgangskode",
+            "description": "Indtast din email for at nulstille din adgangskode"
+        },
+        "reset_password": {
+            "form": {
+                "error": {
+                    "invalid_reset_token": "Ugyldigt nulstillingslink",
+                    "passwords_dont_match": "Adgangskoderne matcher ikke",
+                    "failed": "Kunne ikke nulstille adgangskode"
+                },
+                "password": {
+                    "label": "Ny adgangskode",
+                    "placeholder": "Indtast ny adgangskode"
+                },
+                "password_confirmation": {
+                    "label": "Bekræft adgangskode",
+                    "placeholder": "Indtast adgangskode igen"
+                },
+                "submit": "Gem ny adgangskode"
+            },
+            "title": "Nulstil adgangskode",
+            "description": "Vælg en ny adgangskode"
+        }
+    },
+    "login": {
+        "title": "Log ind",
+        "subtitle": "Log ind på din konto",
+        "forgotPassword": "Glemt adgangskode?",
+        "submit": "Log ind",
+        "noAccount": "Har du ikke en konto?",
+        "signUp": "Opret konto"
+    },
+    "global": {
+        "form": {
+            "email": {
+                "label": "Email",
+                "placeholder": "Indtast din email"
+            },
+            "password": {
+                "label": "Adgangskode"
+            }
+        }
+    },
+    "register": {
+        "title": "Opret konto",
+        "subtitle": "Opret en ny konto",
+        "submit": "Opret",
+        "haveAccount": "Har du allerede en konto?",
+        "signIn": "Log ind"
+    },
+    "signup": {
+        "details": {
+            "title": "Registreringsdetaljer",
+            "description": "Udfyld nedenstående oplysninger for at oprette din konto",
+            "name": "Navn",
+            "password": "Adgangskode",
+            "confirmPassword": "Bekræft adgangskode",
+            "phone": "Telefonnummer",
+            "phonePlaceholder": "Indtast telefonnummer",
+            "submit": "Opret konto"
+        }
+    },
+    "otp": {
+        "title": "Bekræft identitet",
+        "description": "Vi har sendt en engangskode til din email",
+        "form": {
+            "label": "Engangskode"
+        },
+        "submit": "Bekræft",
+        "noCode": "Modtog du ingen kode?",
+        "resend": "Send igen",
+        "backToLogin": "Tilbage til login"
+    },
+    "error": {
+        "404": {
+            "title": "Side ikke fundet",
+            "description": "Siden du leder efter findes ikke",
+            "backHome": "Tilbage til forsiden"
+        }
+    },
+    "landing": {
+        "title": "Velkommen",
+        "description": "Platformen til at administrere dine begivenheder",
+        "organiser_dashboard": "Arrangør Dashboard",
+        "attendee_dashboard": "Deltager Dashboard",
+        "signup": "Opret konto",
+        "login": "Log ind"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Titel",
+                "placeholder": "Indtast titel"
+            },
+            "content": {
+                "label": "Indhold",
+                "placeholder": "Indtast indhold"
+            },
+            "published_at": {
+                "label": "Publiseret"
+            }
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Artikler",
+            "table": {
+                "title": "Titel",
+                "published_at": "Publiseret"
+            },
+            "delete": {
+                "title": "Slet artikel",
+                "description": "Sletning af en artikel vil fjerne alle assosierte data og ikke kan angres."
+            }
+        }
+    },
+    "dashboard": {
+        "no_organisations": {
+            "title": "Ingen organisationer",
+            "description": "Du har ikke oprettet eller blevet inviteret til nogen organisationer endnu",
+            "create": "Opret organisation"
+        }
+    },
+    "event": {
+        "not_found": "Begivenhed ikke fundet",
+        "delete": {
+            "title": "Slet begivenhed",
+            "description": "Sletning af en begivenhed vil fjerne alle tilknyttede data og kan ikke fortrydes.",
+            "warning_title": "Permanent sletning af begivenhed",
+            "warning_description": "Hvis du fortsætter, vil alle tilknyttede data blive permanent slettet og kan ikke gendannes. Begivenheden vil blive fjernet fra alle deltageres kalendere og begivenhedssiden vil være utilgængelig.",
+            "confirm_title": "Er du sikker?",
+            "confirm_description": "Denne handling kan ikke fortrydes! Endelig bekræftelse er påkrævet for at fortsætte.",
+            "confirm_submit": "Slet begivenhed"
+        },
+        "form": {
+            "title": {
+                "label": "Begivenhedstitel",
+                "placeholder": "Indtast begivenhedstitel"
+            },
+            "description": {
+                "label": "Beskrivelse",
+                "placeholder": "Indtast begivenhedsbeskrivelse"
+            },
+            "start_at": {
+                "label": "Start dato & tid"
+            },
+            "end_at": {
+                "label": "Slut dato & tid"
+            },
+            "max_participants": {
+                "label": "Maksimalt antal deltagere",
+                "placeholder": "Indtast maksimalt antal deltagere"
+            },
+            "website": {
+                "label": "Hjemmeside",
+                "placeholder": "Indtast hjemmeside URL"
+            },
+            "contact_email": {
+                "label": "Kontakt email",
+                "placeholder": "Indtast kontakt email"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "maps_url": {
+                "label": "Kort URL",
+                "placeholder": "Indtast Google Maps URL"
+            },
+            "address": {
+                "street": {
+                    "label": "Gadeadresse",
+                    "placeholder": "Indtast gadeadresse"
+                },
+                "city": {
+                    "label": "By",
+                    "placeholder": "Indtast by"
+                },
+                "postal_code": {
+                    "label": "Postnummer",
+                    "placeholder": "Indtast postnummer"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Indtast land"
+                }
+            }
+        }
+    },
+    "organisation": {
+        "not_found": "Organisation ikke fundet",
+        "delete": {
+            "title": "Slet organisation",
+            "description": "Sletning af en organisation vil fjerne alle tilknyttede data og kan ikke fortrydes.",
+            "warning_title": "Permanent sletning af organisation",
+            "warning": "Hvis du fortsætter, vil alle tilknyttede data blive permanent slettet og kan ikke gendannes.",
+            "confirm_title": "Er du sikker?",
+            "confirm_description": "Denne handling kan ikke fortrydes! Endelig bekræftelse er påkrævet for at fortsætte.",
+            "confirm_submit": "Slet organisation"
+        },
+        "form": {
+            "name": {
+                "label": "Navn",
+                "placeholder": "Indtast organisationsnavn"
+            },
+            "description": {
+                "label": "Beskrivelse",
+                "placeholder": "Indtast organisationsbeskrivelse"
+            },
+            "website": {
+                "label": "Hjemmeside",
+                "placeholder": "Indtast hjemmeside URL"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Indtast email"
+            },
+            "phone": {
+                "label": "Telefonnummer"
+            },
+            "address": {
+                "street": {
+                    "label": "Gadeadresse",
+                    "placeholder": "Indtast gadeadresse"
+                },
+                "unit": {
+                    "label": "Enhed",
+                    "placeholder": "Indtast enhed"
+                },
+                "city": {
+                    "label": "By",
+                    "placeholder": "Indtast by"
+                },
+                "state": {
+                    "label": "Region",
+                    "placeholder": "Indtast region"
+                },
+                "postal_code": {
+                    "label": "Postnummer",
+                    "placeholder": "Indtast postnummer"
+                },
+                "country": {
+                    "label": "Land",
+                    "placeholder": "Indtast land"
+                }
+            }
+        }
+    }
+}

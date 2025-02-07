@@ -14,16 +14,22 @@ import {
     SidebarMenuSubButton,
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import {CaretRight, Gauge, Nut} from "@phosphor-icons/react"
+import {Newspaper, CaretRight, Gauge, Nut} from "@phosphor-icons/react"
 import {route, RouteConfig} from "@/routes/route-config.ts";
 import {useTranslation} from "react-i18next";
 import {Link, useLocation} from "react-router-dom";
 import {useSidebar} from "@/components/ui/sidebar";
+import { useEvent } from '@/context/EventContext';
 
 export function NavMain() {
     const {t} = useTranslation();
     const {setOpenMobile} = useSidebar();
     const location = useLocation();
+    const {currentEvent} = useEvent();
+
+    if (!currentEvent) {
+        return null;
+    }
 
     const items = [
         {
@@ -34,6 +40,17 @@ export function NavMain() {
                 {
                     title: t('nav.sidebar.dashboard'),
                     url: route(RouteConfig.ORGANISER.ROOT),
+                },
+            ],
+        },
+        {
+            title: t('nav.sidebar.news'),
+            url: "#",
+            icon: Newspaper,
+            items: [
+                {
+                    title: t('nav.sidebar.articles'),
+                    url: route(RouteConfig.ORGANISER.EVENTS.ARTICLES.LIST, { id: currentEvent.id }),
                 },
             ],
         },
@@ -77,7 +94,7 @@ export function NavMain() {
                                 <SidebarMenuSub>
                                     {item.items?.map((subItem) => (
                                         <SidebarMenuSubItem key={subItem.title}>
-                                            <SidebarMenuSubButton 
+                                            <SidebarMenuSubButton
                                                 asChild
                                                 isActive={isSubItemActive(subItem.url)}
                                             >
@@ -107,7 +124,7 @@ export function NavMain() {
                         <CollapsibleContent>
                             <SidebarMenuSub>
                                 <SidebarMenuSubItem>
-                                    <SidebarMenuSubButton 
+                                    <SidebarMenuSubButton
                                         asChild
                                         isActive={location.pathname === RouteConfig.ORGANISER.SYSTEM.CHANGELOG}
                                     >

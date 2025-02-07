@@ -1,7 +1,8 @@
 import { apiClient, ApiResponse } from "./client";
+import { Article } from "./event-articles";
 
 export interface Event {
-    id?: string;
+    id: string;
     title: string;
     description?: string;
     max_participants?: number;
@@ -17,6 +18,7 @@ export interface Event {
     start_at: string;
     end_at: string;
     organisation_id: string;
+    articles?: Article[];
 }
 
 export type E1Output = ApiResponse<Event>;
