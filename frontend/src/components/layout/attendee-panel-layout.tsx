@@ -10,6 +10,7 @@ import {CalendarBlank} from "@phosphor-icons/react";
 import { RouteConfig } from "@/routes/route-config.ts";
 import { route } from "@/routes/route-config.ts";
 import { useTranslation } from "react-i18next";
+import { VersionChecker } from "../version-checker.tsx";
 
 export default function AttendeePanelLayout({children}: { children: React.ReactNode }) {
     const { t } = useTranslation();
@@ -43,7 +44,7 @@ export default function AttendeePanelLayout({children}: { children: React.ReactN
                 {children}
             </main>
             <footer className="relative bottom-0 text-xs text-gray-300 dark:text-gray-800 p-4 text-center">
-                <span>LANMS 3.0.0-alpha.1</span>
+                <VersionChecker showUpdateBadge={false} />
             </footer>
             <Toaster/>
         </div>
