@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { articlesApi } from '@/lib/api/event-articles';
 import {formatDate} from "@/lib/utils.ts";
+import { Link } from 'react-router-dom';
 
 const INTEREST_STATUS = {
     NOT_INTERESTED: 0,
@@ -271,10 +272,19 @@ export default function EventDetailPage() {
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {event.articles?.map((article) => (
-                                            <div key={article.id} className="border rounded-lg p-4">
+                                            <Link 
+                                                key={article.id} 
+                                                to={`/attendee/events/${event.id}/articles/${article.id}`}
+                                                className="border rounded-lg p-4 hover:border-primary transition-colors"
+                                            >
                                                 <h4 className="font-medium mb-2">{article.title}</h4>
-                                                <p className="text-sm text-muted-foreground mb-2">{article.content}</p>
-                                            </div>
+                                                <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+                                                    {article.content}
+                                                </p>
+                                                <span className="text-sm text-primary">
+                                                    {t('attendee.events.read_more')}
+                                                </span>
+                                            </Link>
                                         ))}
                                     </div>
                                 )}

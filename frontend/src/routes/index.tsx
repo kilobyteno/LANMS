@@ -26,6 +26,7 @@ import EventDetailPage from '@/pages/attendee/events/[id]';
 import { ArticleList } from '@/pages/organiser/article/article-list';
 import { ArticleCreate } from '@/pages/organiser/article/article-create';
 import { ArticleEdit } from '@/pages/organiser/article/article-edit';
+import ArticleDetailPage from '@/pages/attendee/events/articles/[id]';
 
 const authRoutes = [
     {
@@ -132,6 +133,10 @@ const attendeeRoutes = [
             {
                 path: RouteConfig.ATTENDEE.EVENTS.DETAIL,
                 element: <EventDetailPage/>
+            },
+            {
+                path: RouteConfig.ATTENDEE.EVENTS.ARTICLES.DETAIL,
+                element: <ArticleDetailPage/>
             }
         ]
     },
