@@ -37,3 +37,4 @@ class Event(BaseModel):
     created_by = relationship('User', back_populates='events')
 
     interests = relationship('EventInterest', back_populates='event')
+    articles = relationship('Article', back_populates='event')

@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "General",
             "dashboard": "Dashboard",
+            "news": "News",
+            "articles": "Articles",
             "system": "System"
         }
     },
@@ -16,13 +18,16 @@
         "view": "View",
         "edit": "Edit",
         "delete": "Delete",
-        "update_available": "Update Available",
+        "update_available": "Update available",
         "back": "Back",
         "view_on_github": "View on GitHub",
-        "deleting": "Deleting...",
-        "cancel": "Cancel",
         "saving": "Saving...",
-        "save": "Save"
+        "save": "Save",
+        "create": "Create",
+        "actions": "Actions",
+        "not_published": "Not Published",
+        "cancel": "Cancel",
+        "deleting": "Deleting..."
     },
     "event_switcher": {
         "no_events": "No events found",
@@ -45,8 +50,14 @@
             "max_participants": "Max Participants",
             "contact_info": "Contact Info",
             "view_on_map": "View on Map",
+            "articles": "Articles",
+            "no_articles": "No articles",
+            "read_more": "Read more",
             "title": "Events",
             "view_details": "View Details"
+        },
+        "articles": {
+            "not_found": "Article not found"
         }
     },
     "language": {
@@ -194,6 +205,34 @@
         "attendee_dashboard": "Attendee Dashboard",
         "signup": "Sign up",
         "login": "Login"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Title",
+                "placeholder": "Enter article title"
+            },
+            "content": {
+                "label": "Content",
+                "placeholder": "Enter article content"
+            },
+            "published_at": {
+                "label": "Published At"
+            }
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Articles",
+            "table": {
+                "title": "Title",
+                "published_at": "Published At"
+            },
+            "delete": {
+                "title": "organiser.articles.delete.title",
+                "description": "organiser.articles.delete.description"
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {

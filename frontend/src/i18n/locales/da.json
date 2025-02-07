@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "Generelt",
             "dashboard": "Dashboard",
+            "news": "Nyheder",
+            "articles": "Artikler",
             "system": "System"
         }
     },
@@ -19,10 +21,13 @@
         "update_available": "Opdatering tilgængelig",
         "back": "Tilbage",
         "view_on_github": "Se på GitHub",
-        "deleting": "Sletter...",
-        "cancel": "Annuller",
         "saving": "Gemmer...",
-        "save": "Gem"
+        "save": "Gem",
+        "create": "Opret",
+        "actions": "Handlinger",
+        "not_published": "common.not_published",
+        "cancel": "Annuller",
+        "deleting": "Sletter..."
     },
     "event_switcher": {
         "no_events": "Ingen begivenheder fundet",
@@ -45,8 +50,14 @@
             "max_participants": "Maks deltagere",
             "contact_info": "Kontaktinformation",
             "view_on_map": "Se på kort",
+            "articles": "Artikler",
+            "no_articles": "Ingen artikler",
+            "read_more": "Læs mere",
             "title": "Begivenheder",
             "view_details": "Se detaljer"
+        },
+        "articles": {
+            "not_found": "Artikel ikke fundet"
         }
     },
     "language": {
@@ -59,7 +70,7 @@
     "theme": {
         "switch": "Skift tema",
         "light": "Lyst tema",
-        "dark": "Mørkt tema", 
+        "dark": "Mørkt tema",
         "system": "Systemstandard"
     },
     "organisation_switcher": {
@@ -194,6 +205,34 @@
         "attendee_dashboard": "Deltager Dashboard",
         "signup": "Opret konto",
         "login": "Log ind"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Titel",
+                "placeholder": "Indtast titel"
+            },
+            "content": {
+                "label": "Indhold",
+                "placeholder": "Indtast indhold"
+            },
+            "published_at": {
+                "label": "Publiseret"
+            }
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Artikler",
+            "table": {
+                "title": "Titel",
+                "published_at": "Publiseret"
+            },
+            "delete": {
+                "title": "Slet artikel",
+                "description": "Sletning af en artikel vil fjerne alle assosierte data og ikke kan angres."
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {

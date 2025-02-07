@@ -23,6 +23,10 @@ import { OrganisationDelete } from '@/pages/organiser/organisation/organisation-
 import { OrganisationEdit } from '@/pages/organiser/organisation/organisation-edit';
 import EventsPage from '@/pages/attendee/events';
 import EventDetailPage from '@/pages/attendee/events/[id]';
+import { ArticleList } from '@/pages/organiser/article/article-list';
+import { ArticleCreate } from '@/pages/organiser/article/article-create';
+import { ArticleEdit } from '@/pages/organiser/article/article-edit';
+import ArticleDetailPage from '@/pages/attendee/events/articles/[id]';
 
 const authRoutes = [
     {
@@ -94,6 +98,18 @@ const organizerRoutes = [
                 path: RouteConfig.ORGANISER.EVENTS.DELETE,
                 element: <EventDelete />
             },
+            {
+                path: RouteConfig.ORGANISER.EVENTS.ARTICLES.LIST,
+                element: <ArticleList />
+            },
+            {
+                path: RouteConfig.ORGANISER.EVENTS.ARTICLES.CREATE,
+                element: <ArticleCreate />
+            },
+            {
+                path: RouteConfig.ORGANISER.EVENTS.ARTICLES.EDIT,
+                element: <ArticleEdit />
+            },
         ]
     },
 ];
@@ -117,6 +133,10 @@ const attendeeRoutes = [
             {
                 path: RouteConfig.ATTENDEE.EVENTS.DETAIL,
                 element: <EventDetailPage/>
+            },
+            {
+                path: RouteConfig.ATTENDEE.EVENTS.ARTICLES.DETAIL,
+                element: <ArticleDetailPage/>
             }
         ]
     },
