@@ -6,7 +6,7 @@
     <a href="https://libraries.io/github/kilobyteno/LANMS"><img src="https://img.shields.io/librariesio/github/kilobyteno/LANMS" alt="Dependencies" /></a>
     <a href="https://libraries.io/github/kilobyteno/LANMS"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/kilobyteno/LANMS" /></a>
     <a href="https://github.com/kilobyteno/LANMS"><img src="https://img.shields.io/github/license/kilobyteno/LANMS" alt="License" /></a>
-    <a href="https://kilobyte.no/discord"><img src="https://dcbadge.limes.pink/api/server/QcegwpngMe?style=flat" alt="Discord" /></a>
+    <a href="https://discord.gg/jEHxGNtzkV"><img src="https://dcbadge.limes.pink/api/server/jEHxGNtzkV?style=flat" alt="Discord" /></a>
 </p>
 
 ### What is LANMS?
