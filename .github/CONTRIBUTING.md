@@ -21,7 +21,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 In short, when you submit code changes, your submissions are understood to be under the same [license](LICENSE) that covers the project.
 
 ## Reporting bugs
-We use GitHub [issues](https://github.com/DanielRTRD/laravel-skeleton/issues) to track public bugs. Report a bug by opening a new issue; it's that easy! Write bug reports with detail, this makes it a lot easier to understand the issue.
+We use GitHub [issues](https://github.com/kilobyteno/LANMS/issues) to track public bugs. Report a bug by opening a new issue; it's that easy! Write bug reports with detail, this makes it a lot easier to understand the issue.
 
 **Great Bug Reports** tend to have:
 
