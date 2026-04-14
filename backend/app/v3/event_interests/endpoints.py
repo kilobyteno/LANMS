@@ -1,4 +1,3 @@
-from typing import List
 from uuid import UUID
 
 from fastapi import APIRouter, Depends
@@ -35,7 +34,7 @@ async def post_create_interest(
 @router.get(
     '/events/{event_id}/interests',
     name='EI-2',
-    response_model=List[EventInterestResponse],
+    response_model=list[EventInterestResponse],
 )
 async def get_interests_list(event_id: UUID, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
     """Get all interests for an event"""

@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel, Field
@@ -31,7 +30,7 @@ class EventInterestResponse(EventInterestBase):
     user_id: UUID
     created_at: datetime
     updated_at: datetime
-    deleted_at: Optional[datetime]
+    deleted_at: datetime | None
 
     class Config:
         """Pydantic config"""

@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel, EmailStr
@@ -9,14 +8,14 @@ class OrganisationBase(BaseModel):
     """Base organisation model"""
 
     name: str
-    description: Optional[str] = None
-    contact_email: Optional[EmailStr] = None
-    contact_phone: Optional[str] = None
-    address_street: Optional[str] = None
-    address_city: Optional[str] = None
-    address_postal_code: Optional[str] = None
-    address_country: Optional[str] = None
-    website: Optional[str] = None
+    description: str | None = None
+    contact_email: EmailStr | None = None
+    contact_phone: str | None = None
+    address_street: str | None = None
+    address_city: str | None = None
+    address_postal_code: str | None = None
+    address_country: str | None = None
+    website: str | None = None
 
 
 class OrganisationCreate(OrganisationBase):
@@ -38,7 +37,7 @@ class OrganisationResponse(OrganisationBase):
     created_by_id: UUID
     created_at: datetime
     updated_at: datetime
-    deleted_at: Optional[datetime]
+    deleted_at: datetime | None
 
     class Config:
         """Pydantic config"""

@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.9 - 2025-01-10
+
+### Changed
+
+- **Automatic Workflow Enhancements**:
+  
+  - Updated GitHub Actions to track versions via a new file instead of unnecessary updates to other files.
+  - Improved tagging mechanism for labeling updates.
+  
+- **Frontend Appearance and Functionality Enhancements**:
+  
+  - Updated version in `package.json` and `package-lock.json`.
+  - Implemented a new, efficient mechanism for handling app themes.
+  - Removed redundant elements to improve system performance.
+  
+- **Interface Component Refinement**:
+  
+  - Enhanced the interface with aesthetic improvements and added icons to buttons for better user interaction.
+  
+- **Update Changelog Page Enhancements**:
+  
+  - Introduced a new badge to indicate pre-releases.
+  - Improved layout for a more user-friendly experience.
+  
+
+### Added
+
+- **Dynamic Versioning**:
+  
+  - Introduced a new file to store the current version number.
+  - Enabled the backend to dynamically pick up the latest versions from this file for flexible versioning.
+  
+- **Language Localization Improvements**:
+  
+  - Added a new translation key for English, Norwegian, and Swedish languages.
+  
+- **Theme-Persistence Across Sessions**:
+  
+  - Introduced a `ThemeProvider` component for managing theme states using React Context.
+  - Added a custom hook `useTheme` for easier access to theme context.
+  - Enabled theme persistence based on user preferences and system settings.
+  
+
+### Removed
+
+- **Cleaning up Old Code**:
+  - Removed outdated and unnecessary theming code to streamline theme management.
+  
+
+### Fixed
+
+- **Detailed Update Logs**:
+  - Enhanced the changelog with better version recording and detailed descriptions of updates.
+  
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS/compare/3.0.0-alpha.8...3.0.0-alpha.9
 
 ## 3.0.0-alpha.8 - 2025-01-10
 

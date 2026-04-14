@@ -12,20 +12,80 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v4
+                uses: actions/checkout@v6
                 with:
                     ref: ${{ env.TARGET_BRANCH }}
 
-            -   name: Update version in package.json
+            -   name: Compute versions and update backend
+                id: release_version
+                env:
+                    TAG: ${{ github.event.release.tag_name }}
+                run: |
+                    python3 <<'PY'
+                    import os
+                    import re
+                    from pathlib import Path
+
+                    raw = os.environ["TAG"].strip().removeprefix("v")
+
+                    def to_semver(s: str) -> str:
+                        m = re.fullmatch(r"(\d+(?:\.\d+)*)(a|b|rc)(\d+)", s, re.I)
+                        if m:
+                            base, k, n = m.group(1), m.group(2).lower(), m.group(3)
+                            label = {"a": "alpha", "b": "beta", "rc": "rc"}[k]
+                            return f"{base}-{label}.{n}"
+                        return s
+
+                    def to_pep440(s: str) -> str:
+                        m = re.fullmatch(
+                            r"(\d+(?:\.\d+)*)(?:-(alpha|beta|rc)\.(\d+))?", s, re.I
+                        )
+                        if not m:
+                            return s
+                        base, pre, num = m.group(1), m.group(2), m.group(3)
+                        if pre is None:
+                            return base
+                        pre = pre.lower()
+                        if pre == "alpha":
+                            return f"{base}a{num}"
+                        if pre == "beta":
+                            return f"{base}b{num}"
+                        if pre == "rc":
+                            return f"{base}rc{num}"
+                        return s
+
+                    semver = to_semver(raw)
+                    pep440 = to_pep440(semver)
+
+                    Path("backend/.version").write_text(semver + "\n")
+
+                    p = Path("backend/pyproject.toml")
+                    text = p.read_text()
+                    text_new, n = re.subn(
+                        r'^version = "[^"]*"',
+                        f'version = "{pep440}"',
+                        text,
+                        count=1,
+                        flags=re.M,
+                    )
+                    if n != 1:
+                        raise SystemExit("Could not update backend/pyproject.toml project version")
+
+                    p.write_text(text_new)
+
+                    with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+                        f.write(f"semver={semver}\n")
+                    PY
+
+            -   name: Set up Node.js
+                uses: actions/setup-node@v6
+                with:
+                    node-version-file: frontend/.nvmrc
+
+            -   name: Update frontend package.json and package-lock.json
                 run: |
                     cd frontend
-                    npm version ${{ github.event.release.tag_name }}
-                    cd ..
-
-            -   name: Update version in backend/config.py
-                run: |
-                    cd backend
-                    echo ${{ github.event.release.tag_name }} > .version
+                    npm version "${{ steps.release_version.outputs.semver }}" --no-git-tag-version
                     cd ..
 
             -   name: Update changelog
@@ -34,8 +94,8 @@ jobs:
                     latest-version: ${{ github.event.release.name }}
                     release-notes: ${{ github.event.release.body }}
 
-            -   name: Commit updated changelog
-                uses: stefanzweifel/git-auto-commit-action@v5
+            -   name: Commit version bumps and changelog
+                uses: stefanzweifel/git-auto-commit-action@v7
                 with:
                     branch: ${{ env.TARGET_BRANCH }}
                     commit_message: Release version ${{ github.event.release.tag_name }}

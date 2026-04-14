@@ -5,7 +5,6 @@ import {NavThemeSwitch} from "@/components/nav-theme-switch.tsx";
 import * as React from "react";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import { NavLanguageSwitch } from "../nav-language-switch.tsx";
-import { VersionChecker } from "../version-checker.tsx";
 
 export default function OrganiserPanelLayout({children}: { children: React.ReactNode }) {
     return (
@@ -23,9 +22,9 @@ export default function OrganiserPanelLayout({children}: { children: React.React
                 <div className="m-6">
                     {children}
                 </div>
-                <footer className="relative bottom-0 p-4 text-center flex items-center justify-center gap-4">
-                    <VersionChecker />
-                </footer>
+                {/* <footer className="relative bottom-0 p-4 text-center flex items-center justify-center gap-4">
+                    
+                </footer> */}
             </main>
             <Toaster />
         </SidebarProvider>

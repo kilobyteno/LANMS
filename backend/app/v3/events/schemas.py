@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -12,20 +11,20 @@ class EventBase(BaseModel):
     """Base event model"""
 
     title: str
-    description: Optional[str] = None
+    description: str | None = None
 
-    max_participants: Optional[int] = None
-    website: Optional[str] = None
+    max_participants: int | None = None
+    website: str | None = None
 
-    contact_email: Optional[str] = None
-    contact_phone_code: Optional[str] = None
-    contact_phone_number: Optional[str] = None
+    contact_email: str | None = None
+    contact_phone_code: str | None = None
+    contact_phone_number: str | None = None
 
-    maps_url: Optional[str] = None
-    address_street: Optional[str] = None
-    address_city: Optional[str] = None
-    address_postal_code: Optional[str] = None
-    address_country: Optional[str] = None
+    maps_url: str | None = None
+    address_street: str | None = None
+    address_city: str | None = None
+    address_postal_code: str | None = None
+    address_country: str | None = None
 
     start_at: datetime
     end_at: datetime
@@ -51,20 +50,20 @@ class EventResponse(EventBase):
     id: UUID
 
     title: str
-    description: Optional[str]
+    description: str | None
 
-    max_participants: Optional[int]
-    website: Optional[str]
+    max_participants: int | None
+    website: str | None
 
-    contact_email: Optional[str]
-    contact_phone_code: Optional[str]
-    contact_phone_number: Optional[str]
+    contact_email: str | None
+    contact_phone_code: str | None
+    contact_phone_number: str | None
 
-    maps_url: Optional[str]
-    address_street: Optional[str]
-    address_city: Optional[str]
-    address_postal_code: Optional[str]
-    address_country: Optional[str]
+    maps_url: str | None
+    address_street: str | None
+    address_city: str | None
+    address_postal_code: str | None
+    address_country: str | None
 
     start_at: datetime
     end_at: datetime
@@ -75,7 +74,7 @@ class EventResponse(EventBase):
 
     created_at: datetime
     updated_at: datetime
-    deleted_at: Optional[datetime]
+    deleted_at: datetime | None
 
     class Config:
         """Pydantic config"""

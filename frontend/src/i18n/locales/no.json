@@ -8,6 +8,8 @@
         "sidebar": {
             "general": "Generelt",
             "dashboard": "Dashboard",
+            "news": "Nyheter",
+            "articles": "Artikler",
             "system": "System"
         }
     },
@@ -16,12 +18,16 @@
         "view": "Vis",
         "edit": "Rediger",
         "delete": "Slett",
+        "update_available": "Ny versjon tilgjengelig",
         "back": "Tilbake",
-        "deleting": "Sletter...",
-        "cancel": "Avbryt",
         "view_on_github": "Vis på GitHub",
         "saving": "Lagrer...",
-        "save": "Lagre"
+        "save": "Lagre",
+        "create": "Opprett",
+        "actions": "Handlinger",
+        "not_published": "Ikke publisert",
+        "cancel": "Avbryt",
+        "deleting": "Sletter..."
     },
     "event_switcher": {
         "no_events": "Ingen arrangementer funnet",
@@ -44,8 +50,14 @@
             "max_participants": "Maks deltakere",
             "contact_info": "Kontaktinformasjon",
             "view_on_map": "Vis på kart",
+            "articles": "Artikler",
+            "no_articles": "Ingen artikler",
+            "read_more": "Lese mer",
             "title": "Arrangementer",
             "view_details": "Vis detaljer"
+        },
+        "articles": {
+            "not_found": "Artikkel ikke funnet"
         }
     },
     "language": {
@@ -66,9 +78,6 @@
         "select_organisation": "Velg en organisasjon",
         "title": "Bytt organisasjon",
         "create": "Opprett organisasjon"
-    },
-    "version": {
-        "newAvailable": "En ny versjon er tilgjengelig"
     },
     "user": {
         "change_password": {
@@ -196,6 +205,34 @@
         "attendee_dashboard": "Attendee Dashboard",
         "signup": "Sign up",
         "login": "Login"
+    },
+    "article": {
+        "form": {
+            "title": {
+                "label": "Tittel",
+                "placeholder": "Skriv inn tittel"
+            },
+            "content": {
+                "label": "Innhold",
+                "placeholder": "Skriv inn innhold"
+            },
+            "published_at": {
+                "label": "Publisert"
+            }
+        }
+    },
+    "organiser": {
+        "articles": {
+            "title": "Artikler",
+            "table": {
+                "title": "Tittel",
+                "published_at": "Publisert"
+            },
+            "delete": {
+                "title": "Slett artikkel",
+                "description": "Sletting av en artikkel vil fjerne alle assosierte data og ikke kan angres."
+            }
+        }
     },
     "dashboard": {
         "no_organisations": {

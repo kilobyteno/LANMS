@@ -17,6 +17,8 @@ from app.models.event_interest import EventInterest
 from app.models.user import User
 from app.v3.event_interests.schemas import EventInterestCreate, EventInterestResponse, EventInterestUpdate
 
+log = logging.getLogger(__name__)
+
 
 def create_interest(db: Session, event_id: UUID, current_user: User, interest_data: EventInterestCreate):
     """Register user's interest in an event"""
@@ -43,7 +45,7 @@ def create_interest(db: Session, event_id: UUID, current_user: User, interest_da
         return response_created(message='Interest registered', data=adapter.dump_json(interest))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error registering interest: {e}')
+        log.error(f'Error registering interest: {e}')
         return response_conflict(message='Error registering interest')
 
 
@@ -74,7 +76,7 @@ def update_interest(db: Session, event_id: UUID, current_user: User, interest_da
         return response_success(message='Interest updated', data=adapter.dump_json(interest))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error updating interest: {e}')
+        log.error(f'Error updating interest: {e}')
         return response_conflict(message='Error updating interest')
 
 

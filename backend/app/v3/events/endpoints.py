@@ -1,4 +1,3 @@
-from typing import List
 from uuid import UUID
 
 from fastapi import APIRouter, Depends
@@ -33,7 +32,7 @@ async def post_create_event(event_data: EventCreate, current_user: User = Depend
 @router.get(
     '',
     name='E-2',
-    response_model=List[EventResponse],
+    response_model=list[EventResponse],
 )
 async def get_events_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
     """Get all events"""

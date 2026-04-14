@@ -17,6 +17,8 @@ from app.v3.api import router as api_v1_router
 from app.v3.utils import CustomExceptionError
 from config import Config
 
+log = logging.getLogger(__name__)
+
 if TYPE_CHECKING:
     from requests import Response
 
@@ -54,7 +56,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
             errors[loc] = []
         error_detail = {'type': error['type'], 'message': error['msg'], 'input': error.get('input', None)}
         errors[loc].append(error_detail)
-        messages.append(f"{loc}: {error['msg']}")
+        messages.append(f'{loc}: {error["msg"]}')
 
     errors_json = json.dumps(errors)  # Ensure the errors dictionary is JSON serializable
     summary_message = '; '.join(messages)  # Create a readable summary message
@@ -78,7 +80,7 @@ class SQLAlchemySessionMiddleware(BaseHTTPMiddleware):
             response = await call_next(request)
         except OperationalError as e:
             request.state.db.rollback()
-            logging.debug(f'OperationalError in SQLAlchemySessionMiddleware: {e}')
+            log.debug(f'OperationalError in SQLAlchemySessionMiddleware: {e}')
             request.state.db = get_local_session(url=Config.SQLALCHEMY_DATABASE_URI)
             response = await call_next(request)
         except SQLAlchemyError as e:
@@ -89,10 +91,10 @@ class SQLAlchemySessionMiddleware(BaseHTTPMiddleware):
             status_code = getattr(e, 'status_code', 500)
             return response_custom(status_code=status_code, message=message)
         except Exception as e:
-            logging.debug(f'Error in SQLAlchemySessionMiddleware, class name: {e.__class__.__name__}')
+            log.debug(f'Error in SQLAlchemySessionMiddleware, class name: {e.__class__.__name__}')
             # Handle unknown exceptions
             request.state.db.rollback()
-            logging.error(f'Error in SQLAlchemySessionMiddleware: {e}', exc_info=True)
+            log.error(f'Error in SQLAlchemySessionMiddleware: {e}', exc_info=True)
             return response_internal_server_error()
         finally:
             request.state.db.close()

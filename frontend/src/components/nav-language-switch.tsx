@@ -12,7 +12,9 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/compon
 const languages = [
     {code: "en", name: "English"},
     {code: "no", name: "Norsk"},
-    {code: "sv", name: "Svenska"}
+    {code: "sv", name: "Svenska"},
+    {code: "da", name: "Dansk"},
+    {code: "de", name: "Deutsch"}
 ]
 
 export function NavLanguageSwitch() {
@@ -37,6 +39,7 @@ export function NavLanguageSwitch() {
                     <DropdownMenuItem
                         key={lang.code}
                         onClick={() => i18n.changeLanguage(lang.code)}
+                        className={i18n.language === lang.code ? "bg-secondary text-secondary-foreground" : ""}
                     >
                         {lang.name}
                     </DropdownMenuItem>

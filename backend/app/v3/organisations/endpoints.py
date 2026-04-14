@@ -1,5 +1,3 @@
-from typing import List
-
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from pydantic import UUID4
@@ -38,7 +36,7 @@ async def post_create_organisation(
 @router.get(
     '',
     name='O-2',
-    response_model=List[OrganisationResponse],
+    response_model=list[OrganisationResponse],
 )
 async def get_organisations_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
     """Get all organisations"""
@@ -76,13 +74,13 @@ async def delete_organisation_by_id(organisation_id: UUID4, current_user: User =
     return delete_organisation(db=db, organisation_id=organisation_id, current_user=current_user)
 
 
-@router.get('/{organisation_id}/events', name='O-6', response_model=List[EventResponse])
+@router.get('/{organisation_id}/events', name='O-6', response_model=list[EventResponse])
 async def get_organisation_events(organisation_id: UUID4, db: Session = Depends(get_db)) -> JSONResponse:
     """Get non-deleted events associated with the organisation"""
     return fetch_organisation_events(organisation_id=organisation_id, db=db)
 
 
-@router.get('/{organisation_id}/events/all', name='O-7', response_model=List[EventResponse])
+@router.get('/{organisation_id}/events/all', name='O-7', response_model=list[EventResponse])
 async def get_organisation_events_all(organisation_id: UUID4, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
     """Get all events associated with the organisation"""
     return fetch_organisation_events_all(organisation_id=organisation_id, current_user=current_user, db=db)

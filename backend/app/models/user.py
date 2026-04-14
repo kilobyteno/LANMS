@@ -28,6 +28,7 @@ class User(BaseModel):
     organisations = relationship('Organisation', back_populates='created_by')
     events = relationship('Event', back_populates='created_by')
     event_interests = relationship('EventInterest', back_populates='user')
+    articles = relationship('Article', back_populates='created_by')
 
     __table_args__ = (UniqueConstraint('phone_code', 'phone_number', name='_phone_code_phone_number_uc'),)
 
