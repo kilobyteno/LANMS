@@ -1,7 +1,9 @@
+import typography from '@tailwindcss/typography';
+import tailwindcssAnimate from 'tailwindcss-animate';
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-    darkMode: 'class',
     theme: {
         extend: {
             colors: {
@@ -96,7 +98,5 @@ module.exports = {
             }
         }
     },
-    plugins: [
-        require('@tailwindcss/typography'),
-        require("tailwindcss-animate")],
+    plugins: [typography, tailwindcssAnimate],
 };
