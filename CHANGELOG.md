@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.10 - 2026-04-14
+
+### Features & product
+
+- **Event articles:** Backend and frontend for articles (organiser list/create/edit; attendee detail), markdown on the article page, styling tweaks, **published-at** on the article form, related API/routing.
+- **Version awareness:** Version checker on the attendee layout, version badge prop, hover behavior for new-version messaging, GitHub API changes to reduce rate limiting.
+- **i18n:** **Danish** and **German** support, language indicator in the UI, translation updates (including articles).
+
+### Backend & Python tooling
+
+- **Backend:** Switched to **`uv`** and **Python 3.12**.
+- **Dependencies:** e.g. `requests` 2.32.5 → 2.33.0; `bcrypt` / `pandas` bumps (per history).
+- **Quality:** Pre-commit & Ruff updates, Ruff usage, code style and logging cleanups.
+
+### Frontend & Node
+
+- **Node:** Pinned to **22** (Dockerfile, `.nvmrc`, `package.json`).
+- **Tooling:** Vite **5.4.x → 8.0.8** (via dependency updates), Tailwind/Vite config and frontend build-tooling updates; calendar/main updates with dependency work.
+- **Notable npm bumps (summary):** axios, lodash, react-router / `@remix-run/router`, rollup, undici, plus various transitive/security-related bumps (brace-expansion, minimatch, follow-redirects, etc.).
+
+### CI, release, and maintenance
+
+- **Release:** Workflow computes and applies release versions.
+- **Dependabot:** Monthly schedule; **npm** and **uv** ecosystems; routine GitHub Actions bumps (e.g. `actions/checkout`, `actions/setup-python`, `astral-sh/setup-uv`, `dependabot/fetch-metadata`, `stefanzweifel/git-auto-commit-action`, …).
+- **Repo:** LANMS icon assets, legacy codebase reference, CONTRIBUTING update, README Discord link and grammar fixes.
+- **Frontend cleanup:** Removed `theme-provider.tsx` (per history).
+
 ## 3.0.0-alpha.9 - 2025-01-10
 
 ### Changed
