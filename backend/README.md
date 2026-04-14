@@ -22,6 +22,20 @@ Activate pre-commit hooks:
 uv run pre-commit install
 ```
 
+### Code styling
+
+We use Ruff for code styling and formatting. To run code styling check manually you can run:
+```bash
+uv run ruff check --fix
+```
+
+For formatting code you can run:
+```bash
+uv run ruff format
+```
+
+Use pre-commit to do this automatically.
+
 ### Migrations
 
 #### Create a new migration
