@@ -10,16 +10,16 @@ Make a copy of the `.env.example` file and rename it to `.env`. Fill in the requ
 cp .env.example .env
 ```
 
-Install the dependencies:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then install dependencies (runtime and dev):
 
 ```bash
-pip install -r requirements-dev.txt
+uv sync --all-groups
 ```
 
 Activate pre-commit hooks:
 
 ```bash
-pre-commit install
+uv run pre-commit install
 ```
 
 ### Migrations
@@ -29,7 +29,7 @@ pre-commit install
 To create a new migration, run the following command:
 
 ```bash
-alembic revision --autogenerate -m "migration message"
+uv run alembic revision --autogenerate -m "migration message"
 ```
 
 #### Migrate changes
@@ -37,7 +37,7 @@ alembic revision --autogenerate -m "migration message"
 To run the migrations, run the following command:
 
 ```bash
-alembic upgrade head
+uv run alembic upgrade head
 ```
 
 ### Seeding the database
@@ -46,13 +46,13 @@ We have made it easy to seed the database by either creating entries or updating
 available options:
 
 ```bash
-python seed.py --help
+uv run python seed.py --help
 ```
 
 To seed the database by updating or creating entries, run the following command:
 
 ```bash
-python seed.py --table all --auto
+uv run python seed.py --table all --auto
 ```
 
 ## Deployment
