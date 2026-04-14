@@ -1,5 +1,4 @@
 import logging
-from typing import Dict, Optional
 
 from fastapi import Query
 from fastapi_pagination import Params
@@ -10,6 +9,8 @@ from starlette import status
 
 from config import Config
 
+log = logging.getLogger(__name__)
+
 
 class CustomExceptionError(Exception):
     """Custom Exception class with status, status_code and message."""
@@ -18,7 +19,7 @@ class CustomExceptionError(Exception):
         self,
         status_code: int = status.HTTP_500_INTERNAL_SERVER_ERROR,
         message: str = 'Internal Server Error',
-        headers: Optional[Dict[str, str]] = None,
+        headers: dict[str, str] | None = None,
     ):
         """Initialize method for custom exception class."""
         self.status_code = status_code
@@ -34,10 +35,10 @@ def sendgrid_client() -> SendGridAPIClient:
     :rtype: SendGridAPIClient
     """
     if Config.SENDGRID_API_KEY is None:
-        logging.error('SendGrid API key is not set')
+        log.error('SendGrid API key is not set')
         raise ValueError('SendGrid API key is not set')
-    logging.debug('SendGrid client created')
-    logging.debug('SendGrid API key: %s', Config.SENDGRID_API_KEY)
+    log.debug('SendGrid client created')
+    log.debug('SendGrid API key: %s', Config.SENDGRID_API_KEY)
     return SendGridAPIClient(Config.SENDGRID_API_KEY)
 
 
@@ -49,10 +50,10 @@ def postmark_client() -> PostmarkClient:
     :rtype: PostmarkClient
     """
     if Config.POSTMARK_API_KEY is None:
-        logging.error('Postmark API key is not set')
+        log.error('Postmark API key is not set')
         raise ValueError('Postmark API key is not set')
-    logging.debug('Postmark client created')
-    logging.debug('Postmark API key: %s', Config.POSTMARK_API_KEY)
+    log.debug('Postmark client created')
+    log.debug('Postmark API key: %s', Config.POSTMARK_API_KEY)
     return PostmarkClient(server_token=Config.POSTMARK_API_KEY)
 
 
@@ -81,10 +82,10 @@ def _send_email_sendgrid(to: str, subject: str, html_content: str, from_email: s
     }
     try:
         response = client.send(message)
-        logging.debug('Email sent successfully: %s', response)
+        log.debug('Email sent successfully: %s', response)
         return True
     except Exception as e:
-        logging.error('Error sending email: %s', e)
+        log.error('Error sending email: %s', e)
         return False
 
 
@@ -112,22 +113,22 @@ def _send_email_postmark(to: str, subject: str, html_content: str, from_email: s
             Subject=subject,
             HtmlBody=html_content,
         )
-        logging.debug('Email sent successfully: %s', response)
+        log.debug('Email sent successfully: %s', response)
         return True
     except Exception as e:
-        logging.error('Error sending email: %s', e)
+        log.error('Error sending email: %s', e)
         return False
 
 
 def send_email(to: str, subject: str, html_content: str, from_email: str = Config.FROM_EMAIL) -> bool:
     """Send email using SendGrid or Postmark"""
     if Config.SENDGRID_API_KEY:
-        logging.debug('Sending email using SendGrid')
+        log.debug('Sending email using SendGrid')
         return _send_email_sendgrid(to=to, subject=subject, html_content=html_content, from_email=from_email)
     if Config.POSTMARK_API_KEY:
-        logging.debug('Sending email using Postmark')
+        log.debug('Sending email using Postmark')
         return _send_email_postmark(to=to, subject=subject, html_content=html_content, from_email=from_email)
-    logging.error('No email service provider configured, please set either SendGrid or Postmark API key')
+    log.error('No email service provider configured, please set either SendGrid or Postmark API key')
     return False
 
 

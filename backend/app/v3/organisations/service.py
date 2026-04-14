@@ -19,6 +19,8 @@ from app.models.user import User
 from app.v3.events.schemas import EventResponse
 from app.v3.organisations.schemas import OrganisationCreate, OrganisationResponse, OrganisationUpdate
 
+log = logging.getLogger(__name__)
+
 
 def create_organisation(db: Session, current_user: User, organisation_data: OrganisationCreate):
     """Create a new organisation"""
@@ -32,7 +34,7 @@ def create_organisation(db: Session, current_user: User, organisation_data: Orga
         return response_created(message='Organisation created', data=adapter.dump_json(organisation))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error creating organisation: {e}')
+        log.error(f'Error creating organisation: {e}')
         return response_conflict(message='Organisation with this name already exists')
 
 
@@ -77,7 +79,7 @@ def update_organisation(db: Session, organisation_id: UUID4, current_user: User,
         return response_success(message='Organisation updated', data=adapter.dump_json(organisation))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error updating organisation: {e}')
+        log.error(f'Error updating organisation: {e}')
         return response_conflict(message='Organisation with this name already exists')
 
 
@@ -96,7 +98,7 @@ def delete_organisation(db: Session, organisation_id: UUID4, current_user: User)
         return response_success(message='Organisation deleted')
     except Exception as e:
         db.rollback()
-        logging.error(f'Error deleting organisation: {e}')
+        log.error(f'Error deleting organisation: {e}')
         return response_bad_request(message='Could not delete organisation')
 
 

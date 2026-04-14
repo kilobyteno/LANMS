@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import UUID, Column, DateTime, func
 from sqlalchemy.orm import declarative_base
@@ -28,7 +28,7 @@ class BaseModel(Base):
             user.soft_delete()
             db.commit()
         """
-        self.deleted_at = datetime.now(timezone.utc)
+        self.deleted_at = datetime.now(UTC)
 
     @classmethod
     def query_active(cls, session):

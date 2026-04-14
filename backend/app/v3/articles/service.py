@@ -18,6 +18,8 @@ from app.models.event import Event
 from app.models.user import User
 from app.v3.articles.schemas import ArticleCreate, ArticleResponse, ArticleUpdate
 
+log = logging.getLogger(__name__)
+
 
 def create_article(db: Session, event_id: UUID4, current_user: User, article_data: ArticleCreate):
     """Create a new article"""
@@ -36,7 +38,7 @@ def create_article(db: Session, event_id: UUID4, current_user: User, article_dat
         return response_created(message='Article created', data=adapter.dump_json(article))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error creating article: {e}')
+        log.error(f'Error creating article: {e}')
         return response_conflict(message='Error creating article')
 
 
@@ -98,7 +100,7 @@ def update_article(db: Session, event_id: UUID4, article_id: UUID4, current_user
         return response_success(message='Article updated', data=adapter.dump_json(article))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error updating article: {e}')
+        log.error(f'Error updating article: {e}')
         return response_conflict(message='Error updating article')
 
 
@@ -114,7 +116,7 @@ def delete_article(db: Session, event_id: UUID4, article_id: UUID4, current_user
         return response_no_content()
     except Exception as e:
         db.rollback()
-        logging.error(f'Error deleting article: {e}')
+        log.error(f'Error deleting article: {e}')
         return response_bad_request(message='Could not delete article')
 
 

@@ -17,6 +17,8 @@ from app.models.event import Event
 from app.models.user import User
 from app.v3.events.schemas import EventCreate, EventResponse, EventUpdate
 
+log = logging.getLogger(__name__)
+
 
 def create_event(db: Session, current_user: User, event_data: EventCreate):
     """Create a new event"""
@@ -30,7 +32,7 @@ def create_event(db: Session, current_user: User, event_data: EventCreate):
         return response_created(message='Event created', data=adapter.dump_json(event))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error creating event: {e}')
+        log.error(f'Error creating event: {e}')
         return response_conflict(message='Error creating event')
 
 
@@ -73,7 +75,7 @@ def update_event(db: Session, event_id: UUID4, current_user_id: int, event_data:
         return response_success(message='Event updated', data=adapter.dump_json(event))
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error updating event: {e}')
+        log.error(f'Error updating event: {e}')
         return response_conflict(message='Error updating event')
 
 
@@ -92,5 +94,5 @@ def delete_event(db: Session, event_id: UUID4, current_user_id: int):
         return response_success(message='Event deleted')
     except Exception as e:
         db.rollback()
-        logging.error(f'Error deleting event: {e}')
+        log.error(f'Error deleting event: {e}')
         return response_bad_request(message='Could not delete event')

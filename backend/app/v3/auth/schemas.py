@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel, EmailStr, SecretStr, constr, field_validator
@@ -45,7 +44,7 @@ class A3Input(BaseModel):
     phone_number: str
     email: EmailStr
     password: SecretStr
-    referrer: Optional[str] = None
+    referrer: str | None = None
 
     @field_validator('phone_code')
     @classmethod
@@ -114,14 +113,14 @@ class UserBase(BaseModel):
     """Base user model"""
 
     name: constr(max_length=256)
-    email: Optional[EmailStr] = None
-    phone_code: Optional[constr(max_length=12)] = None
-    phone_number: Optional[constr(max_length=32)] = None
-    referrer: Optional[str] = None
-    photo_url: Optional[str] = None
+    email: EmailStr | None = None
+    phone_code: constr(max_length=12) | None = None
+    phone_number: constr(max_length=32) | None = None
+    referrer: str | None = None
+    photo_url: str | None = None
 
     @property
-    def phone(self) -> Optional[str]:
+    def phone(self) -> str | None:
         """Return phone number with country code"""
         if self.phone_code and self.phone_number:
             return f'{self.phone_code}{self.phone_number}'
@@ -132,10 +131,10 @@ class UserResponse(UserBase):
     """User response model"""
 
     id: UUID
-    email_verified_at: Optional[datetime] = None
-    privacy_policy_accepted_at: Optional[datetime] = None
-    terms_of_service_accepted_at: Optional[datetime] = None
-    refresh_token: Optional[str] = None
+    email_verified_at: datetime | None = None
+    privacy_policy_accepted_at: datetime | None = None
+    terms_of_service_accepted_at: datetime | None = None
+    refresh_token: str | None = None
 
     class Config:
         """Pydantic config"""

@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import jwt
 import pyotp
@@ -47,6 +47,8 @@ from app.v3.auth.utils import (
 from app.v3.utils import get_avatar_url, get_portal_url, send_email
 from config import Config
 
+log = logging.getLogger(__name__)
+
 
 def signup_generate_otp(request_data: A1Input, db: Session):
     """Start signup by generating an OTP"""
@@ -56,11 +58,7 @@ def signup_generate_otp(request_data: A1Input, db: Session):
         return response_conflict(message='User with the email already exists')
 
     # Check if the user already has an OTP that has not been used and has not expired
-    otp = (
-        db.query(Otp)
-        .filter(Otp.email == request_data.email, Otp.used_at.is_(None), Otp.expires_at > datetime.now(tz=timezone.utc), Otp.deleted_at.is_(None))
-        .first()
-    )
+    otp = db.query(Otp).filter(Otp.email == request_data.email, Otp.used_at.is_(None), Otp.expires_at > datetime.now(tz=UTC), Otp.deleted_at.is_(None)).first()
     if otp:
         return response_conflict(message='User with the email already has an OTP that has not been used and has not expired')
 
@@ -71,14 +69,14 @@ def signup_generate_otp(request_data: A1Input, db: Session):
     otp = Otp(
         email=request_data.email,
         code=generated_otp.now(),
-        expires_at=datetime.now(tz=timezone.utc) + timedelta(seconds=Config.OTP_VALIDITY_SECS),
+        expires_at=datetime.now(tz=UTC) + timedelta(seconds=Config.OTP_VALIDITY_SECS),
     )
     try:
         db.add(otp)
         db.commit()
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error creating OTP: {e}')
+        log.error(f'Error creating OTP: {e}')
         return response_internal_server_error(message='Could not generate OTP. Please contact support!')
 
     # Send the OTP via email
@@ -100,8 +98,8 @@ def signup_verify_otp(request_data: A2Input, db: Session):
     if user:
         return response_conflict(message='User with the email already exists')
 
-    logging.debug(f'Verifying OTP for email: {request_data.email}')
-    logging.debug(f'Code: {request_data.code}')
+    log.debug(f'Verifying OTP for email: {request_data.email}')
+    log.debug(f'Code: {request_data.code}')
 
     # Get the OTP
     otp = (
@@ -110,7 +108,7 @@ def signup_verify_otp(request_data: A2Input, db: Session):
             Otp.email == request_data.email,
             Otp.code == request_data.code,
             Otp.used_at.is_(None),
-            Otp.expires_at > datetime.now(tz=timezone.utc),
+            Otp.expires_at > datetime.now(tz=UTC),
             Otp.deleted_at.is_(None),
         )
         .first()
@@ -120,11 +118,11 @@ def signup_verify_otp(request_data: A2Input, db: Session):
 
     # Mark the OTP as used
     try:
-        otp.used_at = datetime.now(tz=timezone.utc)
+        otp.used_at = datetime.now(tz=UTC)
         db.commit()
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error updating OTP: {e}')
+        log.error(f'Error updating OTP: {e}')
         return response_internal_server_error(message='Could not verify OTP. Please contact support!')
 
     return response_success(message='OTP verified')
@@ -157,15 +155,15 @@ def signup_details(request_data: A3Input, db: Session):
         password=get_hashed_password(request_data.password),
         photo_url=get_avatar_url(request_data.name),
         referrer=request_data.referrer,
-        terms_of_service_accepted_at=datetime.now(tz=timezone.utc),
-        privacy_policy_accepted_at=datetime.now(tz=timezone.utc),
+        terms_of_service_accepted_at=datetime.now(tz=UTC),
+        privacy_policy_accepted_at=datetime.now(tz=UTC),
     )
     try:
         db.add(user)
         db.commit()
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error creating user profile: {e}')
+        log.error(f'Error creating user profile: {e}')
         return response_internal_server_error(message='Could not create user using these details. Please contact support!')
 
     # Return the user
@@ -186,7 +184,7 @@ def login(request_data: A4Input, db: Session):
         user.refresh_token = refresh_token
         db.commit()
     except Exception as e:
-        logging.error(f'Error creating tokens: {e}')
+        log.error(f'Error creating tokens: {e}')
         return response_internal_server_error(message='Could not create tokens. Please contact support!')
     token = A4Output(access_token=access_token, refresh_token=refresh_token, token_type='bearer').model_dump()
     return response_success(message='Login successful', data=token)
@@ -214,7 +212,7 @@ def logout(current_user, token, db: Session):
     current_user.refresh_token = None
 
     payload = jwt.decode(token, Config.JWT_PUBLIC_KEY, algorithms=[Config.JWT_ALGORITHM])
-    payload['exp'] = datetime.now(tz=timezone.utc) - timedelta(seconds=60)
+    payload['exp'] = datetime.now(tz=UTC) - timedelta(seconds=60)
     encoded_jwt = jwt.encode(payload, Config.JWT_PRIVATE_KEY, algorithm=Config.JWT_ALGORITHM)
 
     db.add(current_user)
@@ -288,11 +286,7 @@ def password_reset(request_data: A9Input, db: Session):
 def resend_otp(request_data: A10Input, db: Session):
     """Resend OTP to user's email"""
     # Check if there's an existing unused and unexpired OTP
-    otp = (
-        db.query(Otp)
-        .filter(Otp.email == request_data.email, Otp.used_at.is_(None), Otp.expires_at > datetime.now(tz=timezone.utc), Otp.deleted_at.is_(None))
-        .first()
-    )
+    otp = db.query(Otp).filter(Otp.email == request_data.email, Otp.used_at.is_(None), Otp.expires_at > datetime.now(tz=UTC), Otp.deleted_at.is_(None)).first()
 
     if otp:
         # Invalidate the existing OTP
@@ -306,14 +300,14 @@ def resend_otp(request_data: A10Input, db: Session):
     new_otp = Otp(
         email=request_data.email,
         code=generated_otp.now(),
-        expires_at=datetime.now(tz=timezone.utc) + timedelta(seconds=Config.OTP_VALIDITY_SECS),
+        expires_at=datetime.now(tz=UTC) + timedelta(seconds=Config.OTP_VALIDITY_SECS),
     )
     try:
         db.add(new_otp)
         db.commit()
     except IntegrityError as e:
         db.rollback()
-        logging.error(f'Error creating OTP: {e}')
+        log.error(f'Error creating OTP: {e}')
         return response_internal_server_error(message='Could not generate OTP. Please contact support!')
 
     # Send the OTP via email

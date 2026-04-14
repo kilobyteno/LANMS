@@ -1,4 +1,3 @@
-from typing import List
 from uuid import UUID
 
 from fastapi import APIRouter, Depends
@@ -35,7 +34,7 @@ async def post_create_article(
 @router.get(
     '/events/{event_id}/articles',
     name='EA-2',
-    response_model=List[ArticleResponse],
+    response_model=list[ArticleResponse],
 )
 async def get_articles_list(event_id: UUID, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
     """Get published articles for an event"""
@@ -76,7 +75,7 @@ async def delete_article_by_id(event_id: UUID, article_id: UUID, current_user: U
 @router.get(
     '/events/{event_id}/articles/all',
     name='EA-6',
-    response_model=List[ArticleResponse],
+    response_model=list[ArticleResponse],
 )
 async def get_all_articles(event_id: UUID, db: Session = Depends(get_db)) -> JSONResponse:
     """Get all articles for an event"""

@@ -2,7 +2,7 @@ import logging
 import socket
 from os import getenv, makedirs, path
 from pathlib import Path
-from typing import ClassVar, Optional
+from typing import ClassVar
 
 import sentry_sdk
 from dotenv import load_dotenv
@@ -10,6 +10,8 @@ from sentry_sdk.integrations.fastapi import FastApiIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 from sentry_sdk.integrations.starlette import StarletteIntegration
 from tunsberg.konfig import check_required_env_vars, uvicorn_log_config
+
+log = logging.getLogger(__name__)
 
 PROJECT_DIR: Path = Path(__file__).parent
 
@@ -81,21 +83,21 @@ class Config:
     LOG_LEVEL = logging.DEBUG if DEBUG else logging.INFO
 
     # Debug logging
-    logging.debug(f'ENV: {ENV}')
-    logging.debug(f'DEBUG: {DEBUG}')
-    logging.debug(f'CODE_BUILD: {CODE_BUILD}')
-    logging.debug(f'MICRO_SERVICE_NAME: {MICRO_SERVICE_NAME}')
-    logging.debug(f'MICRO_SERVICE_IS_LIVE: {MICRO_SERVICE_IS_LIVE}')
-    logging.debug(f'MICRO_SERVICE_IN_STAGING: {MICRO_SERVICE_IN_STAGING}')
-    logging.debug(f'MICRO_SERVICE_IN_PRODUCTION: {MICRO_SERVICE_IN_PRODUCTION}')
-    logging.debug(f'HOSTNAME: {HOSTNAME}')
-    logging.debug(f'IPADDRESS: {IPADDRESS}')
-    logging.debug(f'IN_LOCAL_DEVELOPMENT_ENV: {IN_LOCAL_DEVELOPMENT_ENV}')
-    logging.debug(f'DEBUG_MODE: {DEBUG_MODE}')
+    log.debug(f'ENV: {ENV}')
+    log.debug(f'DEBUG: {DEBUG}')
+    log.debug(f'CODE_BUILD: {CODE_BUILD}')
+    log.debug(f'MICRO_SERVICE_NAME: {MICRO_SERVICE_NAME}')
+    log.debug(f'MICRO_SERVICE_IS_LIVE: {MICRO_SERVICE_IS_LIVE}')
+    log.debug(f'MICRO_SERVICE_IN_STAGING: {MICRO_SERVICE_IN_STAGING}')
+    log.debug(f'MICRO_SERVICE_IN_PRODUCTION: {MICRO_SERVICE_IN_PRODUCTION}')
+    log.debug(f'HOSTNAME: {HOSTNAME}')
+    log.debug(f'IPADDRESS: {IPADDRESS}')
+    log.debug(f'IN_LOCAL_DEVELOPMENT_ENV: {IN_LOCAL_DEVELOPMENT_ENV}')
+    log.debug(f'DEBUG_MODE: {DEBUG_MODE}')
 
     # Database
     DATABASE_DEBUG: bool = bool(getenv('DATABASE_DEBUG', ''))
-    logging.debug(f'DATABASE_DEBUG: {DATABASE_DEBUG}')
+    log.debug(f'DATABASE_DEBUG: {DATABASE_DEBUG}')
     DATABASE_INFO: ClassVar[dict] = {
         'hostname': getenv('DB_HOST', 'localhost'),
         'username': getenv('DB_USERNAME', 'postgres'),
@@ -105,8 +107,8 @@ class Config:
         'db_name': getenv('DB_NAME', 'blank'),
     }
     SQLALCHEMY_DATABASE_URI: str = (
-        f"{DATABASE_INFO['db_dialect']}://{DATABASE_INFO['username']}:{DATABASE_INFO['password']}@{DATABASE_INFO['hostname']}:"
-        f"{DATABASE_INFO['port']}/{DATABASE_INFO['db_name']}"
+        f'{DATABASE_INFO["db_dialect"]}://{DATABASE_INFO["username"]}:{DATABASE_INFO["password"]}@{DATABASE_INFO["hostname"]}:'
+        f'{DATABASE_INFO["port"]}/{DATABASE_INFO["db_name"]}'
         if ENV != 'test'
         else f'{getenv("SQLALCHEMY_DATABASE_URI")}'
     )
@@ -118,9 +120,9 @@ class Config:
         with open('.version') as version_file:
             API_DOCS_VERSION: str = version_file.read().strip()
     except Exception as e:
-        logging.error(f'Error reading version file: {e}')
+        log.error(f'Error reading version file: {e}')
     API_DOCS_DESCRIPTION: str = f'Endpoints for the {MICRO_SERVICE_NAME_FOR_HUMANS}'
-    API_DOCS_OPENAPI_URL: Optional[str] = None if MICRO_SERVICE_IN_PRODUCTION else '/openapi.json'
+    API_DOCS_OPENAPI_URL: str | None = None if MICRO_SERVICE_IN_PRODUCTION else '/openapi.json'
     API_DOCS_URL: str = '/docs'
 
     # Portal
@@ -145,7 +147,7 @@ class Config:
     OTP_DIGITS: int = 6
 
     # Sentry
-    SENTRY_DSN: Optional[str] = getenv('SENTRY_DSN')
+    SENTRY_DSN: str | None = getenv('SENTRY_DSN')
     if SENTRY_DSN and MICRO_SERVICE_IS_LIVE:
         sentry_sdk.init(
             dsn=SENTRY_DSN,
@@ -158,20 +160,20 @@ class Config:
             ],
         )
     elif not SENTRY_DSN and MICRO_SERVICE_IS_LIVE:
-        logging.warning('Sentry DSN not set!')
+        log.warning('Sentry DSN not set!')
 
     # Email
     FROM_EMAIL: str = getenv('FROM_EMAIL')
 
     # Sendgrid Email Config
-    SENDGRID_API_KEY: Optional[str] = getenv('SENDGRID_API_KEY')
+    SENDGRID_API_KEY: str | None = getenv('SENDGRID_API_KEY')
     if not SENDGRID_API_KEY:
-        logging.warning('Sendgrid API Key not set!')
+        log.warning('Sendgrid API Key not set!')
 
     # Postmark Email Config
-    POSTMARK_API_KEY: Optional[str] = getenv('POSTMARK_API_KEY')
+    POSTMARK_API_KEY: str | None = getenv('POSTMARK_API_KEY')
     if not POSTMARK_API_KEY:
-        logging.warning('Postmark API Key not set!')
+        log.warning('Postmark API Key not set!')
 
     # Portal
     PORTAL_URL: str = getenv('PORTAL_URL')

@@ -1,8 +1,7 @@
 import logging
 import secrets
 import string
-from datetime import datetime, timedelta, timezone
-from typing import Dict
+from datetime import UTC, datetime, timedelta
 
 import jwt
 from fastapi import Depends, Request
@@ -17,6 +16,8 @@ from app.models.user import User
 from app.v3.utils import CustomExceptionError
 from config import Config
 
+log = logging.getLogger(__name__)
+
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
@@ -29,7 +30,7 @@ def generate_random_password(length: int = Config.PASSWORD_MIN_LENGTH) -> Secret
     return SecretStr(''.join(secrets.choice(alphabet) for _ in range(length)))
 
 
-def create_user_tokens(user: User) -> Dict[str, str]:
+def create_user_tokens(user: User) -> dict[str, str]:
     """
     Create access and refresh tokens for the user.
 
@@ -89,7 +90,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
     :rtype: str
     """
     to_encode = data.copy()
-    expire = datetime.now(timezone.utc) + expires_delta if expires_delta else datetime.now(timezone.utc) + timedelta(minutes=15)
+    expire = datetime.now(UTC) + expires_delta if expires_delta else datetime.now(UTC) + timedelta(minutes=15)
     to_encode.update({'exp': expire})
     return jwt.encode(payload=to_encode, key=Config.JWT_PRIVATE_KEY, algorithm=Config.JWT_ALGORITHM)
 
@@ -106,7 +107,7 @@ def create_refresh_token(data: dict, expires_delta: timedelta | None = None) -> 
     :rtype: str
     """
     to_encode = data.copy()
-    expire = datetime.now(timezone.utc) + expires_delta if expires_delta else datetime.now(timezone.utc) + timedelta(days=1)
+    expire = datetime.now(UTC) + expires_delta if expires_delta else datetime.now(UTC) + timedelta(days=1)
     to_encode.update({'exp': expire})
     return jwt.encode(payload=to_encode, key=Config.JWT_PRIVATE_KEY, algorithm=Config.JWT_ALGORITHM)
 
@@ -155,11 +156,11 @@ def validate_token(token: str) -> dict or None:
     """
     try:
         payload = jwt.decode(jwt=token, key=Config.JWT_PUBLIC_KEY, algorithms=[Config.JWT_ALGORITHM])
-        logging.debug(f'payload: {payload}')
-        logging.debug(f'exp: {payload["exp"]}')
-        logging.debug(f'now: {datetime.now(timezone.utc).timestamp()}')
-        logging.debug(f'expires in seconds: {payload["exp"] - datetime.now(timezone.utc).timestamp()}')
-        return payload if payload['exp'] >= datetime.now(timezone.utc).timestamp() else None
+        log.debug(f'payload: {payload}')
+        log.debug(f'exp: {payload["exp"]}')
+        log.debug(f'now: {datetime.now(UTC).timestamp()}')
+        log.debug(f'expires in seconds: {payload["exp"] - datetime.now(UTC).timestamp()}')
+        return payload if payload['exp'] >= datetime.now(UTC).timestamp() else None
     except jwt.ExpiredSignatureError:
         return None
     except jwt.InvalidTokenError:
@@ -235,7 +236,7 @@ def create_reset_token(user: User) -> str:
     :return: Reset token
     :rtype: str
     """
-    expire = datetime.now(timezone.utc) + timedelta(minutes=Config.ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(UTC) + timedelta(minutes=Config.ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode = {'sub': str(user.id), 'exp': expire, 'type': 'reset'}
     return jwt.encode(to_encode, Config.JWT_PRIVATE_KEY, algorithm=Config.JWT_ALGORITHM)
 
@@ -252,7 +253,7 @@ def verify_reset_token(token: str) -> bool:
     try:
         payload = jwt.decode(token, Config.JWT_PUBLIC_KEY, algorithms=[Config.JWT_ALGORITHM])
         user_id = payload.get('sub')
-        if user_id is None or payload.get('exp') < datetime.now(timezone.utc).timestamp():
+        if user_id is None or payload.get('exp') < datetime.now(UTC).timestamp():
             raise CustomExceptionError(status_code=status.HTTP_403_FORBIDDEN, message='Invalid or expired token.')
     except jwt.ExpiredSignatureError:
         return False

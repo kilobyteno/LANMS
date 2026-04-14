@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -11,9 +10,9 @@ class ArticleBase(BaseModel):
     """Base article model"""
 
     title: str
-    slug: Optional[str]
+    slug: str | None
     content: str
-    published_at: Optional[datetime]
+    published_at: datetime | None
 
 
 class ArticleCreate(ArticleBase):
@@ -36,7 +35,7 @@ class ArticleResponse(ArticleBase):
     created_by: UserResponse
     created_at: datetime
     updated_at: datetime
-    deleted_at: Optional[datetime]
+    deleted_at: datetime | None
 
     class Config:
         """Pydantic config"""
