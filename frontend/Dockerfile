@@ -1,5 +1,5 @@
 ARG BUILD_ENV=production
-ARG NODE=node:lts-alpine
+ARG NODE=node:22-alpine
 ARG NGINX=nginx:stable-alpine
 
 FROM ${NODE} as node
