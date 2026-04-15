@@ -479,7 +479,7 @@ wheels = [
 
 [[package]]
 name = "lanms-backend"
-version = "3.0.0a9"
+version = "3.0.0a10"
 source = { virtual = "." }
 dependencies = [
     { name = "alembic" },
