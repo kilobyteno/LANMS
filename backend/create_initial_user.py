@@ -14,6 +14,7 @@ from __future__ import annotations
 import logging
 import sys
 from datetime import UTC, datetime
+from typing import TYPE_CHECKING
 
 from pydantic import SecretStr
 from sqlalchemy.exc import IntegrityError
@@ -25,26 +26,40 @@ from app.v3.auth.utils import format_email_from_input, get_hashed_password
 from app.v3.utils import get_avatar_url
 from config import Config
 
+if TYPE_CHECKING:
+    from sqlalchemy.engine import Engine
+
 log = logging.getLogger(__name__)
 
 
-def main() -> int:
-    """Create initial user when env vars are set; no-op or error otherwise."""
-    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+def bootstrap_initial_user(
+    email_raw: str,
+    password_raw: str,
+    engine: Engine,
+    *,
+    password_min_length: int,
+) -> int:
+    """
+    Create an initial user if one does not already exist for the email.
 
-    email_raw = Config.INITIAL_USER_EMAIL
-    password_raw = Config.INITIAL_USER_PASSWORD
-
+    :param email_raw: Email as provided (normalized with format_email_from_input).
+    :param password_raw: Plain password (hashed before storage).
+    :param engine: SQLAlchemy engine (e.g. production DB or in-memory SQLite in tests).
+    :param password_min_length: Minimum password length (typically Config.PASSWORD_MIN_LENGTH).
+    :return: 0 on success or idempotent no-op, 1 on validation or database error.
+    """
     if not email_raw or not password_raw:
-        log.error('Set INITIAL_USER_EMAIL and INITIAL_USER_PASSWORD in the environment before running this command.')
+        log.error('Email and password must both be set (e.g. INITIAL_USER_EMAIL and INITIAL_USER_PASSWORD).')
         return 1
 
     email = format_email_from_input(email_raw)
-    if len(password_raw) < Config.PASSWORD_MIN_LENGTH:
-        log.error('INITIAL_USER_PASSWORD must be at least %s characters (PASSWORD_MIN_LENGTH).', Config.PASSWORD_MIN_LENGTH)
+    if len(password_raw) < password_min_length:
+        log.error(
+            'INITIAL_USER_PASSWORD must be at least %s characters (PASSWORD_MIN_LENGTH).',
+            password_min_length,
+        )
         return 1
 
-    engine = get_db_engine()
     session_factory = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     db: Session = session_factory()
 
@@ -54,7 +69,10 @@ def main() -> int:
             if existing.deleted_at is None:
                 log.info('User with email %s already exists; nothing to do.', email)
                 return 0
-            log.error('Email %s is tied to a soft-deleted user; resolve in the database before creating a new user.', email)
+            log.error(
+                'Email %s is tied to a soft-deleted user; resolve in the database before creating a new user.',
+                email,
+            )
             return 1
 
         display_name = email.split('@', maxsplit=1)[0] or 'Admin'
@@ -78,6 +96,17 @@ def main() -> int:
         return 1
     finally:
         db.close()
+
+
+def main() -> int:
+    """Create initial user when env vars are set; no-op or error otherwise."""
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+    return bootstrap_initial_user(
+        Config.INITIAL_USER_EMAIL,
+        Config.INITIAL_USER_PASSWORD,
+        get_db_engine(),
+        password_min_length=Config.PASSWORD_MIN_LENGTH,
+    )
 
 
 if __name__ == '__main__':

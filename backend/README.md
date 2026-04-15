@@ -36,6 +36,16 @@ uv run ruff format
 
 Use pre-commit to do this automatically.
 
+### Tests
+
+Run the suite with:
+
+```bash
+uv run pytest
+```
+
+Tests use `ENV=test` and an in-memory SQLite database by default (see `tests/conftest.py`), so you do not need Postgres running for them. The initial-user bootstrap is covered in `tests/test_create_initial_user.py`.
+
 ### Migrations
 
 #### Create a new migration
