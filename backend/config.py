@@ -184,6 +184,10 @@ class Config:
     # Super Admin
     SUPER_ADMINS: ClassVar[list[str]] = getenv('SUPER_ADMINS', '').split(',')
 
+    # Initial user bootstrap (optional; used by create_initial_user.py on first deploy)
+    INITIAL_USER_EMAIL: str = getenv('INITIAL_USER_EMAIL', '').strip()
+    INITIAL_USER_PASSWORD: str = getenv('INITIAL_USER_PASSWORD', '')
+
     # Max file sizes
     MAX_IMAGE_SIZE_KB = int(getenv('MAX_IMAGE_SIZE_KB', '10240'))
     MAX_FILE_SIZE_KB = int(getenv('MAX_FILE_SIZE_KB', '10240'))

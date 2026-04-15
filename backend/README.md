@@ -54,21 +54,26 @@ To run the migrations, run the following command:
 uv run alembic upgrade head
 ```
 
-### Seeding the database
+### Bootstrap initial user (first deployment)
 
-We have made it easy to seed the database by either creating entries or updating existing entries. Run the following command to get the help menu, to see the
-available options:
+For a new environment you can create the first login user from the environment (see `.env.example`):
+
+- `INITIAL_USER_EMAIL` — email used to sign in
+- `INITIAL_USER_PASSWORD` — must be at least `PASSWORD_MIN_LENGTH` characters (default 12)
+
+Set these only when you intend to run the bootstrap command; the API does not require them at runtime.
+
+After the database exists and migrations have been applied, run:
 
 ```bash
-uv run python seed.py --help
+uv run alembic upgrade head
+uv run python create_initial_user.py
 ```
 
-To seed the database by updating or creating entries, run the following command:
-
-```bash
-uv run python seed.py --table all --auto
-```
+The script uses the same `.env` / environment as the application (database URL, JWT keys, and so on). It is **idempotent**: if an active user with that email already exists, it exits successfully and does nothing. The user is created with a verified email and accepted terms/privacy timestamps so they can use the normal login flow without completing OTP signup.
 
 ## Deployment
 
-The backend is deployed to the staging environment automatically when a commit is pushed to the `develop` branch, please create a pull request from the your branch to the `develop` branch and once that is merged, the backend will be deployed to the staging environment.
+The backend is deployed to the staging environment automatically when a commit is pushed to the `develop` branch. Create a pull request from your branch to `develop`; once it is merged, the backend is deployed to staging.
+
+Wire `create_initial_user.py` into your first-deploy procedure if you rely on env-driven bootstrap (for example run it once after migrations, with `INITIAL_USER_EMAIL` and `INITIAL_USER_PASSWORD` set in the deployment secrets, then clear or unset those variables if your policy requires it).
