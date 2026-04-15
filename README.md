@@ -19,6 +19,10 @@ LANMS is currently in development and is **not ready for production use**. We ar
 
 We started the development of the new LANMS 3.0 in February 2023, originally, but other priorities and issues out of our control occurred, so we picked it back up in February 2024. But now, as of the 25th of September 2024, we are restarting the development from scratch to make it more user-friendly, scalable, flexible and open-source.
 
+## Documentation
+
+Developer-focused guides live under **[docs/](docs/README.md)**. That index links to the [backend](docs/backend/README.md) and [frontend](docs/frontend/README.md) setup instructions (environment, dependencies, migrations, deployment), plus [legacy codebase notes](docs/legacy/LEGACY-CODEBASE.md). The [`backend/`](backend/README.md) and [`frontend/`](frontend/README.md) folders each include a short readme that points to the same docs.
+
 ## Contribution
 
 Thank you for considering contributing! You can read the contribution guide [here](.github/CONTRIBUTING.md).
