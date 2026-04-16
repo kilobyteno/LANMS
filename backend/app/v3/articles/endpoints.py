@@ -10,7 +10,6 @@ from app.v3.articles.service import (
     delete_article,
     get_article,
     get_articles,
-    get_all_articles as fetch_all_event_articles,
     update_article,
 )
 from app.v3.articles.service import (
