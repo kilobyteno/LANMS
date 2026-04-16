@@ -12,6 +12,7 @@ from app.v3.articles.service import (
     delete_article,
     get_article,
     get_articles,
+    get_all_articles as fetch_all_event_articles,
     update_article,
 )
 from app.v3.auth.utils import get_current_user
@@ -39,6 +40,16 @@ async def post_create_article(
 async def get_articles_list(event_id: UUID, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
     """Get published articles for an event"""
     return get_articles(db=db, event_id=event_id, skip=skip, limit=limit)
+
+
+@router.get(
+    '/events/{event_id}/articles/all',
+    name='EA-6',
+    response_model=list[ArticleResponse],
+)
+async def get_all_articles_for_event(event_id: UUID, db: Session = Depends(get_db)) -> JSONResponse:
+    """Get all articles for an event (including drafts). Static path must be registered before /{article_id}."""
+    return fetch_all_event_articles(db=db, event_id=event_id)
 
 
 @router.get(
@@ -70,13 +81,3 @@ async def put_update_article(
 async def delete_article_by_id(event_id: UUID, article_id: UUID, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
     """Delete article"""
     return delete_article(db=db, event_id=event_id, article_id=article_id, current_user=current_user)
-
-
-@router.get(
-    '/events/{event_id}/articles/all',
-    name='EA-6',
-    response_model=list[ArticleResponse],
-)
-async def get_all_articles(event_id: UUID, db: Session = Depends(get_db)) -> JSONResponse:
-    """Get all articles for an event"""
-    return get_all_articles(db=db, event_id=event_id)
