@@ -45,6 +45,8 @@ jobs:
         run: uv sync --frozen --all-groups
       - name: Run Ruff
         run: uv run ruff check --output-format=github
+      - name: Run tests
+        run: uv run pytest -q
       - name: Run Migrations
         run: |
           eval $(grep -m 4 'export' README.md | tail -n 4)
