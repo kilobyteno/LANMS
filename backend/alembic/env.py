@@ -1,11 +1,11 @@
-import importlib
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 
-# from app.models.other_models import Base
+import app.models  # noqa: F401 - register all ORM models on Base.metadata
+from app.models.base import Base
 from config import Config
 
 # this is the Alembic Config object, which provides
@@ -17,15 +17,8 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
-# for 'autogenerate' support
-# target_metadata = None
-# target_metadata = Base.metadata
-models_package = importlib.import_module('app.models')
-models = [getattr(models_package, name) for name in dir(models_package) if not name.startswith('__')]
-
-# Assuming your models use Base.metadata
-target_metadata = [model.Base.metadata for model in models]
+# Single declarative Base from app.models.base; model modules subclass BaseModel on this Base.
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
