@@ -45,6 +45,7 @@ from app.v3.auth.utils import (
     verify_reset_token,
 )
 from app.v3.utils import get_avatar_url, get_portal_url, send_email
+from app.v3.uuid_types import parse_uuid7
 from config import Config
 
 log = logging.getLogger(__name__)
@@ -195,7 +196,7 @@ def post_refresh_token(request_data: A6Input, db: Session):
     payload = validate_token(request_data.refresh_token)
     if not payload:
         return response_unauthorized(message='Invalid token')
-    user_id: int = payload.get('sub')
+    user_id = parse_uuid7(str(payload.get('sub')))
     user = db.query(User).filter_by(id=user_id).one_or_none()
     if user and user.refresh_token != request_data.refresh_token:
         return response_unauthorized(message='Please log in again!')

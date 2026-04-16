@@ -1,8 +1,8 @@
-import uuid
 from datetime import UTC, datetime
 
 from sqlalchemy import UUID, Column, DateTime, func
 from sqlalchemy.orm import declarative_base
+from uuid6 import uuid7
 
 Base = declarative_base()
 
@@ -12,7 +12,7 @@ class BaseModel(Base):
 
     __abstract__ = True  # Ensures that this class is not mapped to a table.
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid7, unique=True, nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=True)
     updated_at = Column(DateTime, onupdate=func.now(), nullable=True)
