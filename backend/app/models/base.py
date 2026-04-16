@@ -12,7 +12,7 @@ class BaseModel(Base):
 
     __abstract__ = True  # Ensures that this class is not mapped to a table.
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid7, unique=True, nullable=False)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid7, nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=True)
     updated_at = Column(DateTime, onupdate=func.now(), nullable=True)

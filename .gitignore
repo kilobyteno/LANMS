@@ -1,5 +1,4 @@
 /.idea
 /.vscode
 .DS_Store
-/frontend/.next
-/backend/logs
+backend/.env.local

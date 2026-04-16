@@ -11,8 +11,7 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from starlette.middleware.cors import CORSMiddleware
 from tunsberg.responses import response_bad_request, response_custom, response_internal_server_error
 
-from app.dependencies import get_db_engine, get_local_session
-from app.models.base import Base
+from app.dependencies import get_local_session
 from app.v3.api import router as api_v1_router
 from app.v3.utils import CustomExceptionError
 from config import Config
@@ -105,7 +104,7 @@ class SQLAlchemySessionMiddleware(BaseHTTPMiddleware):
 dictConfig(Config.UVICORN_LOG_CONFIG)
 
 # Create all tables stored in this metadata
-Base.metadata.create_all(bind=get_db_engine())
+# Base.metadata.create_all(bind=get_db_engine())
 
 # Add the SQLAlchemySessionMiddleware to the app
 app.add_middleware(SQLAlchemySessionMiddleware)
