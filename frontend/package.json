@@ -1,14 +1,14 @@
 {
     "name": "lanms-frontend",
     "private": true,
-    "version": "3.0.0-alpha.9",
+    "version": "3.0.0-alpha.10",
     "engines": {
         "node": ">=20.19.0"
     },
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "tsc & vite build",
+        "build": "tsc && vite build",
         "build:sandbox": "tsc && vite build --mode sandbox",
         "build:staging": "tsc && vite build --mode staging",
         "build:production": "tsc && vite build --mode production",

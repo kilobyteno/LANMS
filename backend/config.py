@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from sentry_sdk.integrations.fastapi import FastApiIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 from sentry_sdk.integrations.starlette import StarletteIntegration
-from tunsberg.konfig import check_required_env_vars, uvicorn_log_config
+from tunsberg.konfig import check_required_env_vars, log_config
 
 log = logging.getLogger(__name__)
 
@@ -184,12 +184,16 @@ class Config:
     # Super Admin
     SUPER_ADMINS: ClassVar[list[str]] = getenv('SUPER_ADMINS', '').split(',')
 
+    # Initial user bootstrap (optional; used by create_initial_user.py on first deploy)
+    INITIAL_USER_EMAIL: str = getenv('INITIAL_USER_EMAIL', '').strip()
+    INITIAL_USER_PASSWORD: str = getenv('INITIAL_USER_PASSWORD', '')
+
     # Max file sizes
     MAX_IMAGE_SIZE_KB = int(getenv('MAX_IMAGE_SIZE_KB', '10240'))
     MAX_FILE_SIZE_KB = int(getenv('MAX_FILE_SIZE_KB', '10240'))
 
     # Third Party Services
-    UVICORN_LOG_CONFIG: ClassVar[dict] = uvicorn_log_config(log_level=LOG_LEVEL, log_file_path=LOG_FILE_PATH, log_format=LOG_FORMAT)
+    UVICORN_LOG_CONFIG: ClassVar[dict] = log_config(log_level=LOG_LEVEL, log_file_path=LOG_FILE_PATH, log_format=LOG_FORMAT)
 
 
 # Check all required environment variables are set
