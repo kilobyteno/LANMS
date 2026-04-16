@@ -125,13 +125,18 @@ class Config:
     API_DOCS_OPENAPI_URL: str | None = None if MICRO_SERVICE_IN_PRODUCTION else '/openapi.json'
     API_DOCS_URL: str = '/docs'
 
-    # Portal
-    PORTAL_URL: str = getenv('PORTAL_URL')
+    # Portal (empty when unset; required in live envs via check_required_env_vars)
+    PORTAL_URL: str = getenv('PORTAL_URL') or ''
 
-    # CORS
-    CORS_ALLOW_ORIGIN: str = PORTAL_URL
+    # CORS — header values must be str; getenv can be missing when ENV is not a local dev value
     if IN_LOCAL_DEVELOPMENT_ENV:
-        CORS_ALLOW_ORIGIN = '*'
+        CORS_ALLOW_ORIGIN: str = '*'
+    else:
+        CORS_ALLOW_ORIGIN: str = PORTAL_URL if PORTAL_URL else '*'
+        if not PORTAL_URL:
+            log.warning(
+                'PORTAL_URL is not set; CORS Allow-Origin is *. Set PORTAL_URL for locked-down CORS in non-local environments.'
+            )
 
     # JWT Token
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(getenv('ACCESS_TOKEN_EXPIRE_MINUTES', '60'))  # 1 hour
@@ -174,9 +179,6 @@ class Config:
     POSTMARK_API_KEY: str | None = getenv('POSTMARK_API_KEY')
     if not POSTMARK_API_KEY:
         log.warning('Postmark API Key not set!')
-
-    # Portal
-    PORTAL_URL: str = getenv('PORTAL_URL')
 
     # Validation
     PASSWORD_MIN_LENGTH: int = int(getenv('PASSWORD_MIN_LENGTH', '12'))
