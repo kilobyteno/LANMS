@@ -18,41 +18,35 @@ For the backend to be able to run in all environments these environment variable
 
 * **JWT_PUBLIC_KEY**
 
-  _Further details needed_
+  PEM-encoded **public** half of an RSA key pair, used to verify JWTs (default algorithm is `RS256`). In `.env`, you can embed newlines as literal `\n` sequences; the app normalizes them on load.
 
 * **JWT_PRIVATE_KEY**
 
-  _Further details needed_
+  PEM-encoded **private** half of the same RSA key pair, used to sign access and refresh tokens. Keep this secret and never commit it. Same newline rules as `JWT_PUBLIC_KEY`.
 
 * **PORTAL_URL** — ex. `https://portal.lanms.net`
 
-  The URL for the frontend where that is hosted, is used for links in emails.
+  The URL for the frontend where that is hosted; used for links in emails.
 
 * **OTP_SECRET_KEY**
 
-  This should be a Base64 string.
+  Secret used for OTP generation (TOTP-style). Use a strong value; in development you can use a Base32-style string similar to `.env.example`.
 
 ### Optional configuration
 
 * `CODE_BUILD`
 * `DEBUG`
-* `DB_HOST`
-* `DB_USERNAME`
-* `DB_PASSWORD`
-* `DB_PORT`
-* `DB_DIALECT`
-* `DB_NAME`
+* `DATABASE_DEBUG` — when set, enables SQLAlchemy echo logging
+* `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT`, `DB_DIALECT`, `DB_NAME`
 * `JWT_ALGORITHM`
-* `ACCESS_TOKEN_EXPIRE_MINUTES`
-* `REFRESH_TOKEN_EXPIRE_MINUTES`
+* `ACCESS_TOKEN_EXPIRE_MINUTES`, `REFRESH_TOKEN_EXPIRE_MINUTES`
 * `FROM_EMAIL`
 * `SENTRY_DSN`
-* `SENDGRID_API_KEY`
-* `POSTMARK_API_KEY`
+* `SENDGRID_API_KEY`, `POSTMARK_API_KEY`
 * `PASSWORD_MIN_LENGTH`
-* `MAX_IMAGE_SIZE_KB`
-* `MAX_FILE_SIZE_KB`
+* `MAX_IMAGE_SIZE_KB`, `MAX_FILE_SIZE_KB`
 * `SUPER_ADMINS`
+* **First deployment only:** `INITIAL_USER_EMAIL` and `INITIAL_USER_PASSWORD` — used by `create_initial_user.py` to create the first login user after migrations (see [Bootstrap initial user](#bootstrap-initial-user-first-deployment)). Leave unset or empty when not running that script.
 
 ## Development
 
@@ -77,16 +71,28 @@ uv run pre-commit install
 ### Code styling
 
 We use Ruff for code styling and formatting. To run code styling check manually you can run:
+
 ```bash
 uv run ruff check --fix
 ```
 
 For formatting code you can run:
+
 ```bash
 uv run ruff format
 ```
 
 Use pre-commit to do this automatically.
+
+### Tests
+
+Run the test suite with:
+
+```bash
+uv run pytest
+```
+
+Tests set `ENV=test` and use an in-memory SQLite database (see `tests/conftest.py`); you do not need Postgres running locally for them. Pull requests that touch `backend/**` run Ruff and pytest in CI.
 
 ### Migrations
 
@@ -106,21 +112,26 @@ To run the migrations, run the following command:
 uv run alembic upgrade head
 ```
 
-### Seeding the database
+### Bootstrap initial user (first deployment)
 
-We have made it easy to seed the database by either creating entries or updating existing entries. Run the following command to get the help menu, to see the
-available options:
+For a new environment you can create the first login user from the environment (see `.env.example`):
+
+* `INITIAL_USER_EMAIL` — email used to sign in
+* `INITIAL_USER_PASSWORD` — must be at least `PASSWORD_MIN_LENGTH` characters (default 12)
+
+Set these only when you intend to run the bootstrap command; the API does not require them for normal operation.
+
+After the database exists and migrations have been applied:
 
 ```bash
-uv run python seed.py --help
+uv run alembic upgrade head
+uv run python create_initial_user.py
 ```
 
-To seed the database by updating or creating entries, run the following command:
+The script uses the same `.env` as the application. It is **idempotent**: if an active user with that email already exists, it exits successfully and does nothing. The user is created with a verified email and accepted terms/privacy timestamps so they can use the normal login flow without completing OTP signup.
 
-```bash
-uv run python seed.py --table all --auto
-```
+On first deploy, run this once after migrations if you rely on env-driven bootstrap. Clear or rotate `INITIAL_USER_PASSWORD` in your secrets store afterward if your policy requires it.
 
 ## Deployment
 
-The backend is deployed to the staging environment automatically when a commit is pushed to the `develop` branch, please create a pull request from the your branch to the `develop` branch and once that is merged, the backend will be deployed to the staging environment.
+The backend is deployed to the staging environment automatically when a commit is pushed to the `develop` branch. Create a pull request from your branch to `develop`; once it is merged, the backend is deployed to staging.
