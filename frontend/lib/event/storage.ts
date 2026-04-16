@@ -1,4 +1,5 @@
-const KEY = "lanms_event_selections"
+/** Bumped for UUIDv7 breaking release; ignores stale v4-era org/event id map. */
+const KEY = "lanms_event_selections_v7"
 
 type Store = Record<string, string>
 
