@@ -105,7 +105,7 @@ class SQLAlchemySessionMiddleware(BaseHTTPMiddleware):
 dictConfig(Config.UVICORN_LOG_CONFIG)
 
 # Create all tables stored in this metadata
-Base.metadata.create_all(bind=get_db_engine())
+#Base.metadata.create_all(bind=get_db_engine())
 
 # Add the SQLAlchemySessionMiddleware to the app
 app.add_middleware(SQLAlchemySessionMiddleware)
