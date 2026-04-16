@@ -112,6 +112,8 @@ class Config:
         if ENV != 'test'
         else f'{getenv("SQLALCHEMY_DATABASE_URI")}'
     )
+    if IN_LOCAL_DEVELOPMENT_ENV:
+        log.debug(f'SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}')
 
     # API Docs
     API_DOCS_TITLE: str = f'{MICRO_SERVICE_NAME_FOR_HUMANS} API'

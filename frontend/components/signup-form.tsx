@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { cn } from "@/lib/utils"
 import {
   postSignupDetails,
@@ -26,6 +26,11 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 type Step = 1 | 2 | 3
@@ -40,8 +45,15 @@ export function SignupForm({
   const [pending, startTransition] = useTransition()
   const [step, setStep] = useState<Step>(1)
   const [email, setEmail] = useState("")
+  const [otpCode, setOtpCode] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [info, setInfo] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (step !== 2) {
+      setOtpCode("")
+    }
+  }, [step])
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -51,7 +63,8 @@ export function SignupForm({
           <CardDescription>
             {step === 1 && "Enter your email to receive a verification code"}
             {step === 2 && "Enter the code we sent to your email"}
-            {step === 3 && "Complete your profile"}
+            {step === 3 &&
+              "Add a password to finish. Name and phone are optional."}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -122,9 +135,11 @@ export function SignupForm({
                 e.preventDefault()
                 setError(null)
                 setInfo(null)
-                const form = e.currentTarget
-                const fd = new FormData(form)
-                const code = String(fd.get("code") ?? "").trim()
+                const code = otpCode.trim()
+                if (code.length !== 6) {
+                  setError("Enter the 6-digit code from your email.")
+                  return
+                }
                 startTransition(async () => {
                   const res = await postSignupVerify({ email, code })
                   if (!res.ok) {
@@ -147,19 +162,31 @@ export function SignupForm({
                     <AlertDescription>{info}</AlertDescription>
                   </Alert>
                 ) : null}
-                <Field>
-                  <FieldLabel htmlFor="code">Verification code</FieldLabel>
-                  <Input
-                    id="code"
-                    name="code"
-                    inputMode="numeric"
+                <Field className="items-center">
+                  <FieldLabel className="sr-only">Verification code</FieldLabel>
+                  <InputOTP
+                    maxLength={6}
+                    value={otpCode}
+                    onChange={setOtpCode}
                     autoComplete="one-time-code"
-                    placeholder="000000"
-                    required
-                  />
+                    containerClassName="justify-center"
+                  >
+                    <InputOTPGroup>
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={4} />
+                      <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                  </InputOTP>
                 </Field>
                 <Field className="flex flex-col gap-2 sm:flex-row">
-                  <Button type="submit" className="flex-1" disabled={pending}>
+                  <Button
+                    type="submit"
+                    className="flex-1"
+                    disabled={pending || otpCode.length !== 6}
+                  >
                     {pending ? "Verifying…" : "Verify"}
                   </Button>
                   <Button
@@ -177,6 +204,7 @@ export function SignupForm({
                           return
                         }
                         setInfo(res.message)
+                        setOtpCode("")
                       })
                     }}
                   >
@@ -218,15 +246,22 @@ export function SignupForm({
                 )
                 const referrerRaw = String(fd.get("referrer") ?? "").trim()
 
-                if (!PHONE_CODE_RE.test(phone_code)) {
-                  setError(
-                    'Country code must look like "+1", "+44", etc. (1–3 digits after +).',
-                  )
+                const hasPhone = phone_code.length > 0 || phone_number.length > 0
+                if (name.length > 0 && name.length < 2) {
+                  setError("Name must be at least 2 characters if provided.")
                   return
                 }
-                if (!/^\d+$/.test(phone_number)) {
-                  setError("Phone number must contain only digits.")
-                  return
+                if (hasPhone) {
+                  if (!PHONE_CODE_RE.test(phone_code)) {
+                    setError(
+                      'Country code must look like "+1", "+44", etc. (1-3 digits after +).',
+                    )
+                    return
+                  }
+                  if (!/^\d+$/.test(phone_number)) {
+                    setError("Phone number must contain only digits.")
+                    return
+                  }
                 }
                 if (password.length < PASSWORD_MIN_LENGTH) {
                   setError(
@@ -240,14 +275,19 @@ export function SignupForm({
                 }
 
                 startTransition(async () => {
-                  const res = await postSignupDetails({
-                    name,
-                    phone_code,
-                    phone_number,
+                  const payload: Parameters<typeof postSignupDetails>[0] = {
                     email,
                     password,
                     referrer: referrerRaw || null,
-                  })
+                  }
+                  if (name.length >= 2) {
+                    payload.name = name
+                  }
+                  if (hasPhone) {
+                    payload.phone_code = phone_code
+                    payload.phone_number = phone_number
+                  }
+                  const res = await postSignupDetails(payload)
                   if (!res.ok) {
                     setError(res.message)
                     return
@@ -263,34 +303,33 @@ export function SignupForm({
                   </Alert>
                 ) : null}
                 <Field>
-                  <FieldLabel htmlFor="name">Full name</FieldLabel>
+                  <FieldLabel htmlFor="name">Full name (optional)</FieldLabel>
                   <Input
                     id="name"
                     name="name"
                     type="text"
                     placeholder="Jane Doe"
-                    required
                     autoComplete="name"
                   />
                 </Field>
                 <Field className="grid grid-cols-3 gap-3">
                   <Field className="col-span-1">
-                    <FieldLabel htmlFor="phone_code">Code</FieldLabel>
+                    <FieldLabel htmlFor="phone_code">Code (optional)</FieldLabel>
                     <Input
                       id="phone_code"
                       name="phone_code"
                       placeholder="+1"
-                      required
                       autoComplete="tel-country-code"
                     />
                   </Field>
                   <Field className="col-span-2">
-                    <FieldLabel htmlFor="phone_number">Phone</FieldLabel>
+                    <FieldLabel htmlFor="phone_number">
+                      Phone (optional)
+                    </FieldLabel>
                     <Input
                       id="phone_number"
                       name="phone_number"
                       placeholder="5551234567"
-                      required
                       inputMode="numeric"
                       autoComplete="tel-national"
                     />

@@ -86,10 +86,14 @@ export function NavUser() {
         return
       }
       const u = res.data
+      const displayName =
+        u.name?.trim() ||
+        (u.email && u.email.includes("@") ? u.email.split("@")[0] : null) ||
+        "User"
       startReactTransition(() => {
         if (cancelled) return
         setUser({
-          name: u.name,
+          name: displayName,
           email: u.email ?? "",
           avatar: u.photo_url,
         })

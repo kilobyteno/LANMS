@@ -1,5 +1,7 @@
 "use client"
 
+import { CalendarBlankIcon } from "@phosphor-icons/react"
+import { useEvent } from "@/components/event-context"
 import { useOrganisation } from "@/components/organisation-context"
 import {
   Card,
@@ -8,6 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
 
 function Detail({
   label,
@@ -26,8 +35,12 @@ function Detail({
 }
 
 export function DashboardSelectedOrganisation() {
-  const { selectedOrganisation, loading, error, organisations } =
-    useOrganisation()
+  const { selectedOrganisation, loading, error } = useOrganisation()
+  const {
+    events,
+    loading: eventsLoading,
+    error: eventsError,
+  } = useEvent()
 
   if (loading) {
     return (
@@ -46,9 +59,7 @@ export function DashboardSelectedOrganisation() {
   if (!selectedOrganisation) {
     return (
       <p className="text-sm text-muted-foreground">
-        {organisations.length === 0
-          ? "You don’t have any organisations yet. Use the switcher above to create one when that flow is available."
-          : "Select an organisation from the sidebar switcher."}
+        Select an organisation from the workspace menu in the sidebar.
       </p>
     )
   }
@@ -56,35 +67,32 @@ export function DashboardSelectedOrganisation() {
   const o = selectedOrganisation
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{o.name}</CardTitle>
-        <CardDescription>
-          {o.description?.trim()
-            ? o.description
-            : "No description for this organisation."}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid max-w-lg gap-4 sm:grid-cols-2">
-          <Detail label="Contact email" value={o.contact_email} />
-          <Detail label="Contact phone" value={o.contact_phone} />
-          <Detail label="Website" value={o.website} />
-          <Detail
-            label="Address"
-            value={
-              [
-                o.address_street,
-                o.address_city,
-                o.address_postal_code,
-                o.address_country,
-              ]
-                .filter(Boolean)
-                .join(", ") || null
-            }
-          />
+    <div className="flex flex-col gap-6">
+      {eventsLoading ? (
+        <p className="text-sm text-muted-foreground">Loading events…</p>
+      ) : eventsError ? (
+        <p className="text-sm text-destructive" role="alert">
+          {eventsError}
+        </p>
+      ) : events.length === 0 ? (
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <CalendarBlankIcon />
+            </EmptyMedia>
+            <EmptyTitle>No events yet</EmptyTitle>
+            <EmptyDescription>
+              Add an event for {o.name} from the workspace menu in the sidebar,
+              or open an organisation that already has events.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      ) : (
+        <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+          <h1>{o.name}</h1>
+          <p>{o.description}</p>
         </div>
-      </CardContent>
-    </Card>
+      )}
+    </div>
   )
 }

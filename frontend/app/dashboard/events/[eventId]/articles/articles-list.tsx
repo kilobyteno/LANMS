@@ -14,11 +14,17 @@ import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   Table,
@@ -126,25 +132,25 @@ export function EventArticlesList() {
           </CardContent>
         </Card>
       ) : articles.length === 0 ? (
-        <Card>
-          <CardHeader>
-            <div className="flex size-10 items-center justify-center rounded-lg border bg-muted/40">
-              <NewspaperIcon className="size-5 text-muted-foreground" />
-            </div>
-            <CardTitle className="text-lg">No articles yet</CardTitle>
-            <CardDescription>
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <NewspaperIcon />
+            </EmptyMedia>
+            <EmptyTitle>No articles yet</EmptyTitle>
+            <EmptyDescription>
               Write updates, rules, or schedules for attendees.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+            </EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent>
             <Button asChild className="gap-1.5">
               <Link href={`/dashboard/events/${eventId}/articles/new`}>
                 <PlusIcon className="size-4" />
                 Create article
               </Link>
             </Button>
-          </CardContent>
-        </Card>
+          </EmptyContent>
+        </Empty>
       ) : (
         <Table>
           <TableHeader>

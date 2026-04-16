@@ -142,21 +142,29 @@ def get_portal_url(path: str = '') -> str:
     :return: The portal URL for the specified environment.
     :rtype: str
     """
-    return f'{Config.PORTAL_URL}{path}'
+    base = Config.PORTAL_URL or ''
+    return f'{base}{path}'
 
 
-def get_avatar_url(name: str) -> str:
+def get_avatar_url(name: str | None, email: str | None = None) -> str:
     """
     Get the URL for the avatar based on the name provided.
 
     :param name: Name to be used for the avatar
-    :type name: str
+    :type name: str | None
+    :param email: Fallback label from email local-part when name is empty
+    :type email: str | None
 
     :return: The URL for the avatar
     :rtype: str
     """
-    name = name.replace(' ', '+')  # Url encode the name
-    return f'https://ui-avatars.com/api/?name={name}?background=random'
+    label = (name or '').strip()
+    if not label and email and '@' in email:
+        label = email.split('@', 1)[0]
+    if not label:
+        label = 'User'
+    label = label.replace(' ', '+')  # Url encode the name
+    return f'https://ui-avatars.com/api/?name={label}?background=random'
 
 
 class CustomParams(Params):

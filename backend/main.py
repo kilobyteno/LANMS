@@ -1,14 +1,15 @@
 import json
 import logging
 from logging.config import dictConfig
-from typing import TYPE_CHECKING
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from sqlalchemy.exc import OperationalError, SQLAlchemyError
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware import Middleware
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.middleware.cors import CORSMiddleware
+from starlette.responses import JSONResponse, Response
 from tunsberg.responses import response_bad_request, response_custom, response_internal_server_error
 
 from app.dependencies import get_local_session
@@ -17,9 +18,6 @@ from app.v3.utils import CustomExceptionError
 from config import Config
 
 log = logging.getLogger(__name__)
-
-if TYPE_CHECKING:
-    from requests import Response
 
 # We need both this and the custom cors handler below
 middleware = [
@@ -84,7 +82,8 @@ class SQLAlchemySessionMiddleware(BaseHTTPMiddleware):
             response = await call_next(request)
         except SQLAlchemyError as e:
             request.state.db.rollback()
-            raise e
+            log.error(f'SQLAlchemyError in SQLAlchemySessionMiddleware: {e}', exc_info=True)
+            return response_internal_server_error()
         except CustomExceptionError as e:
             message = getattr(e, 'message', 'Internal Server Error')
             status_code = getattr(e, 'status_code', 500)
@@ -96,7 +95,9 @@ class SQLAlchemySessionMiddleware(BaseHTTPMiddleware):
             log.error(f'Error in SQLAlchemySessionMiddleware: {e}', exc_info=True)
             return response_internal_server_error()
         finally:
-            request.state.db.close()
+            db = getattr(request.state, 'db', None)
+            if db is not None:
+                db.close()
         return response
 
 
@@ -111,12 +112,23 @@ app.add_middleware(SQLAlchemySessionMiddleware)
 
 
 # Custom CORS handler, needs to be at the end of the middleware list
-@app.middleware('http')
-async def cors_handler(request: Request, call_next):
-    """Add CORS headers to the response."""
-    response: Response = await call_next(request)
+def _apply_cors_headers(response: Response) -> None:
+    """Ensure browsers can read error responses from another origin."""
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Access-Control-Allow-Origin'] = Config.CORS_ALLOW_ORIGIN
     response.headers['Access-Control-Allow-Methods'] = '*'
     response.headers['Access-Control-Allow-Headers'] = '*'
+
+
+@app.middleware('http')
+async def cors_handler(request: Request, call_next):
+    """Add CORS headers to every response, including errors that escape inner layers."""
+    try:
+        response: Response = await call_next(request)
+    except StarletteHTTPException as exc:
+        response = JSONResponse({'detail': exc.detail}, status_code=exc.status_code)
+    except Exception:
+        log.exception('Unhandled exception while handling request')
+        response = response_internal_server_error()
+    _apply_cors_headers(response)
     return response

@@ -1,8 +1,11 @@
 """Initial database
 
 Revision ID: f4b1dcaf253e
-Revises: 
+Revises:
 Create Date: 2026-04-16 17:19:15.780553
+
+Consolidated schema (formerly split across follow-up revisions): ``users.name`` is
+nullable for optional display name at signup.
 
 """
 from typing import Sequence, Union
@@ -32,7 +35,7 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
-    sa.Column('name', sa.String(length=256), nullable=False),
+    sa.Column('name', sa.String(length=256), nullable=True),
     sa.Column('email', sa.String(length=320), nullable=True),
     sa.Column('password', sa.String(length=256), nullable=False),
     sa.Column('phone_code', sa.String(length=12), nullable=True, comment='Phone number with country code, e.g. +47'),

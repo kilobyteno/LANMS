@@ -238,21 +238,7 @@ export function WorkspaceSwitcher() {
             <DropdownMenuLabel className="text-xs text-muted-foreground">
               Organisations and events
             </DropdownMenuLabel>
-            {organisations.length === 0 ? (
-              <div className="space-y-2 px-2 py-3 text-sm text-muted-foreground">
-                <p>No organisations yet. Create one to get started.</p>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  className="w-full"
-                  onClick={() => setCreateOrgOpen(true)}
-                >
-                  <PlusIcon className="size-4" />
-                  Create organisation
-                </Button>
-              </div>
-            ) : (
+            {organisations.length > 0 && (
               organisations.map((org) => {
                 const orgEvents = eventsByOrganisationId[org.id] ?? []
                 const isActiveOrg = selectedOrganisationId === org.id

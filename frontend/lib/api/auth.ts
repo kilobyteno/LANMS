@@ -13,7 +13,7 @@ export type RefreshPayload = {
 
 export type UserResponse = {
   id: string
-  name: string
+  name: string | null
   email: string | null
   phone_code: string | null
   phone_number: string | null
@@ -38,11 +38,11 @@ export function postSignupVerify(body: { email: string; code: string }) {
 }
 
 export function postSignupDetails(body: {
-  name: string
-  phone_code: string
-  phone_number: string
   email: string
   password: string
+  name?: string
+  phone_code?: string
+  phone_number?: string
   referrer?: string | null
 }) {
   return coreFetch<UserResponse>("/auth/signup/details", {
