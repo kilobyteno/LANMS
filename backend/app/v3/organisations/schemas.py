@@ -1,7 +1,8 @@
 from datetime import datetime
-from uuid import UUID
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr
+
+from app.v3.uuid_types import UUID7
 
 
 class OrganisationBase(BaseModel):
@@ -33,16 +34,13 @@ class OrganisationUpdate(OrganisationBase):
 class OrganisationResponse(OrganisationBase):
     """Organisation response model"""
 
-    id: UUID
-    created_by_id: UUID
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID7
+    created_by_id: UUID7
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None
-
-    class Config:
-        """Pydantic config"""
-
-        orm_mode = True
 
 
 class OrganisationListResponse(BaseModel):

@@ -1,10 +1,10 @@
 from datetime import datetime
-from uuid import UUID
 
-from pydantic import BaseModel, EmailStr, SecretStr, constr, field_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, SecretStr, constr, field_validator
 from starlette import status
 
 from app.v3.utils import CustomExceptionError
+from app.v3.uuid_types import UUID7
 from config import Config
 
 
@@ -130,16 +130,13 @@ class UserBase(BaseModel):
 class UserResponse(UserBase):
     """User response model"""
 
-    id: UUID
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID7
     email_verified_at: datetime | None = None
     privacy_policy_accepted_at: datetime | None = None
     terms_of_service_accepted_at: datetime | None = None
     refresh_token: str | None = None
-
-    class Config:
-        """Pydantic config"""
-
-        orm_mode = True  # Enables compatibility with SQLAlchemy models
 
 
 class A10Input(BaseModel):
