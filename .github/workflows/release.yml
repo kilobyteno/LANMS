@@ -77,6 +77,13 @@ jobs:
                         f.write(f"semver={semver}\n")
                     PY
 
+            -   name: Install uv
+                uses: astral-sh/setup-uv@v7
+
+            -   name: Refresh backend uv.lock
+                working-directory: backend
+                run: uv lock
+
             -   name: Set up Node.js
                 uses: actions/setup-node@v6
                 with:
