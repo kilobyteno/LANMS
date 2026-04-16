@@ -1,26 +1,35 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext.tsx';
+"use client";
+
+import { useAuth } from "@/context/AuthContext";
+import { useRouter, usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 interface PublicOnlyRouteProps {
-  children: React.ReactNode;
-  redirectTo?: string;
+    children: React.ReactNode;
+    redirectTo?: string;
 }
 
 export const PublicOnlyRoute = ({
-  children,
-  redirectTo = '/'
+    children,
+    redirectTo = "/",
 }: PublicOnlyRouteProps) => {
-  const { isAuthenticated, loading } = useAuth();
-  const location = useLocation();
+    const { isAuthenticated, loading } = useAuth();
+    const router = useRouter();
+    const pathname = usePathname();
 
-  // Show nothing while checking auth state
-  if (loading) {
-    return null;
-  }
+    useEffect(() => {
+        if (!loading && isAuthenticated) {
+            router.replace(redirectTo);
+        }
+    }, [isAuthenticated, loading, redirectTo, router, pathname]);
 
-  if (isAuthenticated) {
-    return <Navigate to={redirectTo} state={{ from: location }} replace />;
-  }
+    if (loading) {
+        return null;
+    }
 
-  return <>{children}</>;
+    if (isAuthenticated) {
+        return null;
+    }
+
+    return <>{children}</>;
 };

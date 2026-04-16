@@ -1,3 +1,5 @@
+"use client";
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,20 +11,20 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {Link, useNavigate} from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {useAuth} from "@/context/AuthContext";
 import {SignOut, Password} from "@phosphor-icons/react";
-import {route, RouteConfig} from "@/routes/route-config";
 import {useTranslation} from "react-i18next";
 
 
 export function AttendeeNavUser() {
-    const navigate = useNavigate();
+    const router = useRouter();
     const {logout, user} = useAuth();
     const {t} = useTranslation();
     const handleSignOut = async () => {
         await logout();
-        navigate(route(RouteConfig.LOGIN));
+        router.replace("/login");
     };
 
     return (
@@ -51,12 +53,12 @@ export function AttendeeNavUser() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator /> */}
                 <DropdownMenuGroup>
-                    <Link to={RouteConfig.ATTENDEE.USER.PASSWORD_CHANGE}>
-                        <DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/attendee/user/password/change">
                             <Password/>
                             {t('nav.user.change_password')}
-                        </DropdownMenuItem>
-                    </Link>
+                        </Link>
+                    </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem onClick={handleSignOut}>

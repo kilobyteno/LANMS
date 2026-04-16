@@ -1,8 +1,8 @@
 import React, {createContext, useContext, useState, useEffect} from 'react';
 import {userApi} from '../lib/api/user';
 import { useAuth } from './AuthContext';
-import {Organisation} from "@/lib/api/organisation.ts";
-import { useIsOrganiserRoute } from '../hooks/useIsOrganiserRoute.ts';
+import {Organisation} from "@/lib/api/organisation";
+import { useIsOrganiserRoute } from '../hooks/useIsOrganiserRoute';
 
 interface OrganisationContextType {
     currentOrganisation: Organisation | null;

@@ -1,7 +1,7 @@
 import axios, {AxiosError, InternalAxiosRequestConfig} from 'axios';
-import {toast} from '@/hooks/use-toast';
-import {authApi, TokenPair} from "@/lib/api/auth.ts";
-import {API_BASE_URL, ENV} from "@/env.tsx";
+import { toast } from "sonner";
+import {authApi, TokenPair} from "@/lib/api/auth";
+import {API_BASE_URL, ENV} from "@/env";
 
 export interface ApiResponse<T> {
     status: string;
@@ -21,23 +21,27 @@ export const apiClient = axios.create({
     },
 });
 
-// Token management
+// Token management (browser only — never touch sessionStorage/localStorage during SSR)
 const getAccessToken = (): string | null => {
-    return sessionStorage.getItem('access_token');
+    if (typeof window === "undefined") return null;
+    return sessionStorage.getItem("access_token");
 };
 
 const getRefreshToken = (): string | null => {
-    return localStorage.getItem('refresh_token');
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem("refresh_token");
 };
 
 const setTokens = (tokens: TokenPair) => {
-    sessionStorage.setItem('access_token', tokens.access_token);
-    localStorage.setItem('refresh_token', tokens.refresh_token);
+    if (typeof window === "undefined") return;
+    sessionStorage.setItem("access_token", tokens.access_token);
+    localStorage.setItem("refresh_token", tokens.refresh_token);
 };
 
 const clearTokens = () => {
-    sessionStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    if (typeof window === "undefined") return;
+    sessionStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
 };
 
 // Refresh token function
@@ -98,8 +102,7 @@ apiClient.interceptors.response.use(
         const method = response.config.method?.toUpperCase() || '';
         if (successMethods.includes(method) && 
             !(ENV !== 'production' && response.config.url === '/v3/auth/refresh')) {
-            toast({
-                title: "Success",
+            toast.success("Success", {
                 description: getResponseMessage(response),
                 duration: 5000,
             });
@@ -129,9 +132,9 @@ apiClient.interceptors.response.use(
             } catch (refreshError) {
                 // If refresh fails, redirect to login
                 clearTokens();
-                toast({
-                    title: "Session Expired",
-                    description: "Your session has expired. Please log in again.",
+                toast.error("Session Expired", {
+                    description:
+                        "Your session has expired. Please log in again.",
                     duration: 5000,
                 });
                 //window.location.href = '/';
@@ -141,8 +144,7 @@ apiClient.interceptors.response.use(
 
         // Show error toast for all other errors
         if (error.response?.status !== 401 && error.response?.status !== 404) {
-            toast({
-                title: "Error",
+            toast.error("Error", {
                 description: getErrorMessage(error),
                 duration: 5000,
             });

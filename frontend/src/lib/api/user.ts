@@ -1,5 +1,5 @@
 import {apiClient, ApiResponse} from './client';
-import {Organisation} from "@/lib/api/organisation.ts";
+import {Organisation} from "@/lib/api/organisation";
 import {Event} from "@/lib/api/events";
 
 export interface User {

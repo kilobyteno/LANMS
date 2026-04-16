@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {Button} from "@/components/ui/button"
 import {Globe} from "@phosphor-icons/react"
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip.tsx";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
 const languages = [
     {code: "en", name: "English"},

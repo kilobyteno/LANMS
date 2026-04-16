@@ -2,8 +2,8 @@ import React, {createContext, useContext, useState, useEffect} from 'react';
 import {useOrganisation} from './OrganisationContext';
 import {organisationApi} from '../lib/api/organisation';
 import {useAuth} from './AuthContext';
-import {Event} from '../lib/api/events.ts';
-import { useIsOrganiserRoute } from '../hooks/useIsOrganiserRoute.ts';
+import {Event} from '../lib/api/events';
+import { useIsOrganiserRoute } from '../hooks/useIsOrganiserRoute';
 
 interface EventContextType {
     currentEvent: Event | null;
@@ -35,7 +35,7 @@ export function EventProvider({children}: { children: React.ReactNode }) {
     }
 
     async function fetchEvents() {
-        if (!isAuthenticated || !isOrganiserRoute || !currentOrganisation) {
+        if (!isAuthenticated || !isOrganiserRoute || !currentOrganisation?.id) {
             setEvents([]);
             setCurrentEvent(null);
             setLoading(false);

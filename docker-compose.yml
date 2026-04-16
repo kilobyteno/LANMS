@@ -7,11 +7,13 @@ services:
       dockerfile: Dockerfile
       args:
         - BUILD_ENV=${BUILD_ENV:-production}
+        - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-production}
+        - NEXT_PUBLIC_CORE_API_URL=${NEXT_PUBLIC_CORE_API_URL:-http://backend:8000/v3}
     ports:
       - "${FRONTEND_PORT:-8080}:8080"
     environment:
-      - VITE_ENV=${VITE_ENV:-production}
-      - VITE_CORE_API_URL=${VITE_CORE_API_URL:-http://backend:8000/v3}
+      - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-production}
+      - NEXT_PUBLIC_CORE_API_URL=${NEXT_PUBLIC_CORE_API_URL:-http://backend:8000/v3}
     networks:
       - app-network
     depends_on:

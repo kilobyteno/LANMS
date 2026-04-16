@@ -7,11 +7,10 @@ interface MarkdownProps {
 
 export function Markdown({content}: MarkdownProps) {
     return (
-        <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            className="prose dark:prose-invert max-w-none prose-sm"
-        >
-            {content}
-        </ReactMarkdown>
+        <div className="prose dark:prose-invert max-w-none prose-sm">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {content}
+            </ReactMarkdown>
+        </div>
     );
 }

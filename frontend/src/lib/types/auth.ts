@@ -1,5 +1,5 @@
 import {ApiResponse} from "../api/client";
-import {TokenPair} from "@/lib/api/auth.ts";
+import {TokenPair} from "@/lib/api/auth";
 
 
 export interface SignupResponseData {

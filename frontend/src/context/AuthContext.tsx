@@ -16,10 +16,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({children}: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(!!getAccessToken() && !!getRefreshToken());
+    // Start false so SSR matches first client paint; sync from storage after mount only.
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const fetchCurrentUser = async () => {
-        if (!isAuthenticated) {
+        if (!getAccessToken() || !getRefreshToken()) {
             setLoading(false);
             return;
         }
@@ -35,8 +36,9 @@ export function AuthProvider({children}: { children: React.ReactNode }) {
     };
 
     useEffect(() => {
-        fetchCurrentUser();
-    }, [isAuthenticated]);
+        setIsAuthenticated(!!getAccessToken() && !!getRefreshToken());
+        void fetchCurrentUser();
+    }, []);
 
     const handleLogin = async (...args: Parameters<typeof authApi.login>) => {
         try {

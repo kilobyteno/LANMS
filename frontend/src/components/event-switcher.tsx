@@ -1,3 +1,5 @@
+"use client";
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,8 +16,8 @@ import {
 } from "@/components/ui/sidebar"
 import {CaretUpDown, Plus, PencilSimple, Trash, DotsThree, Eye} from "@phosphor-icons/react";
 import {useTranslation} from "react-i18next";
-import {Link, useNavigate} from "react-router-dom";
-import {route, RouteConfig} from "@/routes/route-config.ts";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {useEvent} from "@/context/EventContext"
 import {useState} from "react";
 
@@ -23,12 +25,12 @@ export function EventSwitcher() {
     const {isMobile, setOpenMobile} = useSidebar()
     const {currentEvent, setCurrentEvent, events, loading} = useEvent()
     const {t} = useTranslation()
-    const navigate = useNavigate()
+    const router = useRouter()
     const [isOpen, setIsOpen] = useState(false);
 
     const handleEventSwitch = (event: any) => {
         setCurrentEvent(event);
-        navigate(route(RouteConfig.ORGANISER.ROOT));
+        router.push("/organiser");
         setOpenMobile(false);
         setIsOpen(false);
     }
@@ -59,7 +61,7 @@ export function EventSwitcher() {
         return (
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <Link to={route(RouteConfig.ORGANISER.EVENTS.CREATE)}>
+                    <Link href="/organiser/events/create">
                         <SidebarMenuButton
                             size="lg"
                             className="gap-2 text-sidebar-muted-foreground hover:text-sidebar-foreground"
@@ -120,7 +122,7 @@ export function EventSwitcher() {
                                     <DropdownMenuContent align="end" className="w-48">
                                         <DropdownMenuItem asChild>
                                             <Link 
-                                                to={route(RouteConfig.ATTENDEE.EVENTS.DETAIL, { id: event.id })}
+                                                href={`/attendee/events/${event.id}`}
                                                 className="flex items-center gap-2"
                                                 onClick={handleActionClick}
                                             >
@@ -130,7 +132,7 @@ export function EventSwitcher() {
                                         </DropdownMenuItem>
                                         <DropdownMenuItem asChild>
                                             <Link 
-                                                to={route(RouteConfig.ORGANISER.EVENTS.EDIT, { id: event.id })}
+                                                href={`/organiser/events/${event.id}/edit`}
                                                 className="flex items-center gap-2"
                                             >
                                                 <PencilSimple className="size-4" />
@@ -139,7 +141,7 @@ export function EventSwitcher() {
                                         </DropdownMenuItem>
                                         <DropdownMenuItem asChild>
                                             <Link 
-                                                to={route(RouteConfig.ORGANISER.EVENTS.DELETE, { id: event.id })}
+                                                href={`/organiser/events/${event.id}/delete`}
                                                 className="flex items-center gap-2 text-destructive"
                                             >
                                                 <Trash className="size-4" />
@@ -152,7 +154,7 @@ export function EventSwitcher() {
                         ))}
                         <DropdownMenuSeparator/>
                         <DropdownMenuItem asChild className="gap-2 p-2">
-                            <Link to={route(RouteConfig.ORGANISER.EVENTS.CREATE)}>
+                            <Link href="/organiser/events/create">
                                     <Plus className="size-4"/>
                                 <div className="font-medium text-muted-foreground">
                                     {t("event_switcher.create")}

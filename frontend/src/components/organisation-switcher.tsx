@@ -1,3 +1,5 @@
+"use client";
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,14 +16,14 @@ import {
 } from "@/components/ui/sidebar"
 import {CaretUpDown, Plus, Buildings, PencilSimple, Trash} from "@phosphor-icons/react";
 import {useTranslation} from "react-i18next";
-import {Link, useNavigate} from "react-router-dom";
-import {route, RouteConfig} from "@/routes/route-config";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {useOrganisation} from "@/context/OrganisationContext";
 
 export function OrganisationSwitcher() {
     const {isMobile} = useSidebar()
     const {t} = useTranslation();
-    const navigate = useNavigate();
+    const router = useRouter();
     const {currentOrganisation, userOrganisations, setCurrentOrganisation, loading} = useOrganisation();
 
     if (loading) {
@@ -44,7 +46,7 @@ export function OrganisationSwitcher() {
         return (
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <Link to={route(RouteConfig.ORGANISER.ORGANISATIONS.CREATE)}>
+                    <Link href="/organiser/organisation/create">
                         <SidebarMenuButton
                             size="lg"
                             className="gap-2 text-sidebar-muted-foreground hover:text-sidebar-foreground"
@@ -93,7 +95,7 @@ export function OrganisationSwitcher() {
                                     {currentOrganisation?.name || t("organisation_switcher.select_organisation")}
                                 </DropdownMenuLabel>
                                 <DropdownMenuItem asChild>
-                                    <Link to={route(RouteConfig.ORGANISER.ORGANISATIONS.EDIT, { id: currentOrganisation.id })}>
+                                    <Link href={`/organiser/organisation/${currentOrganisation.id ?? ""}/edit`}>
                                         <div className="flex items-center">
                                             <PencilSimple className="mr-2 size-4" />
                                             {t('common.edit')}
@@ -101,7 +103,7 @@ export function OrganisationSwitcher() {
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
-                                    <Link to={route(RouteConfig.ORGANISER.ORGANISATIONS.DELETE, { id: currentOrganisation.id })}>
+                                    <Link href={`/organiser/organisation/${currentOrganisation.id ?? ""}/delete`}>
                                         <div className="flex items-center text-destructive">
                                             <Trash className="mr-2 size-4" />
                                             {t('common.delete')}
@@ -121,7 +123,7 @@ export function OrganisationSwitcher() {
                                         key={org.id}
                                         onClick={() => {
                                             setCurrentOrganisation(org);
-                                            navigate(route(RouteConfig.ORGANISER.ROOT));
+                                            router.push("/organiser");
                                         }}
                                         className="gap-2 p-2"
                                     >
@@ -135,7 +137,7 @@ export function OrganisationSwitcher() {
                             </>
                         )}
                         <DropdownMenuItem asChild className="gap-2 p-2">
-                            <Link to={route(RouteConfig.ORGANISER.ORGANISATIONS.CREATE)}>
+                            <Link href="/organiser/organisation/create">
                                 <Plus className="size-4"/>
                                 <div className="font-medium text-muted-foreground">
                                     {t("organisation_switcher.create")}
