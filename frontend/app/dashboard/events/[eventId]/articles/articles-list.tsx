@@ -111,12 +111,14 @@ export function EventArticlesList() {
             All articles for this event, including drafts.
           </p>
         </div>
-        <Button asChild className="shrink-0 gap-1.5">
-          <Link href={`/dashboard/events/${eventId}/articles/new`}>
-            <PlusIcon className="size-4" />
-            New article
-          </Link>
-        </Button>
+        {articles.length > 0 && (
+          <Button asChild className="shrink-0 gap-1.5">
+            <Link href={`/dashboard/events/${eventId}/articles/new`}>
+              <PlusIcon className="size-4" />
+              Create article
+            </Link>
+          </Button>
+        )}
       </div>
 
       {loading ? (
