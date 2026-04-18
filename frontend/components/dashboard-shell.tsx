@@ -36,7 +36,7 @@ function DashboardBreadcrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/organisor">Organisor</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         {isArticles ? (

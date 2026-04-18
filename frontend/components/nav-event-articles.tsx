@@ -27,7 +27,7 @@ export function NavEventArticles() {
             }
           >
             {selectedEvent ? (
-              <Link href={`/dashboard/events/${selectedEvent.id}/articles`}>
+              <Link href={`/organisor/events/${selectedEvent.id}/articles`}>
                 <NewspaperIcon />
                 <span>Articles</span>
               </Link>

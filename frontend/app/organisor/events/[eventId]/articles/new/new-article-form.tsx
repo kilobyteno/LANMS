@@ -96,7 +96,7 @@ export function NewArticleForm() {
                 setError(res.message)
                 return
               }
-              router.push(`/dashboard/events/${eventId}/articles`)
+              router.push(`/organisor/events/${eventId}/articles`)
             })
           }}
         >
@@ -149,7 +149,7 @@ export function NewArticleForm() {
                 {pending ? "Saving…" : "Create article"}
               </Button>
               <Button type="button" variant="outline" asChild>
-                <Link href={`/dashboard/events/${eventId}/articles`}>
+                <Link href={`/organisor/events/${eventId}/articles`}>
                   Cancel
                 </Link>
               </Button>

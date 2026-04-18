@@ -113,7 +113,7 @@ export function EventArticlesList() {
         </div>
         {articles.length > 0 && (
           <Button asChild className="shrink-0 gap-1.5">
-            <Link href={`/dashboard/events/${eventId}/articles/new`}>
+            <Link href={`/organisor/events/${eventId}/articles/new`}>
               <PlusIcon className="size-4" />
               Create article
             </Link>
@@ -146,7 +146,7 @@ export function EventArticlesList() {
           </EmptyHeader>
           <EmptyContent>
             <Button asChild className="gap-1.5">
-              <Link href={`/dashboard/events/${eventId}/articles/new`}>
+              <Link href={`/organisor/events/${eventId}/articles/new`}>
                 <PlusIcon className="size-4" />
                 Create article
               </Link>
@@ -178,7 +178,7 @@ export function EventArticlesList() {
               <TableRow key={a.id}>
                 <TableCell className="font-medium">
                   <Link
-                    href={`/dashboard/events/${eventId}/articles/${a.id}/edit`}
+                    href={`/organisor/events/${eventId}/articles/${a.id}/edit`}
                     className="text-foreground hover:text-primary hover:underline underline-offset-4"
                   >
                     {a.title}
@@ -208,7 +208,7 @@ export function EventArticlesList() {
                 <TableCell className="text-right pr-2">
                   <Button variant="ghost" size="sm" className="gap-1" asChild>
                     <Link
-                      href={`/dashboard/events/${eventId}/articles/${a.id}/edit`}
+                      href={`/organisor/events/${eventId}/articles/${a.id}/edit`}
                     >
                       <PencilSimpleIcon className="size-4" />
                       Edit

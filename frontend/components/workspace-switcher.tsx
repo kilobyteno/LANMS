@@ -14,7 +14,7 @@ import {
   createOrganisation,
 } from "@/lib/api/organisations"
 import { getAccessToken } from "@/lib/auth/session"
-import { dashboardPathAfterEventSwitch } from "@/lib/dashboard-event-path"
+import { organisorPathAfterEventSwitch } from "@/lib/organisor-event-path"
 import { persistActiveOrganisationId } from "@/lib/organisation/storage"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -112,7 +112,7 @@ export function WorkspaceSwitcher() {
   } = useEvent()
 
   const navigateForActiveEvent = (eventId: string) => {
-    const next = dashboardPathAfterEventSwitch(pathname, eventId)
+    const next = organisorPathAfterEventSwitch(pathname, eventId)
     if (next != null && next !== pathname) {
       router.push(next)
     }

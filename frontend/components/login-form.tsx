@@ -54,7 +54,7 @@ export function LoginForm({
                   return
                 }
                 setTokens(res.data.access_token, res.data.refresh_token)
-                router.push("/dashboard")
+                router.push("/organisor")
               })
             }}
           >

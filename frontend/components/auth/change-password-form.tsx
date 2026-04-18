@@ -155,10 +155,10 @@ export function ChangePasswordForm({
                 </Button>
                 <FieldDescription className="text-center">
                   <Link
-                    href="/dashboard"
+                    href="/organisor"
                     className="underline-offset-4 hover:underline"
                   >
-                    Back to dashboard
+                    Back to organisor
                   </Link>
                 </FieldDescription>
               </Field>
