@@ -21,7 +21,7 @@ dependencies = [
     "sendgrid~=6.12.5",
     "python-dotenv~=1.2.2",
     "tunsberg~=0.3.0",
-    "phonenumbers~=9.0.28",
+    "phonenumbers~=9.0.29",
     "postmarker~=1.0.0",
     "uuid6~=2025.0.1",
 ]
