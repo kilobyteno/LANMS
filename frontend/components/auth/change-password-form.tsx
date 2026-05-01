@@ -27,6 +27,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export function ChangePasswordForm({
@@ -112,10 +113,9 @@ export function ChangePasswordForm({
               ) : null}
               <Field>
                 <FieldLabel htmlFor="old_password">Current password</FieldLabel>
-                <Input
+                <PasswordInput
                   id="old_password"
                   name="old_password"
-                  type="password"
                   required
                   autoComplete="current-password"
                 />
@@ -124,10 +124,9 @@ export function ChangePasswordForm({
                 <Field className="grid grid-cols-2 gap-4">
                   <Field>
                     <FieldLabel htmlFor="password">New password</FieldLabel>
-                    <Input
+                    <PasswordInput
                       id="password"
                       name="password"
-                      type="password"
                       required
                       autoComplete="new-password"
                     />
@@ -136,10 +135,9 @@ export function ChangePasswordForm({
                     <FieldLabel htmlFor="password_confirmation">
                       Confirm
                     </FieldLabel>
-                    <Input
+                    <PasswordInput
                       id="password_confirmation"
                       name="password_confirmation"
-                      type="password"
                       required
                       autoComplete="new-password"
                     />

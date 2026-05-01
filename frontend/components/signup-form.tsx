@@ -26,6 +26,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import {
   InputOTP,
   InputOTPGroup,
@@ -348,10 +349,9 @@ export function SignupForm({
                   <Field className="grid grid-cols-2 gap-4">
                     <Field>
                       <FieldLabel htmlFor="password">Password</FieldLabel>
-                      <Input
+                      <PasswordInput
                         id="password"
                         name="password"
-                        type="password"
                         required
                         autoComplete="new-password"
                       />
@@ -360,10 +360,9 @@ export function SignupForm({
                       <FieldLabel htmlFor="password_confirmation">
                         Confirm
                       </FieldLabel>
-                      <Input
+                      <PasswordInput
                         id="password_confirmation"
                         name="password_confirmation"
-                        type="password"
                         required
                         autoComplete="new-password"
                       />

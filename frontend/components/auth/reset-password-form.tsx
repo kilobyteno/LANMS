@@ -20,7 +20,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export function ResetPasswordForm({
@@ -102,30 +102,26 @@ export function ResetPasswordForm({
                 </Alert>
               ) : null}
               <Field>
-                <Field className="grid grid-cols-2 gap-4">
-                  <Field>
-                    <FieldLabel htmlFor="password">New password</FieldLabel>
-                    <Input
-                      id="password"
-                      name="password"
-                      type="password"
-                      required
-                      autoComplete="new-password"
-                    />
-                  </Field>
-                  <Field>
-                    <FieldLabel htmlFor="password_confirmation">
-                      Confirm
-                    </FieldLabel>
-                    <Input
-                      id="password_confirmation"
-                      name="password_confirmation"
-                      type="password"
-                      required
-                      autoComplete="new-password"
-                    />
-                  </Field>
-                </Field>
+                <FieldLabel htmlFor="password">New password</FieldLabel>
+                <PasswordInput
+                  id="password"
+                  name="password"
+                  required
+                  autoComplete="new-password"
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="password_confirmation">
+                  Confirm
+                </FieldLabel>
+                <PasswordInput
+                  id="password_confirmation"
+                  name="password_confirmation"
+                  required
+                  autoComplete="new-password"
+                />
+              </Field>
+              <Field>
                 <FieldDescription>
                   Must be at least {PASSWORD_MIN_LENGTH} characters.
                 </FieldDescription>
