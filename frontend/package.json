@@ -90,7 +90,7 @@
         "globals": "^17.5.0",
         "i18next-parser": "^9.4.0",
         "tailwindcss": "^4.2.2",
-        "typescript": "^6.0.2",
+        "typescript": "^6.0.3",
         "typescript-eslint": "^8.58.2",
         "vite": "^8.0.8"
     },
