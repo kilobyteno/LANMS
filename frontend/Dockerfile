@@ -1,29 +1,24 @@
 ARG BUILD_ENV=production
 ARG NODE=node:22-alpine
-ARG NGINX=nginx:stable-alpine
 
-FROM ${NODE} as node
+FROM ${NODE} AS builder
 
-# Needed to pass the ENV variable to the build stage, so stupid
 ARG BUILD_ENV
-# Reference: https://qmacro.org/blog/posts/2024/05/13/using-arg-in-a-dockerfile-beware-the-gotcha/
+ARG NEXT_PUBLIC_ENV=production
+ARG NEXT_PUBLIC_CORE_API_URL
 
-# Set working directory
+ENV NEXT_PUBLIC_ENV=$NEXT_PUBLIC_ENV
+ENV NEXT_PUBLIC_CORE_API_URL=$NEXT_PUBLIC_CORE_API_URL
+
 WORKDIR /app
 
-# Copy source code
-COPY . /app
+COPY package.json package-lock.json* ./
+RUN npm install -g npm@latest && npm ci
 
-# Update npm
-RUN npm install -g npm@latest
+COPY . .
 
-# Install dependencies
-RUN npm install
-
-# Build for production or staging
 RUN echo "Building for environment: $BUILD_ENV" >&2
 
-# Override build command if build mode is staging
 RUN if [ "$BUILD_ENV" = "sandbox" ]; then \
         npm run build:sandbox; \
     elif [ "$BUILD_ENV" = "staging" ]; then \
@@ -32,21 +27,23 @@ RUN if [ "$BUILD_ENV" = "sandbox" ]; then \
         npm run build:production; \
     fi
 
-# Build Nginx image
-FROM ${NGINX}
+FROM ${NODE} AS runner
 
-# Copy Nginx configuration file into appropriate location (see docs of nginx image)
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Copy static files to nginx work folder
-COPY --from=node app/dist /var/www/portal/
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 
-# Add redirecting requests and error logs to docker log
-RUN ln -sf /dev/stdout /var/log/nginx/portal.access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/portal.error.log
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-# Expose port
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
 EXPOSE 8080
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server.js"]

@@ -54,7 +54,7 @@ log = logging.getLogger(__name__)
 def signup_generate_otp(request_data: A1Input, db: Session):
     """Start signup by generating an OTP"""
     # Check if the user already exists
-    user = db.query(User).filter(User.email == request_data.email, User.email_verified_at.is_(None)).first()
+    user = db.query(User).filter(User.email == request_data.email, User.deleted_at.is_(None)).first()
     if user:
         return response_conflict(message='User with the email already exists')
 
@@ -95,7 +95,7 @@ def signup_generate_otp(request_data: A1Input, db: Session):
 def signup_verify_otp(request_data: A2Input, db: Session):
     """Verify an OTP"""
     # Check if the user already exists
-    user = db.query(User).filter(User.email == request_data.email, User.email_verified_at.is_(None)).first()
+    user = db.query(User).filter(User.email == request_data.email, User.deleted_at.is_(None)).first()
     if user:
         return response_conflict(message='User with the email already exists')
 
@@ -133,11 +133,11 @@ def signup_details(request_data: A3Input, db: Session):
     """Signup details for a user"""
     # Build filter conditions based on the request data
     filter_conditions = [User.email == request_data.email]
-    if request_data.phone_number:
-        filter_conditions.append(User.phone_number == request_data.phone_number)
+    if request_data.phone_code and request_data.phone_number:
+        filter_conditions.append((User.phone_code == request_data.phone_code) & (User.phone_number == request_data.phone_number))
 
     # Query for user
-    # This query checks if a user exists with either the given email or phone number if provided
+    # This query checks if a user exists with either the given email or phone pair if provided
     user = db.query(User).filter(or_(*filter_conditions), User.deleted_at.is_(None)).first()
     if user:
         return response_conflict(message='User with the email or phone number already exists')
@@ -147,6 +147,7 @@ def signup_details(request_data: A3Input, db: Session):
     if not otp:
         return response_bad_request(message='Please verify your email with the OTP sent to your email')
 
+    now = datetime.now(tz=UTC)
     # Create the user
     user = User(
         name=request_data.name,
@@ -154,10 +155,11 @@ def signup_details(request_data: A3Input, db: Session):
         phone_number=request_data.phone_number,
         email=request_data.email,
         password=get_hashed_password(request_data.password),
-        photo_url=get_avatar_url(request_data.name),
+        photo_url=get_avatar_url(request_data.name, request_data.email),
         referrer=request_data.referrer,
-        terms_of_service_accepted_at=datetime.now(tz=UTC),
-        privacy_policy_accepted_at=datetime.now(tz=UTC),
+        email_verified_at=now,
+        terms_of_service_accepted_at=now,
+        privacy_policy_accepted_at=now,
     )
     try:
         db.add(user)

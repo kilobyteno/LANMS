@@ -1,6 +1,7 @@
+import re
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, EmailStr, SecretStr, constr, field_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, SecretStr, constr, field_validator, model_validator
 from starlette import status
 
 from app.v3.utils import CustomExceptionError
@@ -39,28 +40,21 @@ class A6Output(BaseModel):
 class A3Input(BaseModel):
     """Input model user sign up"""
 
-    name: str
-    phone_code: constr(pattern=r'^\+\d{1,3}$')  # e.g., +44, +1, +91, +505
-    phone_number: str
+    name: str | None = None
+    phone_code: str | None = None
+    phone_number: str | None = None
     email: EmailStr
     password: SecretStr
     referrer: str | None = None
 
-    @field_validator('phone_code')
+    @field_validator('name')
     @classmethod
-    def validate_phone_code(cls, value):
-        """Validate phone code"""
-        if not value.startswith('+'):
-            raise CustomExceptionError(status_code=status.HTTP_400_BAD_REQUEST, message='Phone code must start with a "+" symbol.')
-        return value
-
-    @field_validator('phone_number')
-    @classmethod
-    def validate_phone_number(cls, value):
-        """Validate phone number"""
-        if not value.isdigit():
-            raise CustomExceptionError(status_code=status.HTTP_400_BAD_REQUEST, message='Phone number must contain only digits.')
-        return value
+    def normalize_name(cls, value: str | None):
+        """Strip whitespace; treat blank as absent."""
+        if value is None:
+            return None
+        stripped = value.strip()
+        return stripped if stripped else None
 
     @field_validator('password')
     @classmethod
@@ -72,6 +66,34 @@ class A3Input(BaseModel):
                 message=f'Password is too short. Must be of minimum length of {Config.PASSWORD_MIN_LENGTH}.',
             )
         return value
+
+    @model_validator(mode='after')
+    def validate_phone_optional_pair(self):
+        """If either phone field is set, both must be set and valid."""
+        code = self.phone_code
+        num = self.phone_number
+        code_set = code is not None and str(code).strip() != ''
+        num_set = num is not None and str(num).strip() != ''
+        if code_set ^ num_set:
+            raise CustomExceptionError(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                message='Both phone_code and phone_number are required when providing a phone number.',
+            )
+        if not code_set and not num_set:
+            self.phone_code = None
+            self.phone_number = None
+            return self
+        code = str(code).strip()
+        num = str(num).strip()
+        if not re.match(r'^\+\d{1,3}$', code):
+            raise CustomExceptionError(status_code=status.HTTP_400_BAD_REQUEST, message='Phone code must match + followed by 1-3 digits.')
+        if not code.startswith('+'):
+            raise CustomExceptionError(status_code=status.HTTP_400_BAD_REQUEST, message='Phone code must start with a "+" symbol.')
+        if not num.isdigit():
+            raise CustomExceptionError(status_code=status.HTTP_400_BAD_REQUEST, message='Phone number must contain only digits.')
+        self.phone_code = code
+        self.phone_number = num
+        return self
 
 
 class A4Input(BaseModel):
@@ -112,7 +134,7 @@ class A6Input(BaseModel):
 class UserBase(BaseModel):
     """Base user model"""
 
-    name: constr(max_length=256)
+    name: constr(max_length=256) | None = None
     email: EmailStr | None = None
     phone_code: constr(max_length=12) | None = None
     phone_number: constr(max_length=32) | None = None
