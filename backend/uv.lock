@@ -333,16 +333,16 @@ sqlalchemy = [
 
 [[package]]
 name = "fastapi-pagination"
-version = "0.15.12"
+version = "0.15.14"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fastapi" },
     { name = "pydantic" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/11/71/7381bf08f9fb6a890ec41a7ee5191ca564e0af94b899c2006fddaf07d78f/fastapi_pagination-0.15.12.tar.gz", hash = "sha256:914b41e07b8556de34c12d3568c9b7137eb62a3558420061a4acbebf7e729a08", size = 595227, upload-time = "2026-03-28T12:51:03.14Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/88/23/a6ede2d55fb92be2bff1568e84027e374311c8b1262cd908da3db65f0025/fastapi_pagination-0.15.14.tar.gz", hash = "sha256:61209b30172f928887a2537a85d144a2ae970edfadf160aab7c1fb15676dd651", size = 608334, upload-time = "2026-05-30T12:16:35.469Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d2/2f/644fd77ecac100da965221751ae4f7604e149c58c46c1d96c37e828bb5f7/fastapi_pagination-0.15.12-py3-none-any.whl", hash = "sha256:758e21157b2844feecb2409072f1433e24f2dc9526ae7906aa1a1b28622a970a", size = 60921, upload-time = "2026-03-28T12:51:04.288Z" },
+    { url = "https://files.pythonhosted.org/packages/ad/3d/9e2ee25fd0a1a2c63995967885b2ff5d4f0cc40823817a1c745351ea745c/fastapi_pagination-0.15.14-py3-none-any.whl", hash = "sha256:b1c2ae46ae9952199f75d07726e3f11909ecd32bf12701a11f3e1080f05c4e91", size = 65778, upload-time = "2026-05-30T12:16:34.384Z" },
 ]
 
 [[package]]
@@ -526,7 +526,7 @@ requires-dist = [
     { name = "bcrypt", specifier = ">=4.0.1,<5" },
     { name = "fastapi", extras = ["standard"], specifier = "~=0.136.1" },
     { name = "fastapi-filter", extras = ["sqlalchemy"], specifier = "~=2.0.1" },
-    { name = "fastapi-pagination", specifier = "~=0.15.12" },
+    { name = "fastapi-pagination", specifier = "~=0.15.14" },
     { name = "pandas", specifier = "~=3.0.2" },
     { name = "passlib", specifier = "~=1.7.4" },
     { name = "phonenumbers", specifier = "~=9.0.31" },
