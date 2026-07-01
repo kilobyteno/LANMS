@@ -529,7 +529,7 @@ requires-dist = [
     { name = "fastapi-pagination", specifier = "~=0.15.14" },
     { name = "pandas", specifier = "~=3.0.3" },
     { name = "passlib", specifier = "~=1.7.4" },
-    { name = "phonenumbers", specifier = "~=9.0.31" },
+    { name = "phonenumbers", specifier = "~=9.0.33" },
     { name = "postmarker", specifier = "~=1.0.0" },
     { name = "psycopg2-binary", specifier = "~=2.9.12" },
     { name = "pydantic", extras = ["email"], specifier = "~=2.13.4" },
@@ -673,11 +673,11 @@ wheels = [
 
 [[package]]
 name = "phonenumbers"
-version = "9.0.31"
+version = "9.0.33"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7b/20/51f0eafd5819e923d09c6f508a764b84d00e7e7d96c4087627a1adab8d30/phonenumbers-9.0.31.tar.gz", hash = "sha256:287dbd012b12cf9bcc4803b55a29e0d204db5a0df747d38c9130fee1b1b6b0aa", size = 2306679, upload-time = "2026-05-23T06:09:06.338Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/75/37/dfc4cf24169f1a7169ebaedaf896c818f0add8603409d1e748e3085ccdc0/phonenumbers-9.0.33.tar.gz", hash = "sha256:9ab8a02b940b90c64f3866c0b25a30e567ddf7bb9836a3e11efdb0478f65fc1c", size = 2306756, upload-time = "2026-06-22T10:23:33.428Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/d3/17268202ea3fa5a597c98ca5dd178ca013f96b42373c54604e59b3bb8d02/phonenumbers-9.0.31-py2.py3-none-any.whl", hash = "sha256:f308c1f425e2637b92ff34a174f0888ddf47aacfa6199531f7097e00ad90f57c", size = 2595455, upload-time = "2026-05-23T06:09:03.35Z" },
+    { url = "https://files.pythonhosted.org/packages/e6/29/f7e30e3dbd3c7e3d9c4a55006112c04ee62b4765a31f21bcc28c253ac3f1/phonenumbers-9.0.33-py2.py3-none-any.whl", hash = "sha256:ba1d0da52711d5fdda6b2b673b2621fe80774fc5d1b2e5a6ef783396b0343186", size = 2595422, upload-time = "2026-06-22T10:23:29.925Z" },
 ]
 
 [[package]]
