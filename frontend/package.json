@@ -34,7 +34,7 @@
     "@types/react-dom": "^19.2.3",
     "eslint": "^10.2.1",
     "eslint-config-next": "^16.2.9",
-    "postcss": "^8.5.18",
+    "postcss": "^8.5.24",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.2.4",
