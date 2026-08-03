@@ -1,19 +1,18 @@
-version: '3.8'
-
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - BUILD_ENV=${BUILD_ENV:-production}
-        - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-production}
-        - NEXT_PUBLIC_CORE_API_URL=${NEXT_PUBLIC_CORE_API_URL:-http://backend:8000/v3}
+        - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-local}
+        - NEXT_PUBLIC_CORE_API_URL=${NEXT_PUBLIC_CORE_API_URL:-http://localhost:8000/v3}
     ports:
       - "${FRONTEND_PORT:-8080}:8080"
+    env_file:
+      - .env
     environment:
-      - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-production}
-      - NEXT_PUBLIC_CORE_API_URL=${NEXT_PUBLIC_CORE_API_URL:-http://backend:8000/v3}
+      - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-local}
+      - NEXT_PUBLIC_CORE_API_URL=${NEXT_PUBLIC_CORE_API_URL:-http://localhost:8000/v3}
     networks:
       - app-network
     depends_on:
@@ -31,6 +30,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${BACKEND_PORT:-8000}:8000"
+    env_file:
+      - .env
     environment:
       - DB_HOST=${DB_HOST:-db}
       - DB_USERNAME=${DB_USERNAME:-postgres}
@@ -38,7 +39,11 @@ services:
       - DB_PORT=${DB_PORT:-5432}
       - DB_DIALECT=${DB_DIALECT:-postgresql}
       - DB_NAME=${DB_NAME:-postgres}
-      - ENV=${ENV:-production}
+      - ENV=${ENV:-local}
+      - JWT_PUBLIC_KEY=${JWT_PUBLIC_KEY}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY}
+      - OTP_SECRET_KEY=${OTP_SECRET_KEY}
+      - PORTAL_URL=${PORTAL_URL:-http://localhost:8080}
     depends_on:
       db:
         condition: service_healthy
