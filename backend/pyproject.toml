@@ -4,7 +4,7 @@ version = "3.0.0a11"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "alembic~=1.18.5",
-    "fastapi[standard]~=0.138.2",
+    "fastapi[standard]~=0.141.1",
     "pydantic[email]~=2.13.4",
     "pydantic-extra-types~=2.11.1",
     "requests~=2.34.2",
