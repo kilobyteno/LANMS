@@ -12,13 +12,17 @@ ENV UV_LINK_MODE=copy
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc libpq-dev \
+    && apt-get install -y --no-install-recommends \
+        gcc=4:12.2.0-3 \
+        libpq-dev=15.18-0+deb12u1 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY . .
+COPY app/ ./app/
+COPY alembic/ ./alembic/
+COPY alembic.ini config.py create_initial_user.py main.py ./
 RUN uv sync --frozen --no-dev
 
 FROM python:3.12-slim AS runtime
@@ -30,7 +34,10 @@ ENV PATH="/app/.venv/bin:$PATH"
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libpq5 postgresql-client curl \
+    && apt-get install -y --no-install-recommends \
+        libpq5=15.18-0+deb12u1 \
+        postgresql-client=15+248+deb12u1 \
+        curl=7.88.1-10+deb12u15 \
     && rm -rf /var/lib/apt/lists/* \
     && useradd --no-log-init --create-home --uid 1001 appuser
 

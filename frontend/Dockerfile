@@ -11,7 +11,12 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci
 
-COPY . .
+COPY app/ ./app/
+COPY components/ ./components/
+COPY hooks/ ./hooks/
+COPY lib/ ./lib/
+COPY public/ ./public/
+COPY next.config.mjs postcss.config.mjs tsconfig.json components.json ./
 
 RUN npm run build
 
