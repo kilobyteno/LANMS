@@ -1,7 +1,8 @@
 from datetime import datetime
-from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
+
+from app.v3.uuid_types import UUID7
 
 
 class EventInterestBase(BaseModel):
@@ -25,17 +26,14 @@ class EventInterestUpdate(EventInterestBase):
 class EventInterestResponse(EventInterestBase):
     """Event interest response model"""
 
-    id: UUID
-    event_id: UUID
-    user_id: UUID
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID7
+    event_id: UUID7
+    user_id: UUID7
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None
-
-    class Config:
-        """Pydantic config"""
-
-        orm_mode = True
 
 
 class EventInterestCount(BaseModel):

@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
-from pydantic import UUID4
 from sqlalchemy.orm import Session
 
 from app.dependencies import get_db
@@ -17,6 +16,7 @@ from app.v3.organisations.service import (
     get_organisations,
     update_organisation,
 )
+from app.v3.uuid_types import UUID7
 
 router = APIRouter()
 
@@ -48,7 +48,7 @@ async def get_organisations_list(skip: int = 0, limit: int = 100, db: Session = 
     name='O-3',
     response_model=OrganisationResponse,
 )
-async def get_organisation_by_id(organisation_id: UUID4, db: Session = Depends(get_db)) -> JSONResponse:
+async def get_organisation_by_id(organisation_id: UUID7, db: Session = Depends(get_db)) -> JSONResponse:
     """Get organisation by ID"""
     return get_organisation(db=db, organisation_id=organisation_id)
 
@@ -59,7 +59,7 @@ async def get_organisation_by_id(organisation_id: UUID4, db: Session = Depends(g
     response_model=OrganisationResponse,
 )
 async def put_update_organisation(
-    organisation_id: int, organisation_data: OrganisationUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
+    organisation_id: UUID7, organisation_data: OrganisationUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
 ) -> JSONResponse:
     """Update organisation"""
     return update_organisation(db=db, organisation_id=organisation_id, current_user=current_user, organisation_data=organisation_data)
@@ -69,18 +69,18 @@ async def put_update_organisation(
     '/{organisation_id}',
     name='O-5',
 )
-async def delete_organisation_by_id(organisation_id: UUID4, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
+async def delete_organisation_by_id(organisation_id: UUID7, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
     """Delete organisation"""
     return delete_organisation(db=db, organisation_id=organisation_id, current_user=current_user)
 
 
 @router.get('/{organisation_id}/events', name='O-6', response_model=list[EventResponse])
-async def get_organisation_events(organisation_id: UUID4, db: Session = Depends(get_db)) -> JSONResponse:
+async def get_organisation_events(organisation_id: UUID7, db: Session = Depends(get_db)) -> JSONResponse:
     """Get non-deleted events associated with the organisation"""
     return fetch_organisation_events(organisation_id=organisation_id, db=db)
 
 
 @router.get('/{organisation_id}/events/all', name='O-7', response_model=list[EventResponse])
-async def get_organisation_events_all(organisation_id: UUID4, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
+async def get_organisation_events_all(organisation_id: UUID7, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
     """Get all events associated with the organisation"""
     return fetch_organisation_events_all(organisation_id=organisation_id, current_user=current_user, db=db)

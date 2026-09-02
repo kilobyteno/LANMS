@@ -45,6 +45,7 @@ from app.v3.auth.utils import (
     verify_reset_token,
 )
 from app.v3.utils import get_avatar_url, get_portal_url, send_email
+from app.v3.uuid_types import parse_uuid7
 from config import Config
 
 log = logging.getLogger(__name__)
@@ -53,7 +54,7 @@ log = logging.getLogger(__name__)
 def signup_generate_otp(request_data: A1Input, db: Session):
     """Start signup by generating an OTP"""
     # Check if the user already exists
-    user = db.query(User).filter(User.email == request_data.email, User.email_verified_at.is_(None)).first()
+    user = db.query(User).filter(User.email == request_data.email, User.deleted_at.is_(None)).first()
     if user:
         return response_conflict(message='User with the email already exists')
 
@@ -94,7 +95,7 @@ def signup_generate_otp(request_data: A1Input, db: Session):
 def signup_verify_otp(request_data: A2Input, db: Session):
     """Verify an OTP"""
     # Check if the user already exists
-    user = db.query(User).filter(User.email == request_data.email, User.email_verified_at.is_(None)).first()
+    user = db.query(User).filter(User.email == request_data.email, User.deleted_at.is_(None)).first()
     if user:
         return response_conflict(message='User with the email already exists')
 
@@ -132,11 +133,11 @@ def signup_details(request_data: A3Input, db: Session):
     """Signup details for a user"""
     # Build filter conditions based on the request data
     filter_conditions = [User.email == request_data.email]
-    if request_data.phone_number:
-        filter_conditions.append(User.phone_number == request_data.phone_number)
+    if request_data.phone_code and request_data.phone_number:
+        filter_conditions.append((User.phone_code == request_data.phone_code) & (User.phone_number == request_data.phone_number))
 
     # Query for user
-    # This query checks if a user exists with either the given email or phone number if provided
+    # This query checks if a user exists with either the given email or phone pair if provided
     user = db.query(User).filter(or_(*filter_conditions), User.deleted_at.is_(None)).first()
     if user:
         return response_conflict(message='User with the email or phone number already exists')
@@ -146,6 +147,7 @@ def signup_details(request_data: A3Input, db: Session):
     if not otp:
         return response_bad_request(message='Please verify your email with the OTP sent to your email')
 
+    now = datetime.now(tz=UTC)
     # Create the user
     user = User(
         name=request_data.name,
@@ -153,10 +155,11 @@ def signup_details(request_data: A3Input, db: Session):
         phone_number=request_data.phone_number,
         email=request_data.email,
         password=get_hashed_password(request_data.password),
-        photo_url=get_avatar_url(request_data.name),
+        photo_url=get_avatar_url(request_data.name, request_data.email),
         referrer=request_data.referrer,
-        terms_of_service_accepted_at=datetime.now(tz=UTC),
-        privacy_policy_accepted_at=datetime.now(tz=UTC),
+        email_verified_at=now,
+        terms_of_service_accepted_at=now,
+        privacy_policy_accepted_at=now,
     )
     try:
         db.add(user)
@@ -195,7 +198,7 @@ def post_refresh_token(request_data: A6Input, db: Session):
     payload = validate_token(request_data.refresh_token)
     if not payload:
         return response_unauthorized(message='Invalid token')
-    user_id: int = payload.get('sub')
+    user_id = parse_uuid7(str(payload.get('sub')))
     user = db.query(User).filter_by(id=user_id).one_or_none()
     if user and user.refresh_token != request_data.refresh_token:
         return response_unauthorized(message='Please log in again!')
