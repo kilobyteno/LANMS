@@ -1,35 +1,36 @@
 [project]
 name = "lanms-backend"
-version = "3.0.0a10"
+version = "3.0.0a11"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "alembic~=1.18.4",
-    "fastapi[standard]~=0.135.3",
-    "pydantic[email]~=2.13.0",
+    "alembic~=1.19.1",
+    "fastapi[standard]~=0.141.1",
+    "pydantic[email]~=2.13.5",
     "pydantic-extra-types~=2.11.1",
-    "requests~=2.33.1",
-    "psycopg2-binary~=2.9.11",
-    "sentry-sdk[fastapi,sqlalchemy,starlette]~=2.58.0",
-    "sqlalchemy~=2.0.49",
-    "pyjwt[crypto]~=2.12.1",
-    "pyotp~=2.9.0",
+    "requests~=2.34.2",
+    "psycopg2-binary~=2.9.12",
+    "sentry-sdk[fastapi,sqlalchemy,starlette]~=2.66.1",
+    "sqlalchemy~=2.0.52",
+    "pyjwt[crypto]~=2.13.0",
+    "pyotp~=2.10.0",
     "passlib~=1.7.4",
     "bcrypt>=4.0.1,<5",
-    "pandas~=3.0.2",
-    "fastapi-pagination~=0.15.12",
-    "fastapi-filter[sqlalchemy]~=2.0.1",
+    "pandas~=3.0.5",
+    "fastapi-pagination~=0.15.16",
+    "fastapi-filter[sqlalchemy]~=3.0.0",
     "sendgrid~=6.12.5",
-    "python-dotenv~=1.2.2",
+    "python-dotenv~=1.2.3",
     "tunsberg~=0.3.0",
-    "phonenumbers~=9.0.28",
+    "phonenumbers~=9.0.35",
     "postmarker~=1.0.0",
+    "uuid6~=2025.0.1",
 ]
 
 [dependency-groups]
 dev = [
-    "pre-commit~=4.5.1",
-    "pytest>=9.0.3",
-    "ruff~=0.15.10",
+    "pre-commit~=4.6.0",
+    "pytest>=9.1.1",
+    "ruff~=0.16.1",
 ]
 
 [tool.uv]
@@ -105,6 +106,11 @@ ignore = [
     "B008", # Do not perform function calls in argument defaults
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "D103", # test functions do not need docstrings
+    "PLR2004", # HTTP status codes and similar are clear in context
+]
 
 [tool.ruff.format]
 quote-style = "single"
