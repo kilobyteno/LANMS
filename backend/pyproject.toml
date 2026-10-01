@@ -3,7 +3,7 @@ name = "lanms-backend"
 version = "3.0.0a11"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "alembic~=1.19.1",
+    "alembic~=1.20.0",
     "fastapi[standard]~=0.141.1",
     "pydantic[email]~=2.13.5",
     "pydantic-extra-types~=2.11.1",
