@@ -1,10 +1,10 @@
 from datetime import datetime
-from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from app.v3.auth.schemas import UserResponse
 from app.v3.organisations.schemas import OrganisationResponse
+from app.v3.uuid_types import UUID7
 
 
 class EventBase(BaseModel):
@@ -29,7 +29,7 @@ class EventBase(BaseModel):
     start_at: datetime
     end_at: datetime
 
-    organisation_id: UUID
+    organisation_id: UUID7
 
 
 class EventCreate(EventBase):
@@ -47,7 +47,9 @@ class EventUpdate(EventBase):
 class EventResponse(EventBase):
     """Event response model"""
 
-    id: UUID
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID7
 
     title: str
     description: str | None
@@ -75,11 +77,6 @@ class EventResponse(EventBase):
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None
-
-    class Config:
-        """Pydantic config"""
-
-        orm_mode = True
 
 
 class EventListResponse(BaseModel):

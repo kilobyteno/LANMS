@@ -1,7 +1,8 @@
 import logging
 from datetime import datetime
+from uuid import UUID
 
-from pydantic import UUID4, TypeAdapter
+from pydantic import TypeAdapter
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from tunsberg.responses import (
@@ -47,7 +48,7 @@ def get_organisations(db: Session, skip: int = 0, limit: int = 100):
     return response_success(message='Organisations retrieved', data=data)
 
 
-def get_organisation(db: Session, organisation_id: int):
+def get_organisation(db: Session, organisation_id: UUID):
     """Get organisation by ID"""
     organisation = db.query(Organisation).filter(Organisation.id == organisation_id).first()
     if not organisation:
@@ -57,7 +58,7 @@ def get_organisation(db: Session, organisation_id: int):
     return response_success(message='Organisation retrieved', data=adapter.dump_json(organisation))
 
 
-def update_organisation(db: Session, organisation_id: UUID4, current_user: User, organisation_data: OrganisationUpdate):
+def update_organisation(db: Session, organisation_id: UUID, current_user: User, organisation_data: OrganisationUpdate):
     """Update organisation"""
     organisation = db.query(Organisation).filter(Organisation.id == organisation_id).first()
     if not organisation:
@@ -83,7 +84,7 @@ def update_organisation(db: Session, organisation_id: UUID4, current_user: User,
         return response_conflict(message='Organisation with this name already exists')
 
 
-def delete_organisation(db: Session, organisation_id: UUID4, current_user: User):
+def delete_organisation(db: Session, organisation_id: UUID, current_user: User):
     """Delete organisation"""
     organisation = db.query(Organisation).filter(Organisation.id == organisation_id).first()
     if not organisation:
@@ -102,7 +103,7 @@ def delete_organisation(db: Session, organisation_id: UUID4, current_user: User)
         return response_bad_request(message='Could not delete organisation')
 
 
-def fetch_organisation_events(organisation_id: UUID4, db: Session):
+def fetch_organisation_events(organisation_id: UUID, db: Session):
     """Get events associated with the organisation"""
     events = db.query(Event).filter(Event.organisation_id == organisation_id, Event.deleted_at.is_(None)).all()
 
@@ -112,7 +113,7 @@ def fetch_organisation_events(organisation_id: UUID4, db: Session):
     return response_success(message='Events successfully fetched', data=events)
 
 
-def fetch_organisation_events_all(organisation_id: UUID4, current_user: User, db: Session):
+def fetch_organisation_events_all(organisation_id: UUID, current_user: User, db: Session):
     """Get events associated with the organisation"""
     events = db.query(Event).filter(Event.organisation_id == organisation_id).all()
 

@@ -1,5 +1,3 @@
-from uuid import UUID
-
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
@@ -15,6 +13,7 @@ from app.v3.event_interests.service import (
     get_user_interest,
     update_interest,
 )
+from app.v3.uuid_types import UUID7
 
 router = APIRouter()
 
@@ -25,7 +24,7 @@ router = APIRouter()
     response_model=EventInterestResponse,
 )
 async def post_create_interest(
-    event_id: UUID, interest_data: EventInterestCreate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
+    event_id: UUID7, interest_data: EventInterestCreate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
 ) -> JSONResponse:
     """Register interest in an event"""
     return create_interest(db=db, event_id=event_id, current_user=current_user, interest_data=interest_data)
@@ -36,7 +35,7 @@ async def post_create_interest(
     name='EI-2',
     response_model=list[EventInterestResponse],
 )
-async def get_interests_list(event_id: UUID, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
+async def get_interests_list(event_id: UUID7, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> JSONResponse:
     """Get all interests for an event"""
     return get_event_interests(db=db, event_id=event_id, skip=skip, limit=limit)
 
@@ -47,7 +46,7 @@ async def get_interests_list(event_id: UUID, skip: int = 0, limit: int = 100, db
     response_model=EventInterestResponse,
 )
 async def put_update_interest(
-    event_id: UUID, interest_data: EventInterestUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
+    event_id: UUID7, interest_data: EventInterestUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
 ) -> JSONResponse:
     """Update interest status"""
     return update_interest(db=db, event_id=event_id, current_user=current_user, interest_data=interest_data)
@@ -58,12 +57,12 @@ async def put_update_interest(
     name='EI-4',
     response_model=EventInterestResponse,
 )
-async def get_my_interest(event_id: UUID, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
+async def get_my_interest(event_id: UUID7, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
     """Get current user's interest status for an event"""
     return get_user_interest(db=db, event_id=event_id, current_user=current_user)
 
 
 @router.get('/events/{event_id}/interests/count', name='EI-5', response_model=EventInterestCountResponse)
-async def get_interest_count(event_id: UUID, db: Session = Depends(get_db)) -> JSONResponse:
+async def get_interest_count(event_id: UUID7, db: Session = Depends(get_db)) -> JSONResponse:
     """Get count of interests for an event"""
     return get_event_interest_count(db=db, event_id=event_id)
