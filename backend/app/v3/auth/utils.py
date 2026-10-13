@@ -2,6 +2,7 @@ import logging
 import secrets
 import string
 from datetime import UTC, datetime, timedelta
+from uuid import UUID
 
 import jwt
 from fastapi import Depends, Request
@@ -14,6 +15,7 @@ from starlette import status
 from app.dependencies import get_db
 from app.models.user import User
 from app.v3.utils import CustomExceptionError
+from app.v3.uuid_types import parse_uuid7
 from config import Config
 
 log = logging.getLogger(__name__)
@@ -160,7 +162,16 @@ def validate_token(token: str) -> dict or None:
         log.debug(f'exp: {payload["exp"]}')
         log.debug(f'now: {datetime.now(UTC).timestamp()}')
         log.debug(f'expires in seconds: {payload["exp"] - datetime.now(UTC).timestamp()}')
-        return payload if payload['exp'] >= datetime.now(UTC).timestamp() else None
+        if payload['exp'] < datetime.now(UTC).timestamp():
+            return None
+        sub = payload.get('sub')
+        if sub is None:
+            return None
+        try:
+            parse_uuid7(str(sub))
+        except ValueError:
+            return None
+        return payload
     except jwt.ExpiredSignatureError:
         return None
     except jwt.InvalidTokenError:
@@ -214,9 +225,13 @@ async def get_current_user(token: str = Depends(JWTBearer()), db: Session = Depe
     """
     try:
         payload = jwt.decode(token, Config.JWT_PUBLIC_KEY, algorithms=[Config.JWT_ALGORITHM])
-        user_id: str = payload.get('sub')
-        if user_id is None:
+        sub = payload.get('sub')
+        if sub is None:
             raise CustomExceptionError(status_code=status.HTTP_403_FORBIDDEN, message='Invalid token.')
+        try:
+            user_id = parse_uuid7(str(sub))
+        except ValueError:
+            raise CustomExceptionError(status_code=status.HTTP_403_FORBIDDEN, message='Invalid token.') from None
         user = db.query(User).filter(User.id == user_id).one_or_none()
         if user is None:
             raise CustomExceptionError(status_code=status.HTTP_403_FORBIDDEN, message='User not found.')
@@ -252,12 +267,15 @@ def verify_reset_token(token: str) -> bool:
     """
     try:
         payload = jwt.decode(token, Config.JWT_PUBLIC_KEY, algorithms=[Config.JWT_ALGORITHM])
-        user_id = payload.get('sub')
-        if user_id is None or payload.get('exp') < datetime.now(UTC).timestamp():
-            raise CustomExceptionError(status_code=status.HTTP_403_FORBIDDEN, message='Invalid or expired token.')
+        sub = payload.get('sub')
+        if sub is None or payload.get('exp') < datetime.now(UTC).timestamp():
+            return False
+        parse_uuid7(str(sub))
     except jwt.ExpiredSignatureError:
         return False
     except jwt.InvalidTokenError:
+        return False
+    except ValueError:
         return False
     return True
 
@@ -267,14 +285,17 @@ def format_email_from_input(email: str) -> str:
     return email.lower().strip()
 
 
-def get_user_id_from_token(token: str) -> str:
+def get_user_id_from_token(token: str) -> UUID:
     """
     Get user ID from token
 
     :param token: Token
     :type token: str
-    :return: User ID
-    :rtype: str
+    :return: User ID (UUID version 7)
+    :rtype: UUID
     """
     payload = jwt.decode(token, Config.JWT_PUBLIC_KEY, algorithms=[Config.JWT_ALGORITHM])
-    return payload.get('sub')
+    sub = payload.get('sub')
+    if sub is None:
+        raise ValueError('Missing subject')
+    return parse_uuid7(str(sub))

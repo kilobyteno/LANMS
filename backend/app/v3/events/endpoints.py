@@ -1,5 +1,3 @@
-from uuid import UUID
-
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
@@ -15,6 +13,7 @@ from app.v3.events.service import (
     get_events,
     update_event,
 )
+from app.v3.uuid_types import UUID7
 
 router = APIRouter()
 
@@ -44,7 +43,7 @@ async def get_events_list(skip: int = 0, limit: int = 100, db: Session = Depends
     name='E-3',
     response_model=EventResponse,
 )
-async def get_event_by_id(event_id: UUID, db: Session = Depends(get_db)) -> JSONResponse:
+async def get_event_by_id(event_id: UUID7, db: Session = Depends(get_db)) -> JSONResponse:
     """Get event by ID"""
     return get_event(db=db, event_id=event_id)
 
@@ -55,7 +54,7 @@ async def get_event_by_id(event_id: UUID, db: Session = Depends(get_db)) -> JSON
     response_model=EventResponse,
 )
 async def put_update_event(
-    event_id: UUID, event_data: EventUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
+    event_id: UUID7, event_data: EventUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
 ) -> JSONResponse:
     """Update event"""
     return update_event(db=db, event_id=event_id, current_user_id=current_user.id, event_data=event_data)
@@ -65,6 +64,6 @@ async def put_update_event(
     '/{event_id}',
     name='E-5',
 )
-async def delete_event_by_id(event_id: UUID, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
+async def delete_event_by_id(event_id: UUID7, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> JSONResponse:
     """Delete event"""
     return delete_event(db=db, event_id=event_id, current_user_id=current_user.id)

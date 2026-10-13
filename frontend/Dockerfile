@@ -1,52 +1,45 @@
-ARG BUILD_ENV=production
-ARG NODE=node:22-alpine
-ARG NGINX=nginx:stable-alpine
+FROM node:22.23.2-alpine AS builder
 
-FROM ${NODE} as node
+ARG NEXT_PUBLIC_ENV=production
+ARG NEXT_PUBLIC_CORE_API_URL
 
-# Needed to pass the ENV variable to the build stage, so stupid
-ARG BUILD_ENV
-# Reference: https://qmacro.org/blog/posts/2024/05/13/using-arg-in-a-dockerfile-beware-the-gotcha/
+ENV NEXT_PUBLIC_ENV=$NEXT_PUBLIC_ENV
+ENV NEXT_PUBLIC_CORE_API_URL=$NEXT_PUBLIC_CORE_API_URL
 
-# Set working directory
 WORKDIR /app
 
-# Copy source code
-COPY . /app
+COPY package.json package-lock.json* ./
+RUN npm ci
 
-# Update npm
-RUN npm install -g npm@latest
+COPY app/ ./app/
+COPY components/ ./components/
+COPY hooks/ ./hooks/
+COPY lib/ ./lib/
+COPY public/ ./public/
+COPY next.config.mjs postcss.config.mjs tsconfig.json components.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm run build
 
-# Build for production or staging
-RUN echo "Building for environment: $BUILD_ENV" >&2
+FROM node:22.23.2-alpine AS runner
 
-# Override build command if build mode is staging
-RUN if [ "$BUILD_ENV" = "sandbox" ]; then \
-        npm run build:sandbox; \
-    elif [ "$BUILD_ENV" = "staging" ]; then \
-        npm run build:staging; \
-    else \
-        npm run build:production; \
-    fi
+WORKDIR /app
 
-# Build Nginx image
-FROM ${NGINX}
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 
-# Copy Nginx configuration file into appropriate location (see docs of nginx image)
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
 
-# Copy static files to nginx work folder
-COPY --from=node app/dist /var/www/portal/
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Add redirecting requests and error logs to docker log
-RUN ln -sf /dev/stdout /var/log/nginx/portal.access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/portal.error.log
+USER nextjs
 
-# Expose port
 EXPOSE 8080
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD wget --spider -q http://localhost:8080 || exit 1
+
+CMD ["node", "server.js"]
