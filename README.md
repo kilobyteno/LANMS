@@ -21,7 +21,9 @@ We started the development of the new LANMS 3.0 in February 2023, originally, bu
 
 ## Documentation
 
-Developer-focused guides live under **[docs/](docs/README.md)**. That index links to the [backend](docs/backend/README.md) and [frontend](docs/frontend/README.md) setup instructions (environment, dependencies, migrations, deployment), plus [legacy codebase notes](docs/legacy/LEGACY-CODEBASE.md). The [`backend/`](backend/README.md) and [`frontend/`](frontend/README.md) folders each include a short readme that points to the same docs.
+Developer-focused guides live under **[docs/](docs/README.md)**. That index links to [Docker Compose](docs/docker/README.md), [backend](docs/backend/README.md) and [frontend](docs/frontend/README.md) setup instructions (environment, dependencies, migrations, deployment), plus [legacy codebase notes](docs/legacy/LEGACY-CODEBASE.md). The [`backend/`](backend/README.md) and [`frontend/`](frontend/README.md) folders each include a short readme that points to the same docs.
+
+To run the full stack with Docker, copy [`.env.example`](.env.example) to `.env`, fill in secrets, then see the [Docker guide](docs/docker/README.md).
 
 ## Contribution
 

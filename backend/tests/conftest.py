@@ -7,6 +7,15 @@ import os
 # Test env: required-env checks only apply to live environments and CODE_BUILD.
 os.environ.setdefault('ENV', 'test')
 os.environ.setdefault('SQLALCHEMY_DATABASE_URI', 'sqlite:///:memory:')
+# Auth and docs config (used when tests import ``config`` / ``main``).
+os.environ.setdefault('JWT_ALGORITHM', 'HS256')
+os.environ.setdefault(
+    'JWT_PRIVATE_KEY',
+    'test-jwt-secret-key-at-least-32-characters-long-for-hs256',
+)
+os.environ.setdefault('JWT_PUBLIC_KEY', os.environ['JWT_PRIVATE_KEY'])
+os.environ.setdefault('OTP_SECRET_KEY', 'test-otp-secret-key-32-characters-minimum')
+os.environ.setdefault('PORTAL_URL', 'http://localhost:3000')
 
 import pytest
 from sqlalchemy import create_engine
