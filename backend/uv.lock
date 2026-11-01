@@ -331,16 +331,16 @@ sqlalchemy = [
 
 [[package]]
 name = "fastapi-pagination"
-version = "0.16.0"
+version = "0.16.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fastapi" },
     { name = "pydantic" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8c/1c/c51ad0415be51a16b9d364d9c4b30fe108727082fa0764127bab29974772/fastapi_pagination-0.16.0.tar.gz", hash = "sha256:315824873062e1a1784877bca5f274089a4dbb29f342aeff822ca1f50bc9946a", size = 615193, upload-time = "2026-09-16T19:40:40.15Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/39/75/f1040bac6fa6125b95ce5f399c32342674ac91b59c00eb157ba73b74d26d/fastapi_pagination-0.16.1.tar.gz", hash = "sha256:c43a4286f7dd4c25501da7f5ae84a89172d3c5f3c4a93b4bc8c6639ed754d11d", size = 618177, upload-time = "2026-10-08T18:39:32.741Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/96/db309f7cea7ffb66fd8d8430fc6ae35b07f216270a2b5844b9f23d8a2eec/fastapi_pagination-0.16.0-py3-none-any.whl", hash = "sha256:7f68942d3240f6813c679559fb87beb84d345cad2840b46b95cd3dbc62f6cd99", size = 51975, upload-time = "2026-09-16T19:40:38.769Z" },
+    { url = "https://files.pythonhosted.org/packages/13/9c/5a6dec42593fd408e564960340ef930bbe0fcae3ce7b11641f2bcb6278c3/fastapi_pagination-0.16.1-py3-none-any.whl", hash = "sha256:a91f030f764a5077b6cea41bc1df8c4cf738ac5bad2dc29977f3f0482e6202d2", size = 52562, upload-time = "2026-10-08T18:39:31.191Z" },
 ]
 
 [[package]]
@@ -524,7 +524,7 @@ requires-dist = [
     { name = "bcrypt", specifier = ">=4.0.1,<5" },
     { name = "fastapi", extras = ["standard"], specifier = "~=0.141.1" },
     { name = "fastapi-filter", extras = ["sqlalchemy"], specifier = "~=3.0.0" },
-    { name = "fastapi-pagination", specifier = "~=0.16.0" },
+    { name = "fastapi-pagination", specifier = "~=0.16.1" },
     { name = "pandas", specifier = "~=3.1.0" },
     { name = "passlib", specifier = "~=1.7.4" },
     { name = "phonenumbers", specifier = "~=9.0.42" },
