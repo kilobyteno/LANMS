@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0-alpha.11 - 2026-04-16
+
+### Added
+
+- **Initial user bootstrap** — Script and docs to bootstrap an initial user in the DB; tests and refactors around that flow (merged via [#111](https://github.com/kilobyteno/LANMS/pull/111) — adjust org/repo if your remote differs).
+
+### Changed
+
+- **Documentation** — Centralized developer docs under `docs/` (`docs/README.md`, `docs/backend/README.md`, `docs/frontend/README.md`); moved `LEGACY-CODEBASE.md` to `docs/legacy/`; root and app READMEs now point at `docs/` instead of long inline guides.
+- **Backend docs** — Environment variables documented; docs updated for env, tests, and bootstrap.
+- **CI / release** — Release workflow: add **uv** (`astral-sh/setup-uv@v7`) and run `uv lock` in the backend so `uv.lock` is refreshed during release; ensures uv is available before Node setup.
+- **Dependencies** — `uv.lock` updated.
+
+### Fixed
+
+- **Uvicorn** — Replace deprecated `uvicorn_log_config` with `log_config`.
+- **Build** — Build script runs steps **sequentially** (fix for parallel/ordering issues).
+- Minor typo fix.
+
 ## 3.0.0-alpha.10 - 2026-04-14
 
 ### Features & product

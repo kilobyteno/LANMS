@@ -11,7 +11,7 @@ class User(BaseModel):
 
     __tablename__ = 'users'
 
-    name = Column(String(256), nullable=False)
+    name = Column(String(256), nullable=True)
     email = Column(String(320), unique=True, index=True)
     password = Column(String(256), nullable=False)
     phone_code = Column(String(12), nullable=True, comment='Phone number with country code, e.g. +47')
@@ -35,7 +35,9 @@ class User(BaseModel):
     @property
     def phone(self):
         """Return phone number with country code"""
-        return f'{self.phone_code}{self.phone_number}'
+        if self.phone_code and self.phone_number:
+            return f'{self.phone_code}{self.phone_number}'
+        return None
 
 
 class Otp(BaseModel):

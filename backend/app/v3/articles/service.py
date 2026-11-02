@@ -1,7 +1,7 @@
 import logging
+from uuid import UUID
 
 from pydantic import TypeAdapter
-from pydantic.v1 import UUID4
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from tunsberg.responses import (
@@ -21,7 +21,7 @@ from app.v3.articles.schemas import ArticleCreate, ArticleResponse, ArticleUpdat
 log = logging.getLogger(__name__)
 
 
-def create_article(db: Session, event_id: UUID4, current_user: User, article_data: ArticleCreate):
+def create_article(db: Session, event_id: UUID, current_user: User, article_data: ArticleCreate):
     """Create a new article"""
     # Check if event exists
     event = db.query(Event).filter(Event.id == event_id).first()
@@ -42,7 +42,7 @@ def create_article(db: Session, event_id: UUID4, current_user: User, article_dat
         return response_conflict(message='Error creating article')
 
 
-def get_articles(db: Session, event_id: UUID4, skip: int = 0, limit: int = 100):
+def get_articles(db: Session, event_id: UUID, skip: int = 0, limit: int = 100):
     """Get published articles for an event"""
     # Check if event exists
     event = db.query(Event).filter(Event.id == event_id).first()
@@ -63,7 +63,7 @@ def get_articles(db: Session, event_id: UUID4, skip: int = 0, limit: int = 100):
     return response_success(message='Articles retrieved', data=data)
 
 
-def get_article(db: Session, event_id: UUID4, article_id: UUID4):
+def get_article(db: Session, event_id: UUID, article_id: UUID):
     """Get article by ID"""
     # Check if event exists
     event = db.query(Event).filter(Event.id == event_id).first()
@@ -78,7 +78,7 @@ def get_article(db: Session, event_id: UUID4, article_id: UUID4):
     return response_success(message='Article retrieved', data=adapter.dump_json(article))
 
 
-def update_article(db: Session, event_id: UUID4, article_id: UUID4, current_user: User, article_data: ArticleUpdate):
+def update_article(db: Session, event_id: UUID, article_id: UUID, current_user: User, article_data: ArticleUpdate):
     """Update article"""
     # Check if event exists
     event = db.query(Event).filter(Event.id == event_id).first()
@@ -104,7 +104,7 @@ def update_article(db: Session, event_id: UUID4, article_id: UUID4, current_user
         return response_conflict(message='Error updating article')
 
 
-def delete_article(db: Session, event_id: UUID4, article_id: UUID4, current_user: User):
+def delete_article(db: Session, event_id: UUID, article_id: UUID, current_user: User):
     """Delete article"""
     article = db.query(Article).filter(Article.id == article_id, Article.event_id == event_id, Article.deleted_at.is_(None)).first()
     if not article:
@@ -120,7 +120,7 @@ def delete_article(db: Session, event_id: UUID4, article_id: UUID4, current_user
         return response_bad_request(message='Could not delete article')
 
 
-def get_all_articles(db: Session, event_id: UUID4):
+def get_all_articles(db: Session, event_id: UUID):
     """Get all articles for an event"""
     articles = db.query(Article).filter(Article.event_id == event_id, Article.deleted_at.is_(None)).all()
     adapter = TypeAdapter(list[ArticleResponse])
