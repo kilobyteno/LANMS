@@ -6,10 +6,10 @@ Run the commands below from the `frontend/` directory at the repository root.
 
 ## Development
 
-Make a copy of the `.env.example` file and rename it to `.env`. Fill in the required environment variables.
+Make a copy of the [`.env.example`](../../frontend/.env.example) file and rename it to `.env.local` (or `.env`). Set `NEXT_PUBLIC_CORE_API_URL` to your LANMS API base URL (for example `http://127.0.0.1:8001/v3`) and optional `NEXT_PUBLIC_ENV`.
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
 Install the dependencies:
@@ -18,11 +18,20 @@ Install the dependencies:
 npm install
 ```
 
-Run the development server:
+Run the development server (Next.js):
 
 ```bash
 npm run dev
 ```
+
+Production build and local run:
+
+```bash
+npm run build
+npm run start
+```
+
+Sandbox/staging builds load env from `.env.sandbox` / `.env.staging` via `npm run build:sandbox` and `npm run build:staging`.
 
 Update the translation files:
 

@@ -1,7 +1,7 @@
 import logging
+from uuid import UUID
 
 from pydantic import TypeAdapter
-from pydantic.v1 import UUID4
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from tunsberg.responses import (
@@ -45,7 +45,7 @@ def get_events(db: Session, skip: int = 0, limit: int = 100):
     return response_success(message='Events retrieved', data=data)
 
 
-def get_event(db: Session, event_id: UUID4):
+def get_event(db: Session, event_id: UUID):
     """Get event by ID"""
     event = db.query(Event).filter(Event.id == event_id, Event.deleted_at.is_(None)).first()
     if not event:
@@ -55,7 +55,7 @@ def get_event(db: Session, event_id: UUID4):
     return response_success(message='Event retrieved', data=adapter.dump_json(event))
 
 
-def update_event(db: Session, event_id: UUID4, current_user_id: int, event_data: EventUpdate):
+def update_event(db: Session, event_id: UUID, current_user_id: UUID, event_data: EventUpdate):
     """Update event"""
     event = db.query(Event).filter(Event.id == event_id, Event.deleted_at.is_(None)).first()
     if not event:
@@ -79,7 +79,7 @@ def update_event(db: Session, event_id: UUID4, current_user_id: int, event_data:
         return response_conflict(message='Error updating event')
 
 
-def delete_event(db: Session, event_id: UUID4, current_user_id: int):
+def delete_event(db: Session, event_id: UUID, current_user_id: UUID):
     """Delete event"""
     event = db.query(Event).filter(Event.id == event_id, Event.deleted_at.is_(None)).first()
     if not event:

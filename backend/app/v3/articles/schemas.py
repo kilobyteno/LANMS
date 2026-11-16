@@ -1,9 +1,9 @@
 from datetime import datetime
-from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from app.v3.auth.schemas import UserResponse
+from app.v3.uuid_types import UUID7
 
 
 class ArticleBase(BaseModel):
@@ -30,17 +30,14 @@ class ArticleUpdate(ArticleBase):
 class ArticleResponse(ArticleBase):
     """Article response model"""
 
-    id: UUID
-    event_id: UUID
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID7
+    event_id: UUID7
     created_by: UserResponse
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None
-
-    class Config:
-        """Pydantic config"""
-
-        orm_mode = True
 
 
 class ArticleListResponse(BaseModel):

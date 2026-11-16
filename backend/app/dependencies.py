@@ -23,6 +23,12 @@ def get_db_engine(url: str = Config.SQLALCHEMY_DATABASE_URI, pool_size: int = 10
     :param pool_size: Pool size for SQLAlchemy. Default 10.
     :return: SQLAlchemy database engine.
     """
+    if url.startswith('sqlite'):
+        return create_engine(
+            url=url,
+            connect_args={'check_same_thread': False},
+            echo=Config.DATABASE_DEBUG,
+        )
     return create_engine(
         url=url,
         pool_size=pool_size,  # Set pool size to 10 connections
